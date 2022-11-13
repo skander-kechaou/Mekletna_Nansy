@@ -23,11 +23,19 @@ body{
 
 header{
     width: 370px;
-    height: 350px;
+    height: 700px;
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 57%;
     background-color: white;
+}
+
+.box1 input{
+    width: 30%;
+    margin: 10px;
+    margin-top: 18px;
+    margin-left: 21px;
+    padding: 13px 13px;
 }
 
 .box input{
@@ -79,4 +87,15 @@ header{
     text-decoration: none;
     color: white;
     
+}
+
+.link3 {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.link3 a{
+    text-decoration: none;
+    color: #e70013;
+    font-size: 30px;
 }
