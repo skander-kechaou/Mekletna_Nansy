@@ -22,27 +22,29 @@ body{
 }
 
 header{
-    width: 370px;
-    height: 700px;
+    width: 500px;
+    height: 670px;
     position: absolute;
-    top: 10%;
-    left: 57%;
+    top: 4%;
+    left: 35%;
     background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1)
 }
 
 .box1 input{
     width: 30%;
     margin: 10px;
     margin-top: 18px;
-    margin-left: 21px;
-    padding: 13px 13px;
+    margin-left: 28px;
+    padding: 13px 16px;
 }
 
 .box input{
     width: 75%;
     margin: 10px;
     margin-top: 18px;
-    margin-left: 21px;
+    margin-left: 28px;
     padding: 13px 18px;
 }
 
