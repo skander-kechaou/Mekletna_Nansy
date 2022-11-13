@@ -4,54 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="assets/css/login.css" />
   </head>
   <body>
-    <form method="POST" action="ajoutcommande.php">
-      <table>
-        <caption>
-          LOGIN
-        </caption>
-        <tr> 
-          <td>id_Produit</td> 
-          <td><input type="number" name="id_Produit" /></td>
-        </tr>
-        <tr>
-          <td>Nom_Commande</td>
-          <td><input type="text" name="Nom_Commande" /></td>
-        </tr>
-        <tr>
-          <td>id_Client</td>
-          <td><input type="number" name="id_Client" /></td>
-        </tr>
-        <tr>
-          <td>Prix</td>
-          <td><input type="number" name="Prix" /></td>
-        </tr>
-        <tr>
-          <td>Date_Commande</td>
-          <td>
-            <input
-              type="date"
-              name="Date_Commande"
-              value='<?PHP date("Y-m-d") ?>'
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>id_Commande</td>
-          <td><input type="number" name="id_Commande" /></td>
-        </tr>
-        <tr>
-          <td>Etat</td>
-          <td><input type="number" name="Etat" /></td>
-        </tr>
+    <div class="container">
+      <img src="assets/img/mekletna login.png" alt="logo" />
+      <p>Mekletna keeps you connected to your<br />cultural gastronomy</p>
+    </div>
 
-        <tr>
-          <td></td>
-          <td><input type="submit" name="ajouter" value="ajouter" /></td>
-        </tr>
-      </table>
-    </form>
+    <header>
+      <div class="box">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email address or phone number"
+        /><br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+
+      <div class="link">
+        <a href="#">Log In</a>
+      </div>
+
+      <div class="link1">
+        <a href="#">Forgotten Password?</a>
+      </div>
+      <div class="link2">
+        <a href="register.html">Create New Account</a>
+      </div>
+    </header>
   </body>
 </html>
