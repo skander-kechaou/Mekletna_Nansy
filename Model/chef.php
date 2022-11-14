@@ -2,18 +2,18 @@
 class commande{
 	private $id_chef;
 	private $Nom_chef;
-	private $id_Client;
+	private $id_Assio;
 	private $Prix;
   private $Date_Commande;
-  private $id_Commande;
+  private $id_Donation;
   private $Etat;
 
 
-    function __construct($id_Produit,$Nom_Commande,$id_Client,$Prix,$Date_Commande,$id_Commande,$Etat)
+    function __construct($id_Menu,$Nom_Commande,$id_Assio,$Prix,$Date_Commande,$id_Donation,$Etat)
     {
-		$this->id_Produit=$id_Produit;
+		$this->id_Menu=$id_Menu;
 		$this->Nom_Commande=$Nom_Commande;
-		$this->id_Client=$id_Client;
+		$this->id_Assio=$id_Assio;
 		$this->Prix=$Prix;
     $this->Date_Commande=$Date_Commande;
     $this->Etat=$Etat;
@@ -22,9 +22,9 @@ class commande{
      
     //////////////////////////////////////////////////////////////
 
-    function getid_Produit()
+    function getid_Menu()
     {
-		return $this->id_Produit;
+		return $this->id_Menu;
     }
     
     function getNom_Commande()
@@ -32,9 +32,9 @@ class commande{
 		return $this->Nom_Commande;
     }
     
-    function getid_Client()
+    function getid_Assio()
     {
-		return $this->id_Client;
+		return $this->id_Assio;
     }
     
     function getPrix()
@@ -47,9 +47,9 @@ class commande{
 		return $this->Date_Commande;
     }
     
-    function getid_Commande()
+    function getid_Donation()
     {
-		return $this->id_Commande;
+		return $this->id_Donation;
     }
     
     function getEtat()
@@ -59,9 +59,9 @@ class commande{
 
     //////////////////////////////////////////////////////////////
     
-    function setid_Produit($id_Produit)
+    function setid_Menu($id_Menu)
     {
-		$this->id_Produit=$id_Produit;
+		$this->id_Menu=$id_Menu;
     }
 
     function setNom_Commande($Nom_Commande)
@@ -69,9 +69,9 @@ class commande{
 		$this->Nom_Commande=$Nom_Commande;
     }
     
-    function setid_Client($id_Client)
+    function setid_Assio($id_Assio)
     {
-		$this->id_Client;
+		$this->id_Assio;
     }
     
     function setPrix($Prix)
@@ -84,9 +84,9 @@ class commande{
 		$this->Date_Commande;
     }
     
-    function setid_Commande($id_Commande)
+    function setid_Donation($id_Donation)
     {
-		$this->id_Commande=$id_Commande;
+		$this->id_Donation=$id_Donation;
     }
 
     function setEtat($Etat)
