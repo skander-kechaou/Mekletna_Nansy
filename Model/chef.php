@@ -1,97 +1,146 @@
 <?PHP 
-class commande{
-	private $id_chef;
-	private $Nom_chef;
-	private $id_Assio;
-	private $Prix;
-  private $Date_Commande;
-  private $id_Donation;
-  private $Etat;
+class Chef{
+	private ?int $id_chef=null;
+	private ?string $Name_chef=null;
+  private ?string $Add_chef=null;
+	private ?string $mail_chef=null;
+	private ?int $Phone=null;
+  private ?DateTime $Date_Birth=null;
+  private ?file $Cv=null;
 
 
-    function __construct($id_Menu,$Nom_Commande,$id_Assio,$Prix,$Date_Commande,$id_Donation,$Etat)
+    function __construct($id_chef = null, $Name_chef,$Add_chef,$mail_chef,$Phone,$Date_Birth,$Cv)
     {
-		$this->id_Menu=$id_Menu;
-		$this->Nom_Commande=$Nom_Commande;
-		$this->id_Assio=$id_Assio;
-		$this->Prix=$Prix;
-    $this->Date_Commande=$Date_Commande;
-    $this->Etat=$Etat;
-
+		$this->id_chef=$id_chef;
+		$this->Name_chef=$Name_chef;
+		$this->Add_chef=$Add_chef;
+		$this->mail_chef=$mail_chef;
+    $this->Phone=$Phone;
+    $this->Date_Birth=$Date_Birth;
+    $this->Cv=$Cv;
 	}
      
     //////////////////////////////////////////////////////////////
 
-    function getid_Menu()
+    function getid_chef()
     {
-		return $this->id_Menu;
+		return $this->id_chef;
     }
     
-    function getNom_Commande()
+    function getName_chef()
     {
-		return $this->Nom_Commande;
+		return $this->Name_chef;
     }
     
-    function getid_Assio()
+    function getAdd_chef()
     {
-		return $this->id_Assio;
+		return $this->Add_chef;
     }
     
-    function getPrix()
+    function getmail_chef()
     {
-		return $this->Prix;
+		return $this->mail_chef;
     }
     
-    function getDate_Commande()
+    function getPhone()
     {
-		return $this->Date_Commande;
+		return $this->Phone;
     }
     
-    function getid_Donation()
+    function getDate_Birth()
     {
-		return $this->id_Donation;
+		return $this->Date_Birth;
     }
     
-    function getEtat()
+    function getCv()
     {
-		return $this->Etat;
+		return $this->Cv;
     }
 
     //////////////////////////////////////////////////////////////
-    
-    function setid_Menu($id_Menu)
+    /**
+     * Set the value of idchef
+     *
+     * @return  self
+     */
+    function setid_chef($id_chef)
     {
-		$this->id_Menu=$id_Menu;
-    }
+		$this->id_chef=$id_chef;
 
-    function setNom_Commande($Nom_Commande)
-    {
-		$this->Nom_Commande=$Nom_Commande;
+    return $this;
     }
-    
-    function setid_Assio($id_Assio)
+/**
+     * Set the value of chef_name
+     *
+     * @return  self
+     */
+    function setName_chef($Name_chef)
     {
-		$this->id_Assio;
-    }
-    
-    function setPrix($Prix)
-    {
-		$this->Prix=$Prix;
-    }
-    
-    function setDate_Commande($Date_Commande)
-    {
-		$this->Date_Commande;
-    }
-    
-    function setid_Donation($id_Donation)
-    {
-		$this->id_Donation=$id_Donation;
-    }
+		$this->Name_chef=$Name_chef;
 
-    function setEtat($Etat)
+    return $this;
+    }
+    /**
+     * Set the value of address of the chef
+     *
+     * @return  self
+     */
+    
+    function setAdd_chef($Add_chef)
     {
-		$this->Etat=$Etat;
+		$this->Add_chef=$Add_chef;
+
+    return $this;
+    }
+    /**
+     * Set the value of the mail of the chef
+     *
+     * @return  self
+     */
+    
+    function setmail_chef($mail_chef)
+    {
+		$this->mail_chef=$mail_chef;
+
+    return $this;
+
+    }
+    /**
+     * Set the value of the phone 
+     *
+     * @return  self
+     */
+    
+    function setPhone($Phone)
+    {
+		$this->Phone=$Phone;
+
+    return $this;
+    }
+    /**
+     * Set the value of date_birth
+     *
+     * @return  self
+     */
+    function setDate_Birth($Date_Birth)
+    {
+		$this->Date_Birth=$Date_Birth;
+
+    return $this;
+
+    }
+    /**
+     * Set the value of cv
+     *
+     * @return  self
+     */
+
+    function setCv($Cv)
+    {
+		$this->Cv=$Cv;
+
+    return $this;
+
     }
 	
 }
