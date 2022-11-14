@@ -1,5 +1,5 @@
 <?php
-
+// review the add chef
 include '../Controller/ChefC.php';
 
 $error = "";
@@ -10,18 +10,26 @@ $chef = null;
 // create an instance of the controller
 $chefC = new ChefC();
 if (
-    isset($_POST["firstName"]) &&
-    isset($_POST["lastName"]) &&
-    isset($_POST["address"]) &&
-    isset($_POST["dob"])
+    isset($_POST["id_chef"]) &&
+    isset($_POST["Name_chef"]) &&
+    isset($_POST["Add_chef"]) &&
+    isset($_POST["mail_chef"])&&
+    isset($_POST["Phone"])&&
+    isset($_POST["Date_Birth"])&&
+    isset($_POST["Cv"])
+
 ) {
+    //put the ids in the form
     if (
-        !empty($_POST['firstName']) &&
-        !empty($_POST["lastName"]) &&
-        !empty($_POST["address"]) &&
-        !empty($_POST["dob"])
+        !empty($_POST['id_chef']) &&
+        !empty($_POST["Name_chef"]) &&
+        !empty($_POST["Add_chef"]) &&
+        !empty($_POST["mail_chef"])&&
+        !empty($_POST["Phone"])&&
+        !empty($_POST["Date_Birth"])&&
+        !empty($_POST["Cv"])
     ) {
-        $client = new Client(
+        $chef = new Chef(
             null,
             $_POST['firstName'],
             $_POST['lastName'],
