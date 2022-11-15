@@ -41,23 +41,6 @@
    
   </head>
 
-  <style>
-    
-    *{margin: 0; padding: 0;}
-    body{background: #ecf1f4; font-family: sans-serif;}
-    
-    .form-wrap{ width: 320px; background: #3e3d3d; padding: 40px 20px; box-sizing: border-box; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);}
-    h1{text-align: center; color: #fff; font-weight: normal; margin-bottom: 20px;}
-    
-    input{width: 100%; background: none; border: 1px solid #fff; border-radius: 3px; padding: 6px 15px; box-sizing: border-box; margin-bottom: 20px; font-size: 16px; color: #fff;}
-    
-    input[type="button"]{ background: #bac675; border: 0; cursor: pointer; color: #3e3d3d;}
-    input[type="button"]:hover{ background: #a4b15c; transition: .6s;}
-    
-    ::placeholder{color: #fff;}
-
-</style>
-
   <body>
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -218,27 +201,33 @@
             <form action="Views/forms/become-a-chef.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
               <div class="row gy-4">
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="Name of Chef" class="form-control" id="Name_chef" placeholder=" Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="text" name="Name of Chef" class="form-control" id="Name_chef" placeholder=" Name"  data-msg="Please enter at least 4 chars" required/>
+                  <div>
+                    <p id="Errorname"> </p>
+                </div>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="Add_chef" id="Add_chef" placeholder="Address" data-rule="text" >
+                  <input type="text" class="form-control" name="Add_chef" id="Add_chef" placeholder="Address" data-rule="text" >
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="Date_Birth" id="Date_Birth" placeholder=" Date_Birth" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="date" class="form-control" name="Date_Birth" id="Date_Birth" placeholder=" Date_Birth"  data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="mail_chef" class="form-control" id="mail_chef" placeholder="mail " data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="email" name="mail_chef" class="form-control" id="mail_chef" placeholder="mail "  data-msg="Please enter your mail with @" required/>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="number" class="form-control" name="Phone" id="Phone" placeholder="Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="number" name="Phone" id="Phone" placeholder="Phone" data-msg="Please enter only numbers" required/>
+                  <div>
+                    <p id="ErrorPhone"> </p>
+                </div>
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="file" class="form-control" name="Cv" id="Cv" placeholder="Cv" data-rule="minlen:1" >
+                  <input type="file" class="form-control" name="Cv" id="Cv" placeholder="Cv">
                   <div class="validate"></div>
                 </div>
               </div>
@@ -337,5 +326,6 @@
 
     <!-- Template Main JS File -->
     <script src="Views/assets/js/main.js"></script>
+    <script src="scriptChef.js"></script>
   </body>
 </html>
