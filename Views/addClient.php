@@ -70,11 +70,20 @@ if (
 
             <tr>
                 <td>
+                    <label for="idClient">ID:
+                    </label>
+                </td>
+                <td><input type="text" name="idClient" id="idClient" maxlength="20"></td>
+            </tr>
+
+            <tr>
+                <td>
                     <label for="fnameClient">First Name:
                     </label>
                 </td>
                 <td><input type="text" name="fnameClient" id="fnameClient" maxlength="20"></td>
             </tr>
+
             <tr>
                 <td>
                     <label for="lnameClient">Last Name:
@@ -82,6 +91,24 @@ if (
                 </td>
                 <td><input type="text" name="lnameClient" id="lnameClient" maxlength="20"></td>
             </tr>
+
+            <tr>
+                <td>
+                    <label for="pnbClient">Phone Number:
+                    </label>
+                </td>
+                <td><input type="text" name="pnbClient" id="pnbClient" maxlength="20"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="mailClient">E-mail Address:
+                    </label>
+                </td>
+                <td><input type="text" name="mailClient" id="mailClient" maxlength="20"></td>
+            </tr>
+            <tr>
+
             <tr>
                 <td>
                     <label for="addressClient">address:
