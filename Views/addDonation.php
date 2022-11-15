@@ -1,48 +1,42 @@
 <?php
 
-include '../Controller/UserFct.php';
+include '../Controller/Donation_core.php';
 
 $error = "";
 
-$client = null;
+$Don = null;
 
-$UserFct = new UserFct();
+$Donation_core = new Don();
 if (
-    isset($_POST["fnameClient"]) &&
-    isset($_POST["lnameClient"]) &&
-    isset($_POST["pnbClient"]) &&
-    isset($_POST["mailClient"]) &&
-    isset($_POST["pwdClient"]) &&
-    isset($_POST["bdayClient"]) &&
-    isset($_POST["pcodeClient"]) &&
-    isset($_POST["regionClient"]) &&
-    isset($_POST["addressClient"])
+    isset($_POST["idMenu"]) &&
+    isset($_POST["id_Assio"]) &&
+    isset($_POST["id_Donation"]) &&
+    isset($_POST["mail"]) &&
+    isset($_POST["Name_Assio"]) &&
+    isset($_POST["Date_Commande"]) &&
+    isset($_POST["reason"])
 ) {
     if (
-        !empty($_POST["fnameClient"]) &&
-        !empty($_POST["lnameClient"]) &&
-        !empty($_POST["pnbClient"]) &&
-        !empty($_POST["mailClient"]) &&
-        !empty($_POST["pwdClient"]) &&
-        !empty($_POST["bdayClient"]) &&
-        !empty($_POST["pcodeClient"]) &&
-        !empty($_POST["regionClient"]) &&
-        !empty($_POST["addressClient"])
+        !empty($_POST["idMenu"]) &&
+        !empty($_POST["id_Assio"]) &&
+        !empty($_POST["id_Donation"]) &&
+        !empty($_POST["mail"]) &&
+        !empty($_POST["Name_Assio"]) &&
+        !empty($_POST["Date_Commande"]) &&
+        !empty($_POST["reason"])
     ) {
-        $client = new Client(
+        $Donation = new Don(
             null,
-            $_POST["fnameClient"],
-            $_POST["lnameClient"],
-            $_POST["pnbClient"], 
-            $_POST["mailClient"],
-            $_POST["pwdClient"],
-            new DateTime($_POST["bdayClient"]),
-            $_POST["pcodeClient"],
-            $_POST["regionClient"],
-            $_POST["addressClient"]
+            $_POST["idMenu"],
+            $_POST["id_Assio"],
+            $_POST["id_Donation"], 
+            $_POST["mail"],
+            $_POST["Name_Assio"],
+            new DateTime($_POST["Date_Commande"]),
+            $_POST["reason"]
         );
-        $UserFct->addClient($client);
-        header('Location:listClients.php');
+        $Donation_core->addDonation($Donation);
+        header('Location:listDonation.php');
     } else
         $error = "Missing information";
 }
@@ -58,7 +52,7 @@ if (
 </head>
 
 <body>
-    <a href="listClients.php">Back to list </a>
+    <a href="listDonation.php">Back to list </a>
     <hr>
 
     <div id="error">
@@ -70,61 +64,61 @@ if (
 
             <tr>
                 <td>
-                    <label for="idClient">ID:
+                    <label for="idDonation">ID:
                     </label>
                 </td>
-                <td><input type="text" name="idClient" id="idClient" maxlength="20"></td>
+                <td><input type="text" name="idDonation" id="idDonation" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="fnameClient">First Name:
+                    <label for="idMenu">First Name:
                     </label>
                 </td>
-                <td><input type="text" name="fnameClient" id="fnameClient" maxlength="20"></td>
+                <td><input type="text" name="idMenu" id="idMenu" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="lnameClient">Last Name:
+                    <label for="id_Assio">Last Name:
                     </label>
                 </td>
-                <td><input type="text" name="lnameClient" id="lnameClient" maxlength="20"></td>
+                <td><input type="text" name="id_Assio" id="id_Assio" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="pnbClient">Phone Number:
+                    <label for="id_Donation">Phone Number:
                     </label>
                 </td>
-                <td><input type="text" name="pnbClient" id="pnbClient" maxlength="20"></td>
+                <td><input type="text" name="id_Donation" id="id_Donation" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="mailClient">E-mail Address:
+                    <label for="mail">E-mail Address:
                     </label>
                 </td>
-                <td><input type="text" name="mailClient" id="mailClient" maxlength="20"></td>
+                <td><input type="text" name="mail" id="mail" maxlength="20"></td>
             </tr>
             <tr>
 
             <tr>
                 <td>
-                    <label for="addressClient">address:
+                    <label for="reason">address:
                     </label>
                 </td>
                 <td>
-                    <input type="text" name="addressClient" id="addressClient">
+                    <input type="text" name="reason" id="reason">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="bdayClient">Date of Birth:
+                    <label for="Date_Commande">Date of Birth:
                     </label>
                 </td>
                 <td>
-                    <input type="date" name="bdayClient" id="bdayClient">
+                    <input type="date" name="Date_Commande" id="Date_Commande">
                 </td>
             </tr>
             <tr align="center">
