@@ -73,7 +73,7 @@ if (
                     <label for="idClient">ID:
                     </label>
                 </td>
-                <td><input type="text" name="idClient" id="idClient" maxlength="20"></td>
+                <td><input type="number" name="idClient" id="idClient" maxlength="20"></td>
             </tr>
 
             <tr>
@@ -97,7 +97,7 @@ if (
                     <label for="pnbClient">Phone Number:
                     </label>
                 </td>
-                <td><input type="text" name="pnbClient" id="pnbClient" maxlength="20"></td>
+                <td><input type="number" name="pnbClient" id="pnbClient" maxlength="20"></td>
             </tr>
 
             <tr>
@@ -111,13 +111,12 @@ if (
 
             <tr>
                 <td>
-                    <label for="addressClient">address:
+                    <label for="pwdClient">Password:
                     </label>
                 </td>
-                <td>
-                    <input type="text" name="addressClient" id="addressClient">
-                </td>
+                <td><input type="password" name="pwdClient" id="pwdClient" maxlength="20"></td>
             </tr>
+            <tr>
             <tr>
                 <td>
                     <label for="bdayClient">Date of Birth:
@@ -125,6 +124,33 @@ if (
                 </td>
                 <td>
                     <input type="date" name="bdayClient" id="bdayClient">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pcodeClient">Postal Code:
+                    </label>
+                </td>
+                <td>
+                    <input type="number" name="pcodeClient" id="pcodeClient">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="regionClient">Region:
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="regionClient" id="regionClient">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="addressClient">Address:
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="addressClient" id="addressClient">
                 </td>
             </tr>
             <tr align="center">
