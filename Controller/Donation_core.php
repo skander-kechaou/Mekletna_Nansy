@@ -10,10 +10,12 @@ function affichecommande ($commande)
         echo "Date_Commande: ".$commande->getDate_Commande()."<br>";
         echo "id_Donation: ".$commande->getid_Donation()."<br>";
         echo "reason: ".$commande->getreason()."<br>";
-
+        echo "mail: ".$commande->get_mail()."<br>";
+        echo "reason: ".$commande->get_name()."<br>";
 	}
 	
-	function ajoutercommande($commande){
+function ajoutercommande($commande)
+    {
 		$sql="insert into commande (id_Menu,id_Assio,Date_Commande,reason) values (:idMenu, :idAssio,:DateCommande,:reason0)";
 		$db = config::getConnexion();
 		try{
@@ -33,7 +35,7 @@ function affichecommande ($commande)
             $req->execute();
            
         }
-        catch (Exception $e){
+            catch (Exception $e){
             echo 'Erreur: '.$e->getMessage();
         }
 		
