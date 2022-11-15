@@ -6,7 +6,7 @@ class Chef{
 	private ?string $mail_chef=null;
 	private ?int $Phone=null;
   private ?DateTime $Date_Birth=null;
-  private ?file $Cv=null;
+  private ?string $Cv=null;
 
 
     function __construct($id_chef = null, $Name_chef,$Add_chef,$mail_chef,$Phone,$Date_Birth,$Cv)

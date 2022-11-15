@@ -18,7 +18,7 @@ class ChefC
 
     function deleteChef($id)
     {
-        $sql = "DELETE FROM chef WHERE idClient = :id";
+        $sql = "DELETE FROM chef WHERE id_chef = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -30,43 +30,49 @@ class ChefC
         }
     }
 
-    function addClient($client)
+    function addChef($chef)
     {
-        $sql = "INSERT INTO client  
-        VALUES (NULL, :fn,:ln, :ad,:dob)";
+        $sql = "INSERT INTO chef VALUES (NULL, :id_chef,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
         $db = config::getConnexion();
         try {
-            print_r($client->getDob()->format('Y-m-d'));
+            print_r($chef->getDate_Birth()->format('Y-m-d'));
             $query = $db->prepare($sql);
             $query->execute([
-                'fn' => $client->getFirstName(),
-                'ln' => $client->getLastName(),
-                'ad' => $client->getAddress(),
-                'dob' => $client->getDob()->format('Y/m/d')
+                'id_chef' => $chef->getid_chef(),
+                'Name_chef' => $chef->getName_chef(),
+                'Add_chef' => $chef->getAdd_chef(),
+                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d')
+                 'mail_chef '=> $chef->getmail_chef(),
+                 'Phone' => $chef->getPhone(),
+                 'Cv' => $chef->getCv(),
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
 
-    function updateClient($client, $id)
+    function updateChef($chef, $id)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE client SET 
-                    firstName = :firstName, 
-                    lastName = :lastName, 
-                    address = :address, 
-                    dob = :dob
-                WHERE idClient= :idClient'
+                'UPDATE chef SET 
+                    Name_chef = :Name_chef, 
+                    Add_chef = :Add_chef, 
+                    Date_Birth=:Date_Birth,
+                    mail_chef =:mail_chef ,
+                    Phone=:Phone,
+                    Cv = :Cv,
+                WHERE id_chef= :id_chef'
             );
             $query->execute([
-                'idClient' => $id,
-                'firstName' => $client->getFirstName(),
-                'lastName' => $client->getLastName(),
-                'address' => $client->getAddress(),
-                'dob' => $client->getDob()->format('Y/m/d')
+                'id_chef' =>  $chef-> getid_chef(),
+                'Name_chef ' => $chef-> getName_chef(),
+                'Add_chef' => $chef->getAdd_chef(),
+                'mail_chef' => $chef->getmail_chef(),
+                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d')
+                'Phone' => $chef->getPhone(),
+                'Cv'=> $chef->getCv(),
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
@@ -74,16 +80,16 @@ class ChefC
         }
     }
 
-    function showClient($id)
+    function showChef($id)
     {
-        $sql = "SELECT * from client where idClient = $id";
+        $sql = "SELECT * from chef where id_chef = $id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute();
 
-            $client = $query->fetch();
-            return $client;
+            $chef = $query->fetch();
+            return $chef;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }
