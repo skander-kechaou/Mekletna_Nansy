@@ -36,7 +36,7 @@
   $become_a_chef->add_message( $_POST['name'], 'Name');
   $become_a_chef->add_message( $_POST['email'], 'Email');
   $become_a_chef->add_message( $_POST['phone'], 'Phone');
-  $become_a_chef->add_message( $_POST['datebirth'], 'Date');
+  $become_a_chef->add_message( $_POST['datebirth'], 'datebirth');
   $become_a_chef->add_message( $_POST['cv'], 'Cv');
 
   echo $become_a_chef->send();
