@@ -1,7 +1,7 @@
 <?php
 include '../Controller/Donation_core.php';
 $Donation_core = new Don();
-$list = $Donztion_core->listDon();
+$list = $Donation_core->listDon();
 ?>
 <html>
 
