@@ -2,13 +2,13 @@
 include '../config.php';
 include '../Model/user.php'
 
-class User {
+class ClientC {
     public function listClients() {
         $sql = "SELECT * FROM Client";
         $db = config::getConnexion();
         try {
             $list = $db->query($sql);
-            return $list
+            return $list;
         } 
         catch(Exception $e) {
             $e->getMessage();

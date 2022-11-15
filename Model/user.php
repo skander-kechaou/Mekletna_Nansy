@@ -127,7 +127,7 @@ class Client
      *
      * @return  self
      */
-    public function setMail($pwdClient)
+    public function setPassword($pwdClient)
     {
         $this->pwdClient = $pwdClient;
 
