@@ -1,5 +1,5 @@
 <?PHP 
-class commande{
+class order{
 	private $idMenu;
 	private $idClient;
 	private $priceOrder;
