@@ -1,6 +1,6 @@
 <?PHP
 include "../config.php";
-include "../connection.php";
+include "../Model/Donation.php";
 class Donationcore 
 {
 function afficheDonation ($Donation)
