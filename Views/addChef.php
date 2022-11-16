@@ -30,7 +30,7 @@ if (
         !empty($_POST["Cv"])
     ) {
         $chef = new Chef(
-            null,
+           null,
             $_POST["id_chef"],
             $_POST["Name_chef"],
             $_POST["Add_chef"],
@@ -40,7 +40,7 @@ if (
             new DateTime($_POST["Date_Birth"])
         );
         $chefC->addChef($chef);
-        header('Location:ListChefs.php');
+        header('Location:listChefs.php');
     } else
         $error = "Missing information";
 }
@@ -56,7 +56,7 @@ if (
 </head>
 
 <body>
-    <a href="ListChefs.php">Back to list </a>
+    <a href="listChefs.php">Back to list </a>
     <hr>
 
     <div id="error">

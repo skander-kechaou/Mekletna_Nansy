@@ -41,10 +41,11 @@ class ChefC
                 'id_chef' => $chef->getid_chef(),
                 'Name_chef' => $chef->getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d')
-                 'mail_chef '=> $chef->getmail_chef(),
-                 'Phone' => $chef->getPhone(),
-                 'Cv' => $chef->getCv(),
+                'mail_chef'=> $chef->getmail_chef(),
+                'Phone' => $chef->getPhone(),
+                'Cv' => $chef->getCv(),
+                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d'),
+              
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -82,7 +83,7 @@ class ChefC
 
     function showChef($id)
     {
-        $sql = "SELECT * from chef where id_chef = $id";
+        $sql = "SELECT * from chef where id_chef =". $id;
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
