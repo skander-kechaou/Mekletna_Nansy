@@ -1,45 +1,32 @@
-document.getElementById("Form").addEventListener("submit", (e) => {
+document.getElementById("become-a-chef").addEventListener("submit", (e) => {
     e.preventDefault();
-    let Lname = document.querySelector("#lname").value;
-    checklname();
-    checkfname();
-    check_number();
+    let Name = document.querySelector("#Name_chef").value;
+    checkname();
+    check_phonenumber();
 }
 )
-// /\d/ the expression contains only numbers 
+
 
 function containsNumbers(str) {
     return /\d/.test(str);
 }
 
-function checklname() {
-    const lname = document.getElementById("lname").value;
-    if (containsNumbers(lname) || lname.length < 3) {
-        document.getElementById("Errorlname").innerHTML = "Check your input please";
-        document.getElementById("Errorlname").style.color = "red";
+function checkname() {
+    const name = document.getElementById("Name_chef").value;
+    if (containsNumbers(name) || name.length < 3) {
+        document.getElementById("Errorname").innerHTML = "Check your input please";
+        document.getElementById("Errorname").style.color = "red";
         return false;
     } else {
-        console.log("Jawek behi2.0");
+        console.log("Good");
         return true;
     }
 }
+function check_phonenumber() {
+    const num = document.getElementById("Phone").value;
 
-function checkfname() {
-    const Fname = document.getElementById("fname").value;
-
-    if (Fname.length < 4) {
-        document.getElementById("Errorfname").innerHTML = "First name must be at least four characters";
-        document.getElementById("Errorfname").style.color = "red";
-    }
-    else {
-        console.log("No problem");
-    }
-}
-function check_number() {
-    const num = document.getElementById("phonenb").value;
-
-    if (!isNaN(num) && num.length > 0) {
-        console.log("jawek behi3.0");
+    if ((!isNaN(num)) && (num.length > 0)) {
+        console.log( "GOOD");
     } else {
         document.getElementById("ErrorPhone").innerHTML = "Phone number must not contain letters.";
         document.getElementById("ErrorPhone").style.color = "red";
@@ -47,13 +34,13 @@ function check_number() {
 }
 
 function nameValidation() {
-    checklname();
-    if (checklname() == true) {
+    checkname();
+    if (checkname() == true) {
         console.log("No problem");
-        document.getElementById("Errorlname").style.color = "green";
+        document.getElementById("Errornname").style.color = "green";
     }
     else {
-        document.getElementById("Errorlname").innerHTML = "the name contains only letters and numbers ";
+        document.getElementById("Errorname").innerHTML = "the name contains only letters and numbers ";
     }
 
 }
