@@ -4,12 +4,12 @@
 <body>
 <?PHP
 include "../Model/order.php";
-include "../Controller/orderC.php";
+include "../Controller/menuC.php";
 
-if (isset($_GET['idOrder']))
+if (isset($_GET['idMenu']))
 {
-	$orderC=new orderC();
-    $result=$orderC->recupererorder($_GET['idMenu']);
+	$menuC=new menuC();
+    $result=$menuC->recupererorder($_GET['idMenu']);
     foreach($result as $row)
     {
 		$idMenu=$row['idMenu'];
@@ -17,7 +17,7 @@ if (isset($_GET['idOrder']))
 		$idClient=$row['idClient'];
 		$priceOrder=$row['priceOrder'];
 		$dateOrder=$row['dateOrder'];
-		$idOrder=$row['idOrder'];
+		$idMenu=$row['idMenu'];
 ?>
 <form method="POST">
 <table>
@@ -43,8 +43,8 @@ if (isset($_GET['idOrder']))
 <td><input type="date" name="dateOrder" value="<?PHP echo $dateOrder ?>"></td>
 </tr>
 <tr>
-<td>idOrder</td>
-<td><input type="number" name="idOrder" value="<?PHP echo $idOrder ?>"></td>
+<td>idMenu</td>
+<td><input type="number" name="idMenu" value="<?PHP echo $idMenu ?>"></td>
 </tr>
 <tr>
 <td>statusOrder</td>
@@ -57,7 +57,7 @@ if (isset($_GET['idOrder']))
 </tr>
 <tr>
 <td></td>
-<td><input type="hidden" name="idOrder_INIT" value="<?PHP echo $_GET['idOrder'];?>"></td>
+<td><input type="hidden" name="idMenu_INIT" value="<?PHP echo $_GET['idMenu'];?>"></td>
 </tr>
 </table>
 </form>
@@ -65,9 +65,9 @@ if (isset($_GET['idOrder']))
 	}
 }
 if (isset($_POST['update'])){
-	$order=new order($_POST['idMenu'],$_POST['nbOrder'],$_POST['idClient'],$_POST['priceOrder'],$_POST['dateOrder'],$_POST['idOrder'],$_POST['statusOrder']);
-	$ordercore->updateOrder($order,$_POST['idOrder_INIT']);
-	echo $_POST['idOrder_INIT'];
+	$order=new order($_POST['idMenu'],$_POST['nbOrder'],$_POST['idClient'],$_POST['priceOrder'],$_POST['dateOrder'],$_POST['idMenu'],$_POST['statusOrder']);
+	$menuCore->updateOrder($order,$_POST['idMenu_INIT']);
+	echo $_POST['idMenu_INIT'];
 	header('Location: listOrder.php');
 }
 ?>
