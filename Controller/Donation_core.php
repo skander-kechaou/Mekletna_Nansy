@@ -1,7 +1,7 @@
 <?PHP
 include "../config.php";
 include "../connection.php";
-class commandecore 
+class Donationcore 
 {
 function affichecommande ($commande)
     {
