@@ -44,7 +44,7 @@ class ChefC
                 'mail_chef'=> $chef->getmail_chef(),
                 'Phone' => $chef->getPhone(),
                 'Cv' => $chef->getCv(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d')
+                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d'),
               
             ]);
         } catch (Exception $e) {
