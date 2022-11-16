@@ -6,7 +6,7 @@ $error = "";
 
 $client = null;
 
-$UserFct = new UserFct();
+$ClientC = new ClientC();
 if (
     isset($_POST["fnameClient"]) &&
     isset($_POST["lnameClient"]) &&
@@ -67,14 +67,6 @@ if (
 
     <form action="" method="POST">
         <table border="1" align="center">
-
-            <tr>
-                <td>
-                    <label for="idClient">ID:
-                    </label>
-                </td>
-                <td><input type="number" name="idClient" id="idClient" maxlength="20"></td>
-            </tr>
 
             <tr>
                 <td>
