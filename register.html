@@ -14,33 +14,37 @@
     </div> -->
 
     <header>
+        <form action="Views/addClient.php" method="POST">
         <div class="link3">
             <a href="">Registration Form</a>
         </div>
         <div class="box1">
-            <input type="text" name="fname" id="fname" placeholder="First Name">
-            <input type="text" name="lname" id="lname" placeholder="Last Name">
+            <input type="text" name="fnameClient" id="fnameClient" placeholder="First Name">
+            <input type="text" name="lnameClient" id="lnameClient" placeholder="Last Name">
         </div>
         <div class="box">
-            <input type="number" id="phonenb" name="phonenb" placeholder="12-345-678" title="enter only numbers please" required/>
-            <input type="email" name="email" id="email" placeholder="Email address or phone number"><br>
-            <input type="password" name="password" id="password" placeholder="Password">
-            <input type="date" name="bdate" id="bdate">
+            <input type="number" id="pnbClient" name="pnbClient" placeholder="12-345-678" title="enter only numbers please" required/>
+            <input type="email" name="mailClient" id="mailClient" placeholder="Email address or phone number"><br>
+            <input type="password" name="pwdClient" id="pwdClient" placeholder="Password">
+            <input type="date" name="bdayClient" id="bdayClient">
         </div>
         <div class="box1">
-            <input type="number" name="postal" id="postal" placeholder="Postal Code">
-            <input type="text" name="region" id="region" placeholder="Region">
+            <input type="number" name="pcodeClient" id="pcodeClient" placeholder="Postal Code">
+            <input type="text" name="regionClient" id="regionClient" placeholder="Region">
         </div>
         <div class="box">
-            <input type="text" id="adress" name="adress" placeholder="Adress (Exp: 123 Street, City)">
+            <input type="text" id="addressClient" name="addressClient" placeholder="Address (Exp: 123 Street, City)">
         </div>
 
         <div class="link">
-           <a href="#">Sign Up</a>
+           <a href="#submit">Sign Up</a>
+           <input type="submit">
         </div>
         <div class="link1">
             <p>Already have an account ? <a href="login.html">Log In</a> </p>
         </div>
+        <script src="Views/assets/js/signup.js"></script>
+    </form>
     </header>
    
 </body>

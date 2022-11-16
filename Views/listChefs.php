@@ -29,22 +29,21 @@ $list = $chefC->listChefs();
         foreach ($list as $chef) {
         ?>
             <tr>
-                <td><?= $client['id_chef']; ?></td>
-                <td><?= $client['Name_chef']; ?></td>
-                <td><?= $client['firstName']; ?></td>
-                <td><?= $client['Add_chef']; ?></td>
-                <td><?= $client['mail_chef']; ?></td>
-                <td><?= $client['Phone']; ?></td>
-                <td><?= $client['Date_Birth']; ?></td>
-                <td><?= $client['Cv']; ?></td>
+                <td><?= $chef['id_chef']; ?></td>
+                <td><?= $chef['Name_chef']; ?></td>
+                <td><?= $chef['Add_chef']; ?></td>
+                <td><?= $chef['mail_chef']; ?></td>
+                <td><?= $chef['Phone']; ?></td>
+                <td><?= $chef['Date_Birth']; ?></td>
+                <td><?= $chef['Cv']; ?></td>
                 <td align="center">
                     <form method="POST" action="updateChef.php">
                         <input type="submit" name="update" value="Update">
-                        <input type="hidden" value=<?PHP echo $client['id_chef']; ?> name="id_chef">
+                        <input type="hidden" value=<?PHP echo $chef['id_chef']; ?> name="id_chef">
                     </form>
                 </td>
                 <td>
-                    <a href="deleteChef.php?id_chef=<?php echo $client['id_chef']; ?>">Delete</a>
+                    <a href="deleteChef.php?id_chef=<?php echo $chef['id_chef']; ?>">Delete</a>
                 </td>
             </tr>
         <?php
