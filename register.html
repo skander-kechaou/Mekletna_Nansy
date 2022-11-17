@@ -1,51 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up Form</title>
-    <link rel="stylesheet" href="Views/assets/css/signup.css">
-</head>
-<body>
+    <link rel="stylesheet" href="Views/assets/css/signup.css" />
+  </head>
+  <body>
     <!-- <div class="container">
         <img src="Views/assets/img/mekletna login.png" alt="logo">
         <p>Sign up to benefit from our services!</p>
     </div> -->
 
     <header>
-        <form action="Views/addClient.php" method="POST">
+      <section id="signup">
+      <form action="Views/addClient.php" method="POST">
         <div class="link3">
-            <a href="">Registration Form</a>
+          <a href="">Registration Form</a>
         </div>
         <div class="box1">
-            <input type="text" name="fnameClient" id="fnameClient" placeholder="First Name">
-            <input type="text" name="lnameClient" id="lnameClient" placeholder="Last Name">
+          <input
+            type="text"
+            name="fnameClient"
+            id="fnameClient"
+            placeholder="First Name"
+          />
+          <input
+            type="text"
+            name="lnameClient"
+            id="lnameClient"
+            placeholder="Last Name"
+          />
         </div>
+        <td>
+           <p id="Errorlname"> </p>
+        </td> 
         <div class="box">
-            <input type="number" id="pnbClient" name="pnbClient" placeholder="12-345-678" title="enter only numbers please" required/>
-            <input type="email" name="mailClient" id="mailClient" placeholder="Email address or phone number"><br>
-            <input type="password" name="pwdClient" id="pwdClient" placeholder="Password">
-            <input type="date" name="bdayClient" id="bdayClient">
+          <input
+            type="number"
+            id="pnbClient"
+            name="pnbClient"
+            placeholder="12-345-678"
+            title="enter only numbers please"
+          />
+          <input
+            type="email"
+            name="mailClient"
+            id="mailClient"
+            placeholder="Email address or phone number"
+          /><br />
+          <input
+            type="password"
+            name="pwdClient"
+            id="pwdClient"
+            placeholder="Password"
+          />
+          <input type="date" name="bdayClient" id="bdayClient" />
         </div>
         <div class="box1">
-            <input type="number" name="pcodeClient" id="pcodeClient" placeholder="Postal Code">
-            <input type="text" name="regionClient" id="regionClient" placeholder="Region">
+          <input
+            type="number"
+            name="pcodeClient"
+            id="pcodeClient"
+            placeholder="Postal Code"
+          />
+          <input
+            type="text"
+            name="regionClient"
+            id="regionClient"
+            placeholder="Region"
+          />
         </div>
         <div class="box">
-            <input type="text" id="addressClient" name="addressClient" placeholder="Address (Exp: 123 Street, City)">
+          <input
+            type="text"
+            id="addressClient"
+            name="addressClient"
+            placeholder="Address (Exp: 123 Street, City)"
+          />
         </div>
 
         <div class="link">
-           <a href="#submit">Sign Up</a>
-           <input type="submit">
+          <button type="submit">Sign Up</button>
         </div>
         <div class="link1">
-            <p>Already have an account ? <a href="login.html">Log In</a> </p>
+          <p>Already have an account ? <a href="login.html">Log In</a></p>
         </div>
-        <script src="Views/assets/js/signup.js"></script>
-    </form>
+      </form>
+    </section>
+      <script src="Views/assets/js/signup.js"></script>
     </header>
-   
-</body>
+  </body>
 </html>

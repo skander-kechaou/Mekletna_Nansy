@@ -1,6 +1,7 @@
 <?php
 
 include '../Controller/UserFct.php';
+include '../Model/user.php';
 
 $error = "";
 
@@ -41,7 +42,7 @@ if (
             $_POST["regionClient"],
             $_POST["addressClient"]
         );
-        $UserFct->addClient($client);
+        $ClientC->addClient($client);
         header('Location:listClients.php');
     } else
         $error = "Missing information";
@@ -97,7 +98,7 @@ if (
                     <label for="mailClient">E-mail Address:
                     </label>
                 </td>
-                <td><input type="text" name="mailClient" id="mailClient" maxlength="20"></td>
+                <td><input type="text" name="mailClient" id="mailClient" maxlength="50"></td>
             </tr>
             <tr>
 
