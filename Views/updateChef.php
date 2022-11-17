@@ -103,7 +103,7 @@ if (
                         </label>
                     </td>
                     <td>
-                        <input type="date" name="Date_Birth" id="Date_Birth" value="<?php echo $chef['Date_Birthssss']; ?>">
+                        <input type="date" name="Date_Birth" id="Date_Birth" value="<?php echo $chef['Date_Birth']; ?>">
                     </td>
                 </tr>
                 <tr>

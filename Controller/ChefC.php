@@ -6,7 +6,7 @@ class ChefC
 {
     public function listChefs()
     {
-        $sql = "SELECT * FROM chef";
+        $sql = "SELECT * FROM chef ";
         $db = config::getConnexion();
         try {
             $list = $db->query($sql);
@@ -43,8 +43,9 @@ class ChefC
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef'=> $chef->getmail_chef(),
                 'Phone' => $chef->getPhone(),
-                'Cv' => $chef->getCv(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d')
+                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d'),
+                'Cv' => $chef->getCv()
+           
               
             ]);
         } catch (Exception $e) {
@@ -71,9 +72,9 @@ class ChefC
                 'Name_chef ' => $chef-> getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef' => $chef->getmail_chef(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d')
+                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d'),
                 'Phone' => $chef->getPhone(),
-                'Cv'=> $chef->getCv(),
+                'Cv'=> $chef->getCv()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {

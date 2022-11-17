@@ -39,7 +39,7 @@ $list = $Donation_core->listDon();
                 <td align="center">
                     <form method="POST" action="updateDonation.php">
                         <input type="submit" name="update" value="Update">
-                        <input type="hidden" value=<?PHP echo $Donation['id_Donation']; ?> name="id_Donation">
+                        <input type="hidden" value=<?PHP echo $Donation['id_donation']; ?> name="id_Donation">
                     </form>
                 </td>
                 <td>

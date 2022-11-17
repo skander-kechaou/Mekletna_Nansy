@@ -1,34 +1,34 @@
 <?PHP
 include "../config.php";
-include "../connection.php";
-class commandecore 
+include "../Model/Donation.php";
+class Donationcore 
 {
-function affichecommande ($commande)
+function afficheDonation ($Donation)
     {
-		echo "id_Menu: ".$commande->getid_Menu()."<br>";
-		echo "id_Assio: ".$commande->getid_Assio()."<br>";
-        echo "Date_Commande: ".$commande->getDate_Commande()."<br>";
-        echo "id_Donation: ".$commande->getid_Donation()."<br>";
-        echo "reason: ".$commande->getreason()."<br>";
-        echo "mail: ".$commande->get_mail()."<br>";
-        echo "reason: ".$commande->get_name()."<br>";
+		echo "id_Menu: ".$Donation->getid_Menu()."<br>";
+		echo "id_Assio: ".$Donation->getid_Assio()."<br>";
+        echo "Date_Donation: ".$Donation->getDate_Donation()."<br>";
+        echo "id_Donation: ".$Donation->getid_Donation()."<br>";
+        echo "reason: ".$Donation->getreason()."<br>";
+        echo "mail: ".$Donation->get_mail()."<br>";
+        echo "reason: ".$Donation->get_name()."<br>";
 	}
 	
-function ajoutercommande($commande)
+function ajouterDonation($Donation)
     {
-		$sql="insert into commande (id_Menu,id_Assio,Date_Commande,reason) values (:idMenu, :idAssio,:DateCommande,:reason0)";
+		$sql="insert into Donation (id_Menu,id_Assio,Date_Donation,reason,Name_Assio,id_Donation) values (:idMenu, :idAssio,:DateDonation,:reason0,:Name_Assio,:id_Donation)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 
-        $id_Menu=$commande->getid_Menu();
-        $id_Assio=$commande->getid_Assio();
-        $Date_Commande=date("Y-m-d") ;
-        $id_Donation=$commande->getid_Donation();
-        $reason=$commande->getreason();
+        $id_Menu=$Donation->getid_Menu();
+        $id_Assio=$Donation->getid_Assio();
+        $Date_Donation=date("Y-m-d") ;
+        $id_Donation=$Donation->getid_Donation();
+        $reason=$Donation->getreason();
 		$req->bindValue(':idMenu',$id_Menu);
 		$req->bindValue(':id_Assio',$id_Assio);
-        $req->bindValue(':DateCommande',$Date_Commande);
+        $req->bindValue(':DateDonation',$Date_Donation);
         $req->bindValue(':reason0',$reason);
 
 		
@@ -41,9 +41,9 @@ function ajoutercommande($commande)
 		
 	}
 	
-    function affichercommande()
+    function afficherDonation()
     {
-		$sql="SElECT * From commande";
+		$sql="SElECT * From Donation";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -54,9 +54,9 @@ function ajoutercommande($commande)
         }	
     }
     
-    function supprimercommande($id_Donation)
+    function supprimerDonation($id_Donation)
     {
-		$sql="DELETE FROM commande where id_Donation= :id_Donation";
+		$sql="DELETE FROM Donation where id_Donation= :id_Donation";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
 		$req->bindValue(':id_Donation',$id_Donation);
@@ -68,19 +68,19 @@ function ajoutercommande($commande)
         }
     }
     
-	function modifiercommande($commande,$id_Donation){
-		$sql="UPDATE commande SET id_Menu=:id_Menu0, id_Assio=:id_Assio, Date_Commande=:Date_Commande WHERE id_Menu=:id_Menu";
+	function modifierDonation($Donation,$id_Donation){
+		$sql="UPDATE Donation SET id_Menu=:id_Menu0, id_Assio=:id_Assio, Date_Donation=:Date_Donation WHERE id_Menu=:id_Menu";
 		
 		$db = config::getConnexion();
 try{		
         $req=$db->prepare($sql);
-		$id_Menu0=$commande->getid_Menu();
-        $id_Assio=$commande->getid_Assio();
-        $Date_Commande=$commande->getDate_Commande();
-		$datas = array(':id_Menu0'=>$id_Menu0, ':id_Assio'=>$id_Assio,':Date_Commande'=>$Date_Commande, ':id_Donation'=>$id_Donation);
+		$id_Menu0=$Donation->getid_Menu();
+        $id_Assio=$Donation->getid_Assio();
+        $Date_Donation=$Donation->getDate_Donation();
+		$datas = array(':id_Menu0'=>$id_Menu0, ':id_Assio'=>$id_Assio,':Date_Donation'=>$Date_Donation, ':id_Donation'=>$id_Donation);
 		$req->bindValue(':id_Menu0',$id_Menu0);
 		$req->bindValue(':id_Assio',$id_Assio);
-        $req->bindValue(':Date_Commande',$Date_Commande);
+        $req->bindValue(':Date_Donation',$Date_Donation);
 		
 		
             $s=$req->execute();
@@ -95,9 +95,9 @@ try{
 		
     }
     
-    function recuperercommande($id_Donation)
+    function recupererDonation($id_Donation)
     {
-		$sql="SELECT * from commande where id_Donation=$id_Donation";
+		$sql="SELECT * from Donation where id_Donation=$id_Donation";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -108,9 +108,9 @@ try{
         }
 	}
 	
-    function rechercherlistecommande($id_Donation)
+    function rechercherlisteDonation($id_Donation)
     {
-		$sql="SELECT * from commande where id_Donation=$id_Donation";
+		$sql="SELECT * from Donation where id_Donation=$id_Donation";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
