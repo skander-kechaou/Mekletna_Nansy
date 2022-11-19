@@ -32,13 +32,13 @@ class ChefC
 
     function addChef($chef)
     {
-        $sql = "INSERT INTO chef VALUES (NULL, :id_chef,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
+        $sql = "INSERT INTO chef VALUES (NULL,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
         $db = config::getConnexion();
         try {
             print_r($chef->getDate_Birth()->format('Y-m-d'));
             $query = $db->prepare($sql);
             $query->execute([
-                'id_chef' => $chef->getid_chef(),
+              
                 'Name_chef' => $chef->getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef'=> $chef->getmail_chef(),

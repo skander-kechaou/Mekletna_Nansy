@@ -1,6 +1,7 @@
 <?php
 // review the add chef
 include '../Controller/ChefC.php';
+include '../Model/chef.php';
 
 $error = "";
 
