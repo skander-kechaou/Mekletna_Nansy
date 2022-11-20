@@ -9,6 +9,7 @@ const password2=document.getElementById('pwd');
 
 
 //Show input error message
+console.log('whore');
 
 function showError(input,message){
     const formControl=input.parentElement;
