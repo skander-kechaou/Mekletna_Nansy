@@ -167,7 +167,7 @@ class Client
      *
      * @return  self
      */
-    public function setMail($pcodeClient)
+    public function setPostal($pcodeClient)
     {
         $this->pcodeClient = $pcodeClient;
 
