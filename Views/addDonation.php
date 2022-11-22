@@ -1,38 +1,38 @@
 <?php
 
-include '../Controller/Donation_core.php';
+include '../controller/Donation_core.php';
 
 $error = "";
 
-$Don = null;
+$Donation = null;
 
-$Donation_core = new Don();
+$Donation_core = new donation_c();
 if (
-    isset($_POST["idMenu"]) &&
-    isset($_POST["id_Assio"]) &&
-    isset($_POST["id_Donation"]) &&
+    isset($_POST["id_menu"]) &&
+    isset($_POST["id_association"]) &&
+    isset($_POST["id_donation"]) &&
     isset($_POST["location"]) &&
-    isset($_POST["Date_Commande"]) &&
+    isset($_POST["date"]) &&
     isset($_POST["reason"])
 ) {
     if (
-        !empty($_POST["idMenu"]) &&
-        !empty($_POST["id_Assio"]) &&
-        !empty($_POST["id_Donation"]) &&
+        !empty($_POST["id_menu"]) &&
+        !empty($_POST["id_association"]) &&
+        !empty($_POST["id_donation"]) &&
         !empty($_POST["location"]) &&
-        !empty($_POST["Date_Commande"]) &&
+        !empty($_POST["date"]) &&
         !empty($_POST["reason"])
     ) {
-        $Donation = new Don(
+        $donation = new Donation_c(
             null,
-            $_POST["idMenu"],
-            $_POST["id_Assio"],
-            $_POST["id_Donation"], 
+            $_POST["id_menu"],
+            $_POST["id_association"],
+            $_POST["id_donation"], 
             $_POST["location"],
-            new DateTime($_POST["Date_Commande"]),
+            new DateTime($_POST["date"]),
             $_POST["reason"]
         );
-        $Donation_core->addDonation($Donation);
+        $Donation_core->addDonation($donation);
         header('Location:listDonation.php');
     } else
         $error = "Missing information";
@@ -45,7 +45,7 @@ if (
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Display</title>
+    <title>Donation Display</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@ if (
                     <label for="id_donation">ID donation:
                     </label>
                 </td>
-                <td><input type="text" name="idDonation" id="idDonation" maxlength="20"></td>
+                <td><input type="text" name="id_donation" id="id_donation" maxlength="20"></td>
             </tr>
 
             <tr>
@@ -103,11 +103,11 @@ if (
             </tr>
             <tr>
                 <td>
-                    <label for="Date_Commande">Date:
+                    <label for="date">Date:
                     </label>
                 </td>
                 <td>
-                    <input type="date" name="Date_Commande" id="Date_Commande">
+                    <input type="date" name="date" id="date">
                 </td>
             </tr>
             <tr align="center">

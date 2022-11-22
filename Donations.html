@@ -52,7 +52,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="home.html">Home</a></li>
-          <li><a href="">Menu</a></li>
+          <li><a href="menu.html">menu</a></li>
           <li><a href="order.html">Order</a></li>
           <li><a href="Chef.html">Chefs</a></li>
           <li><a href="Donations.html">Donations</a></li>
@@ -60,7 +60,7 @@
       </nav>
       <!-- .navbar -->
 
-      <a class="btn-book-a-table" href="login.html">Log in/Sign in</a>
+      <a class="btn-book-a-table" href="registerassio.html">Log in/Sign in as an association</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -102,7 +102,7 @@
 
     
        <!-- ======= Make a donation ======= -->
-       <section id="book-a-donation" class="book-a-donation">
+       <section id="donation" class="donation">
         <div class="container" data-aos="fade-up">
   
           <div class="section-header">
@@ -118,47 +118,31 @@
               <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
                   <div class="col-lg-4 col-md-6">
-                    <input type="text" name="name" class="form-control" id="name_assio" onkey placeholder="Name Of Your association" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                    <input type="text" location="name" class="form-control" id="location" placeholder="Location" minlength="10" required>
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
-                    <input type="email" class="form-control" name="email" id="email_assio" placeholder="Your Association Email" data-rule="email" data-msg="Please enter a valid email">
+                    <input type="date" class="form-control" name="date" id="date" placeholder="Date" data-rule="date" data-msg="Please enter a date" required>
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
-                    <input type="text" class="form-control" name="food" id="id_Menu" placeholder="Menu You want to order" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <input type="text" class="form-control" name="location" id="location_donation" placeholder="Location" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                    <div class="validate"></div>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                    <div class="validate"></div>
-                  </div>
+                    <input type="number" class="form-control" name="id_menu" id="id_menu" placeholder="menu You want to order" max="5" required>
                 </div>
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="reason" rows="5" placeholder="Reason"></textarea>
+                  <textarea class="form-control" name="reason" rows="5" placeholder="Reason" required></textarea>
                   <div class="validate"></div>
                 </div>
                 <div class="mb-3">
-                  <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
                 </div>
                 <div class="text-center"><button type="submit">Book</button></div>
               </form>
-            </div><!-- End Reservation Form -->
+            </div><!-- End donation Form -->
   
           </div>
   
         </div>
-      </section><!-- End Book A Table Section --> 
+      </section><!-- End donation Section --> 
 
 
   <!-- ======= Footer ======= -->

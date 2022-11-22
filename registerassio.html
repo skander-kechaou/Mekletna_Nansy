@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="assets/signup.css">
+</head>
+<body>
+
+    <header>
+        <section id="assio" class="assio">
+        <form action="Views/addassio.php" method="POST">
+        <div class="link3">
+            <a href="">Register As An Association</a>
+        </div>
+        <div class="box1">
+            <input type="number" name="cid" id="cid" placeholder="Your client ID" required min="1" max="100">
+            <input type="text" name="nassio" id="nassio" placeholder="Association Name" required minlength="4" maxlength="20">
+        </div>
+        <div class="box">
+            <input type="number" id="passio" name="passio" placeholder="12 345 678" title="Your Phone Number" required min="10000000" max="99999999"/>
+            <input type="email" name="mail" id="mail" placeholder="Email address" required><br>
+        </div>
+
+        <div class="link">
+           <a href="#submit">Sign Up</a>
+           <input type="submit">
+        </div>
+        <div class="link1">
+            <p>Don't have an account? <a href="login.html">Log In</a> </p>
+        </div>
+        <script src="Views/assets/js/signupassio.js"></script>
+    </form>
+</section>
+    </header>
+   
+</body>
+</html>

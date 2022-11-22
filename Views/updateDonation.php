@@ -1,6 +1,6 @@
 <?php
 
-include '../Controller/Donation_core.php';
+include '../controller/Donation_core.php';
 
 $error = "";
 
@@ -8,37 +8,33 @@ $error = "";
 $Donation = null;
 
 // create an instance of the controller
-$Donation_ = new DonationC();
+$Donation = new donation_c();
 if (
-    isset($_POST["id_Donation"]) &&
-    isset($_POST["Name_Assio"]) &&
-    isset($_POST["id_Menu"]) &&
-    isset($_POST["id_Assio"]) &&
-    isset($_POST["Date_Commande"])&&
+    isset($_POST["id_donation"]) &&
+    isset($_POST["id_menu"]) &&
+    isset($_POST["id_association"]) &&
+    isset($_POST["date"])&&
     isset($_POST["reason"])&&
-    isset($_POST["Name_Assio"])
+    isset($_POST["location"])
 ) {
     if (
-        !empty($_POST["id_Donation"]) &&
-        !empty($_POST['Name_Assio']) &&
-        !empty($_POST["id_Menu"]) &&
-        !empty($_POST["id_Assio"]) &&
-        !empty($_POST["Date_Commande"])&&
-        !empty($_POST["mail"])&&
-        !empty($_POST["reason"])&&
-    ) {
+        !empty($_POST["id_donation"]) &&
+        !empty($_POST['location']) &&
+        !empty($_POST["id_menu"]) &&
+        !empty($_POST["id_association"]) &&
+        !empty($_POST["date"])&&
+        !empty($_POST["reason"])
+        ) {
         $Donation = new Donation(
-            $_POST['id_Donation'],
-            $_POST['Name_Assio'],
-            $_POST['id_Menu'],
-            $_POST['id_Assio'],
-            $_POST['Date_Commande'],
-            $_POST['mail'],
-            $_POST['reason']
-            new DateTime($_POST['Date_Commande'])
+            $_POST['id_donation'],
+            $_POST['location'],
+            $_POST['id_menu'],
+            $_POST['id_association'],
+            $_POST['reason'],
+            $_POST['date']
         );
-        $Donation_core->updateDonation($Donation, $_POST["id_Donation"]);
-        header('Location:ListDonations.php');
+        $Donation_core->updateDonation($Donation, $_POST["id_donation"]);
+        header('Location:listDonation.php');
     } else
         $error = "Missing information";
 }
@@ -52,7 +48,7 @@ if (
 </head>
 
 <body>
-    <button><a href="ListDonations.php">Back to list</a></button>
+    <button><a href="listDonation.php">Back to list</a></button>
     <hr>
 
     <div id="error">
@@ -60,8 +56,8 @@ if (
     </div>
 
     <?php
-    if (isset($_POST['id_Donation'])) {
-        $Donation = $Donation_core->showDonation($_POST['id_Donation']);
+    if (isset($_POST[''])) {
+        $donation = $donation_core->showDonation($_POST['id_donation']);
 
     ?>
 
@@ -69,59 +65,41 @@ if (
             <table border="1" align="center">
                 <tr>
                     <td>
-                        <label for="id_Donation">Id Donation:
+                        <label for="idClient">Id Client:
                         </label>
                     </td>
-                    <td><input type="text" name="id_Donation" id="id_Donation" value="<?php echo $Donation['id_Donation']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="idClient" id="idClient" value="<?php echo $client['idClient']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Name_Assio">Name Assio:
+                        <label for="firstName">First Name:
                         </label>
                     </td>
-                    <td><input type="text" name="Name_Assio" id="Name_Assio" value="<?php echo $Donation['Name_Assio']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="firstName" id="firstName" value="<?php echo $client['firstName']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="id_Menu">id menu:
+                        <label for="lastName">Last Name:
                         </label>
                     </td>
-                    <td><input type="text" name="id_Menu" id="id_Menu" value="<?php echo $Donation['id_Menu']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="lastName" id="lastName" value="<?php echo $client['lastName']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="id_Assio">id_Assio:
+                        <label for="address">Address:
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="id_Assio" value="<?php echo $Donation['id_Assio']; ?>" id="id_Assio">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Date_Commande">Date of Commande:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="date" name="Date_Commande" id="Date_Commande" value="<?php echo $Donation['Date_Commande']; ?>">
+                        <input type="text" name="address" value="<?php echo $client['address']; ?>" id="address">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Date_Commande">mail:
+                        <label for="dob">Date of Birth:
                         </label>
                     </td>
                     <td>
-                        <input type="varchar" name="mail" id="mail" value="<?php echo $Donation['mail']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Date_Commande">reason
-                        </label>
-                    </td>
-                    <td>
-                        <input type="varchar" name="reason" id="reason" value="<?php echo $Donation['reason']; ?>">
+                        <input type="date" name="dob" id="dob" value="<?php echo $client['dob']; ?>">
                     </td>
                 </tr>
                 <tr>
