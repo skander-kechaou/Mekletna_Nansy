@@ -6,7 +6,7 @@ class ChefC
 {
     public function listChefs()
     {
-        $sql = "SELECT * FROM chef";
+        $sql = "SELECT * FROM chef ";
         $db = config::getConnexion();
         try {
             $list = $db->query($sql);
@@ -32,19 +32,20 @@ class ChefC
 
     function addChef($chef)
     {
-        $sql = "INSERT INTO chef VALUES (NULL, :id_chef,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
+        $sql = "INSERT INTO chef VALUES (NULL,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
         $db = config::getConnexion();
         try {
             print_r($chef->getDate_Birth()->format('Y-m-d'));
             $query = $db->prepare($sql);
             $query->execute([
-                'id_chef' => $chef->getid_chef(),
+              
                 'Name_chef' => $chef->getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef'=> $chef->getmail_chef(),
                 'Phone' => $chef->getPhone(),
-                'Cv' => $chef->getCv(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d')
+                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d'),
+                'Cv' => $chef->getCv()
+           
               
             ]);
         } catch (Exception $e) {
@@ -71,9 +72,9 @@ class ChefC
                 'Name_chef ' => $chef-> getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef' => $chef->getmail_chef(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d')
+                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d'),
                 'Phone' => $chef->getPhone(),
-                'Cv'=> $chef->getCv(),
+                'Cv'=> $chef->getCv()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {

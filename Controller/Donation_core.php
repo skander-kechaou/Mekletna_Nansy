@@ -1,49 +1,31 @@
 <?PHP
 include "../config.php";
-include "../connection.php";
-class commandecore 
+include "../model/Donation.php";
+class Donation_c 
 {
-function affichecommande ($commande)
+    function addDonation($Donation)
     {
-		echo "id_Menu: ".$commande->getid_Menu()."<br>";
-		echo "id_Assio: ".$commande->getid_Assio()."<br>";
-        echo "Date_Commande: ".$commande->getDate_Commande()."<br>";
-        echo "id_Donation: ".$commande->getid_Donation()."<br>";
-        echo "reason: ".$commande->getreason()."<br>";
-        echo "mail: ".$commande->get_mail()."<br>";
-        echo "reason: ".$commande->get_name()."<br>";
-	}
-	
-function ajoutercommande($commande)
-    {
-		$sql="insert into commande (id_Menu,id_Assio,Date_Commande,reason) values (:idMenu, :idAssio,:DateCommande,:reason0)";
-		$db = config::getConnexion();
-		try{
-        $req=$db->prepare($sql);
-
-        $id_Menu=$commande->getid_Menu();
-        $id_Assio=$commande->getid_Assio();
-        $Date_Commande=date("Y-m-d") ;
-        $id_Donation=$commande->getid_Donation();
-        $reason=$commande->getreason();
-		$req->bindValue(':idMenu',$id_Menu);
-		$req->bindValue(':id_Assio',$id_Assio);
-        $req->bindValue(':DateCommande',$Date_Commande);
-        $req->bindValue(':reason0',$reason);
-
-		
-            $req->execute();
-           
+        $sql = "INSERT INTO donation VALUES (NULL, :id_association,:id_menu, :id_donation,:reason,:location,:date)";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([
+                'id_donation' => $Donation->getid_Donation(),
+                'id_menu' => $Donation->getid_menu(),
+                'reason'=> $Donation->get_reason(),
+                'id_association' => $Donation->getid_assiociation(),
+                'date' => $Donation->getdate()->format('Y-m-d'),
+                'location' => $Donation->get_location()
+              
+            ]);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
         }
-            catch (Exception $e){
-            echo 'Erreur: '.$e->getMessage();
-        }
-		
-	}
+    }
 	
-    function affichercommande()
+    function listDonation()
     {
-		$sql="SElECT * From commande";
+		$sql="SElECT * From Donation";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -54,12 +36,12 @@ function ajoutercommande($commande)
         }	
     }
     
-    function supprimercommande($id_Donation)
+    function deleteDonation($id_donation)
     {
-		$sql="DELETE FROM commande where id_Donation= :id_Donation";
+		$sql="DELETE FROM donation where id_donation= :id_donation";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
-		$req->bindValue(':id_Donation',$id_Donation);
+		$req->bindValue(':id_donation',$id_donation);
 		try{
             $req->execute();
         }
@@ -67,61 +49,45 @@ function ajoutercommande($commande)
             die('Erreur: '.$e->getMessage());
         }
     }
-    
-	function modifiercommande($commande,$id_Donation){
-		$sql="UPDATE commande SET id_Menu=:id_Menu0, id_Assio=:id_Assio, Date_Commande=:Date_Commande WHERE id_Menu=:id_Menu";
-		
-		$db = config::getConnexion();
-try{		
-        $req=$db->prepare($sql);
-		$id_Menu0=$commande->getid_Menu();
-        $id_Assio=$commande->getid_Assio();
-        $Date_Commande=$commande->getDate_Commande();
-		$datas = array(':id_Menu0'=>$id_Menu0, ':id_Assio'=>$id_Assio,':Date_Commande'=>$Date_Commande, ':id_Donation'=>$id_Donation);
-		$req->bindValue(':id_Menu0',$id_Menu0);
-		$req->bindValue(':id_Assio',$id_Assio);
-        $req->bindValue(':Date_Commande',$Date_Commande);
-		
-		
-            $s=$req->execute();
-			
-
+    function updatedonation($donation, $id_donation)
+    {
+        try {
+            $db = config::getConnexion();
+            $query = $db->prepare(
+                'UPDATE donation SET 
+                    id_association = :id_association, 
+                    id_menu = :id_menu,
+                    date = :date,
+                    location = :location,
+                    reason =:reason
+                WHERE id_donation= :id_donation'
+            );
+            $query->execute([
+                'ida' => $assio->getid_association(),
+                'name_assio' => $assio->getname_assio(),
+                'mail' => $assio->getmail(),
+                'phone' => $assio->getphone(),
+                'president'=> $assio-> getpresident()
+            ]);
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
-        catch (Exception $e){
-            echo " Erreur ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);
-        }
-		
     }
     
-    function recuperercommande($id_Donation)
+    function showDonation($id_donation)
     {
-		$sql="SELECT * from commande where id_Donation=$id_Donation";
+		$sql="SELECT * from Donation where id_donation=$id_donation";
 		$db = config::getConnexion();
 		try{
-		$liste=$db->query($sql);
-		return $liste;
+		$list=$db->query($sql);
+		return $list;
 		}
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
 	}
-	
-    function rechercherlistecommande($id_Donation)
-    {
-		$sql="SELECT * from commande where id_Donation=$id_Donation";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
-    }
     
-
 }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-include '../Controller/Donation_core.php';
-$Donation_core = new Don();
-$Donation_core->deleteDonation($_GET["id_Donation"]);
-header('Location:ListDonations.php');
+include '../controller/Donation_core.php';
+$Donation_core = new donation_c();
+$Donation_core->deleteDonation($_GET["id_donation"]);
+header('Location:listDonation.php');

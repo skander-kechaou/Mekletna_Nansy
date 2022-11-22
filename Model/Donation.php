@@ -1,88 +1,85 @@
 <?PHP 
-class commande{
-	private $id_Menu;//food item to donate
-	private $id_Assio;// association id
-  private $Date_Commande;
-  private $id_Donation;
-  private $Name_Assio;
-  private $mail;
-  private $reason;
+class donation
+{
+	private $id_menu= null;//food item to donate
+	private $id_assiociation= null;// association id
+  private $date= null;
+  private $id_donation= null;
+  private $location= null;
+  private $reason= null;
 
 
-    function __construct($id_Menu,$id_Assio,$Date_Commande,$id_Donation,$Name_Assio,$mail,$reason)
+    function __construct($id_donation=NULL,$id_menu,$id_assiociation,$date,$reason,$location)
     {
-		$this->id_Menu=$id_Menu;
-		$this->id_Assio=$id_Assio;
-    $this->Date_Commande=$Date_Commande;
+		$this->id_menu=$id_menu;
+		$this->id_assiociation=$id_assiociation;
+    $this->date=$date;
     $this->reason=$reason;
-    $this->Name_Assio=$Name_Assio;
-    $this->mail=$mail;
+    $this->id_donation=$id_donation;
+    $this->location=$location;
 
 	}
      
     //////////////////////////////////////////////////////////////
 
-    function getid_Menu()
+    function getid_menu()
     {
-		return $this->id_Menu;
+		return $this->id_menu;
     }
   
-    function getid_Assio()
+    function getid_assiociation()
     {
-		return $this->id_Assio;
+		return $this->id_assiociation;
     }
     
-    function getDate_Commande()
+    function getdate()
     {
-		return $this->Date_Commande;
+		return $this->date;
     }
     
     function getid_Donation()
     {
-		return $this->id_Donation;
+		return $this->id_donation;
     }
     function get_reason()
     {
       return $this->reason;
     }
-    function get_mail()
+    function get_location()
     {
-      return $this->mail;
+      return $this->location;
     }
-    function get_name()
-    {
-      return $this->Name_Assio;
-    }
+
 
 
 
     //////////////////////////////////////////////////////////////
     
-    function setid_Menu($id_Menu)
+    function setid_menu($id_menu)
     {
-		$this->id_Menu=$id_Menu;
+		$this->id_menu=$id_menu;
     }
     
-    function setid_Assio($id_Assio)
+    function setid_assiociation($id_assiociation)
     {
-		$this->id_Assio;
+		$this->id_assiociation;
     }
     
-    function setDate_Commande($Date_Commande)
+    function setdate($date)
     {
-		$this->Date_Commande;
+		$this->date;
     }
     function set_reason($reason)
     {
       $this->reason;
     }
-    function set_name($Name_Assio)
+    function set_name($id_donation)
     {
-      $this->Name_Assio;
+      $this->$id_donation;
     }
-    function set_email($email)
+    function set_email($location)
     {
-      $this->email;
+      $this->location;
     }
 	
 }
