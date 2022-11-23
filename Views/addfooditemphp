@@ -1,0 +1,51 @@
+<HTML>
+    <head>
+    </head>
+
+    <body>
+    <h1>addfooditemr</h1>
+    <form>
+        <table>
+            <tr>
+                <td>idfooditem</td>
+                <td><input type="number" name="idfooditem" id="idfooditem"></td>
+            </tr>
+
+            <tr>
+                <td>idchef</td>
+                <td><input type="number" name="id_chef" id="id_chef"></td>
+            </tr>
+            <tr>
+                <td>Namefood</td>
+                <td><input type="text" name="Namefooditem" id="Namefooditem"></td>
+            </tr>
+
+            <tr>
+                <td>Price</td>
+                <td><input type="number" name="Pricefooditem" id="Pricefooditem"></td>
+            </tr>
+
+            <tr>
+                <td>    </td>
+                <td><input type="submit" name="add" value="add"></td>
+            </tr>
+        </table>
+    </form>
+    </body>
+</HTML>
+
+<?PHP
+if (isset($_GET['add']))
+{
+    include "../Model/fooditem.php";
+    include "../Controller/fooditemC.php";
+            
+    $fooditem= new fooditem($_GET['idfooditem'],$_GET['Namefooditem'],$_GET['Pricefooditem'],$_GET['id_chef']);
+    $fooditemcore=new fooditemcore();
+    $fooditemcore->addfooditem($fooditem);
+    
+    header('Location: displayfooditem.php');
+
+}
+
+?>
