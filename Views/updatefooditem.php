@@ -4,17 +4,16 @@
 <body>
 <?PHP
 include "../Model/fooditem.php";
-include "../Controller/fooditemcore.php";
+include "../Controller/fooditemC.php";
 
 if (isset($_GET['idfooditem']))
 {
-	$fooditemcore=new fooditemcore();
-    $result=$fooditemcore->retrievepanier($_GET['idfooditem']);
+	$fooditemC=new fooditemC();
+    $result=$fooditemC->retrievefooditem($_GET['idfooditem']);
     foreach($result as $row)
     {
 		$idfooditem=$row['idfooditem'];
 		$Namefooditem=$row['Namefooditem'];
-		$id_chef=$row['id_chef'];
 		$Price=$row['Pricefooditem'];
 ?>
 <form method="POST">
@@ -27,10 +26,6 @@ if (isset($_GET['idfooditem']))
 <tr>
 <td>Namefooditem</td>
 <td><input type="text" name="Namefooditem" value="<?PHP echo $Namefooditem ?>"></td>
-</tr>
-<tr>
-<td>id_chef</td>
-<td><input type="number" name="id_chef" value="<?PHP echo $id_chef ?>"></td>
 </tr>
 <tr>
 <td>Pricefooditem</td>
@@ -51,10 +46,10 @@ if (isset($_GET['idfooditem']))
 	}
 }
 if (isset($_POST['update'])){
-	$fooditem=new fooditem($_POST['idfooditem'],$_POST['Namefooditem'],$_POST['id_chef'],$_POST['Pricefooditem']);
-	$fooditemcore->updatepanier($panier,$_POST['idfooditem_INIT']);
+	$fooditem=new fooditem($_POST['idfooditem'],$_POST['Namefooditem'],$_POST['Pricefooditem']);
+	$fooditemC->updatefooditem($fooditem,$_POST['idfooditem_INIT']);
 	echo $_POST['idfooditem_INIT'];
-	header('Location: displaypanier.php');
+	header('Location: displayfooditem.php');
 }
 ?>
 </body>

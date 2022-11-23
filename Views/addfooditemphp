@@ -37,9 +37,9 @@ if (isset($_GET['add']))
     include "../Model/fooditem.php";
     include "../Controller/fooditemC.php";
             
-    $fooditem= new fooditem($_GET['idfooditem'],$_GET['Namefooditem'],$_GET['Pricefooditem'],$_GET['id_chef']);
-    $fooditemcore=new fooditemcore();
-    $fooditemcore->addfooditem($fooditem);
+    $fooditem= new fooditem($_GET['idfooditem'],$_GET['Namefooditem'],$_GET['Pricefooditem']);
+    $fooditemC=new fooditemC();
+    $fooditemC->addfooditem($fooditem);
     
     header('Location: displayfooditem.php');
 
