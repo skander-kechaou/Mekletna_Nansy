@@ -36,10 +36,7 @@ if (isset($_GET['idfooditem']))
 <td>Pricefooditem</td>
 <td><input type="number" name="Pricefooditem" value="<?PHP echo $Price ?>"></td>
 </tr>
-<td>Mail</td>
-<td><input type="number" name="Mail" value="<?PHP echo $Mail ?>"></td>
 </tr>
-
 <tr>
 <td></td>
 <td><input type="submit" name="update" value="update"></td>
@@ -54,7 +51,7 @@ if (isset($_GET['idfooditem']))
 	}
 }
 if (isset($_POST['update'])){
-	$fooditem=new fooditem($_POST['idfooditem'],$_POST['Namefooditem'],$_POST['id_chef'],$_POST['Pricefooditem']$_POST['Mail']);
+	$fooditem=new fooditem($_POST['idfooditem'],$_POST['Namefooditem'],$_POST['id_chef'],$_POST['Pricefooditem']);
 	$fooditemcore->updatepanier($panier,$_POST['idfooditem_INIT']);
 	echo $_POST['idfooditem_INIT'];
 	header('Location: displaypanier.php');
