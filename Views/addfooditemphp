@@ -11,10 +11,7 @@
                 <td><input type="number" name="idfooditem" id="idfooditem"></td>
             </tr>
 
-            <tr>
-                <td>idchef</td>
-                <td><input type="number" name="id_chef" id="id_chef"></td>
-            </tr>
+    
             <tr>
                 <td>Namefood</td>
                 <td><input type="text" name="Namefooditem" id="Namefooditem"></td>
