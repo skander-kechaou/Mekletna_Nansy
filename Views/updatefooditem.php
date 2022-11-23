@@ -29,7 +29,7 @@ if (isset($_GET['idfooditem']))
 </tr>
 <tr>
 <td>Pricefooditem</td>
-<td><input type="number" name="Pricefooditem" value="<?PHP echo $Price ?>"></td>
+<td><input type="number" name="Pricefooditem" value="<?PHP echo $Pricefooditem ?>"></td>
 </tr>
 </tr>
 <tr>
