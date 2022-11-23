@@ -3,7 +3,7 @@ class fooditem{
 	private $idfooditem;
 	private $Namefooditem;
 	private $Pricefooditem;
-
+}
 
 
     function __construct($idfooditem,$Namefooditem,$Pricefooditem)
