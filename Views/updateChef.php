@@ -9,7 +9,7 @@ $chef = null;
 
 // create an instance of the controller
 $chefC = new ChefC();
-if (
+if ((
     isset($_POST["id_chef"]) &&
     isset($_POST["Name_chef"]) &&
     isset($_POST["Add_chef"]) &&
@@ -17,31 +17,31 @@ if (
     isset($_POST["Phone"])&&
     isset($_POST["Date_Birth"])&&
     isset($_POST["Cv"])
-) {
-    if (
-        !empty($_POST["id_chef"]) &&
+
+) &&(
+    !empty($_POST["id_chef"]) &&
         !empty($_POST["Name_chef"]) &&
         !empty($_POST["Add_chef"]) &&
         !empty($_POST["mail_chef"])&&
         !empty($_POST["Phone"])&&
         !empty($_POST["Date_Birth"])&&
         !empty($_POST["Cv"])
-    ) {
-        $chef = new Chef(
-            $_POST["id_chef"],
-            $_POST["Name_chef"],
-            $_POST["Add_chef"],
-            $_POST["mail_chef"],
-            $_POST["Date_Birth"],
-            $_POST["Phone"],
-            $_POST["Cv"],
-            new DateTime($_POST["Date_Birth"])
+    ) ){
+     
+        $chef = new chef(
+            $_POST['id_chef'],
+            $_POST['Name_chef'],
+            $_POST['Add_chef'],
+            $_POST['mail_chef'],
+            $_POST['Phone'],
+            new DateTime($_POST['Date_Birth']),
+            $_POST['Cv'],
+           
         );
         $chefC->updateChef($chef, $_POST["id_chef"]);
         header('Location:listChefs.php');
-    } else
-        $error = "Missing information";
-}
+    
+    } 
 ?>
 <html lang="en">
 
@@ -58,18 +58,18 @@ if (
     <div id="error">
         <?php echo $error; ?>
     </div>
-
     <?php
     if (isset($_POST['id_chef'])) {
         $chef = $chefC->showChef($_POST['id_chef']);
 
     ?>
-
         <form action="" method="POST">
+
             <table border="1" align="center">
-                <tr>
+                 
+            <tr>
                     <td>
-                        <label for="id_chef">Id Chef:
+                        <label for="id_chef"> id chef:
                         </label>
                     </td>
                     <td><input type="text" name="id_chef" id="id_chef" value="<?php echo $chef['id_chef']; ?>" maxlength="20"></td>
@@ -97,9 +97,19 @@ if (
                         <input type="text" name="mail_chef" value="<?php echo $chef['mail_chef']; ?>" id="mail_chef">
                     </td>
                 </tr>
+
                 <tr>
                     <td>
-                        <label for="dob">Date of Birth:
+                        <label for="Phone">Phone:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="number" name="Phone" value="<?php echo $chef['Phone']; ?>" id="Phone">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Date_Birth">Date of Birth:
                         </label>
                     </td>
                     <td>
@@ -107,6 +117,13 @@ if (
                     </td>
                 </tr>
                 <tr>
+                <td>
+                        <label for="Cv">Cv:
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="Cv" value="<?php echo $chef['Cv']; ?>" id="Cv">
+                    </td>
                     <td></td>
                     <td>
                         <input type="submit" value="Update">
@@ -117,9 +134,8 @@ if (
                 </tr>
             </table>
         </form>
-    <?php
+        <?php
     }
     ?>
-</body>
-
+        </body>
 </html>
