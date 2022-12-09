@@ -1,40 +1,47 @@
 <?php
 
-include '../Controller/orderC.php';
+include '../Controller/basketC.php';
+include '../Model/basket.php';
 
 $error = "";
 
-$order = null;
+$basket = null;
 
-$orderC = new orderC();
+$basketC = new basketC();
 if (
-    isset($_POST["idOrder"]) &&
-    isset($_POST["idMenu"]) &&
+    isset($_POST["idBasket"]) &&
+    isset($_POST["nameOrder"]) &&
     isset($_POST["idClient"]) &&
     isset($_POST["priceOrder"]) &&
     isset($_POST["dateOrder"]) &&
-    isset($_POST["statusOrder"]) 
+    isset($_POST["idOrder"]) &&
+    isset($_POST["statusOrder"]) &&
+    isset($_POST["idProduct"]) 
 ) {
     if (
-        !empty($_POST["idOrder"]) &&
-        !empty($_POST["idMenu"]) &&
+        !empty($_POST["idBasket"]) &&
+        !empty($_POST["nameOrder"]) &&
         !empty($_POST["idClient"]) &&
         !empty($_POST["priceOrder"]) &&
         !empty($_POST["dateOrder"]) &&
-        !empty($_POST["statusOrder"]) 
+        !empty($_POST["idOrder"]) &&
+        !empty($_POST["statusOrder"]) &&
+        !empty($_POST["idProduct"]) 
        
     ) {
-        $order = new order(
+        $basket = new basket(
             null,
-            $_POST["idOrder"],
-            $_POST["idMenu"], 
-            $_POST["idClient"],
-            new DateTime($_POST["dateOrder"]),
+            $_POST["idBasket"],
+            $_POST["nameOrder"],
+            $_POST["idClient"], 
             $_POST["priceOrder"],
-            $_POST["statusOrder"]
+            new DateTime($_POST["dateOrder"]),
+            $_POST["idOrder"],
+            $_POST["statusOrder"],
+            $_POST["idProduct"]
         );
-        $orderC->updateOrder($order, $_POST["idOrder"]);
-        header('Location:listOrder.php');
+        $basketC->updateBasket($basket, $_POST["idBasket"]);
+        header('Location:listBasket.php');
     } else
         $error = "Missing information";
 }
@@ -44,11 +51,11 @@ if (
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Display</title>
+    <title>Basket Display</title>
 </head>
 
 <body>
-    <button><a href="ListOrder.php">Back to list</a></button>
+    <button><a href="ListBasket.php">Back to list</a></button>
     <hr>
 
     <div id="error">
@@ -56,8 +63,8 @@ if (
     </div>
 
     <?php
-    if (isset($_POST['idOrder'])) {
-        $order = $orderC->showOrder($_POST['idOrder']);
+    if (isset($_POST['idBasket'])) {
+        $basket = $basketC->showBasket($_POST['idBasket']);
 
     ?>
 
@@ -65,26 +72,26 @@ if (
             <table border="1" align="center">
             <tr>
                 <td>
-                    <label for="idOrder">Id Order:
+                    <label for="idBasket">Id Basket:
                     </label>
                 </td>
-                <td><input type="number" name="idOrder" id="idOrder" value="<?php echo $order['idOrder']; ?>" maxlength="20"></td>
+                <td><input type="number" name="idBasket" id="idBasket" value="<?php echo $basket['idBasket']; ?>" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="idMenu">id Menu:
+                    <label for="idProduct">id Product:
                     </label>
                 </td>
-                <td><input type="number" name="idProduct" id="idProduct" value="<?php echo $order['idProduct']; ?>" maxlength="20"></td>
+                <td><input type="number" name="idProduct" id="idProduct" value="<?php echo $baskett['idProduct']; ?>" maxlength="20"></td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="priceOrder">Price Order:
+                    <label for="nameOrder">name Order:
                     </label>
                 </td>
-                <td><input type="price" name="priceOrder" id="priceOrder" value="<?php echo $order['priceOrder']; ?>" maxlength="20"></td>
+                <td><input type="text" name="nameOrder" id="nameOrder" value="<?php echo $basket['nameOrder']; ?>" maxlength="20"></td>
             </tr>
 
             <tr>
