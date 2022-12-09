@@ -11,6 +11,7 @@ class Client
     private ?int $pcodeClient = null;
     private ?string $regionClient = null;
     private ?string $addressClient = null;
+    private ?int $statusClient = null;
 
     public function __construct($id = null, $fn, $ln, $pn, $ml, $pw, $bd, $pc, $rg, $a)
     {
@@ -210,6 +211,26 @@ class Client
     public function setAddress($addressClient)
     {
         $this->addressClient = $addressClient;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of statusClient
+     */
+    public function getStatus()
+    {
+        return $this->statusClient;
+    }
+
+    /**
+     * Set the value of statusClient
+     *
+     * @return  self
+     */
+    public function setStatus($statusClient)
+    {
+        $this->statusClient = $statusClient;
 
         return $this;
     }

@@ -9,40 +9,42 @@ $client = null;
 
 $clientC = new ClientC();
 if (
-    isset($_POST["fnameClient"]) &&
-    isset($_POST["lnameClient"]) &&
-    isset($_POST["pnbClient"]) &&
-    isset($_POST["mailClient"]) &&
-    isset($_POST["pwdClient"]) &&
-    isset($_POST["bdayClient"]) &&
-    isset($_POST["pcodeClient"]) &&
-    isset($_POST["regionClient"]) &&
-    isset($_POST["addressClient"])
+    isset($_GET["idClient"]) &&
+    isset($_GET["fnameClient"]) &&
+    isset($_GET["lnameClient"]) &&
+    isset($_GET["pnbClient"]) &&
+    isset($_GET["mailClient"]) &&
+    isset($_GET["pwdClient"]) &&
+    isset($_GET["bdayClient"]) &&
+    isset($_GET["pcodeClient"]) &&
+    isset($_GET["regionClient"]) &&
+    isset($_GET["addressClient"])
 ) {
     if (
-        !empty($_POST["fnameClient"]) &&
-        !empty($_POST["lnameClient"]) &&
-        !empty($_POST["pnbClient"]) &&
-        !empty($_POST["mailClient"]) &&
-        !empty($_POST["pwdClient"]) &&
-        !empty($_POST["bdayClient"]) &&
-        !empty($_POST["pcodeClient"]) &&
-        !empty($_POST["regionClient"]) &&
-        !empty($_POST["addressClient"])
+        !empty($_GET["idClient"]) &&
+        !empty($_GET["fnameClient"]) &&
+        !empty($_GET["lnameClient"]) &&
+        !empty($_GET["pnbClient"]) &&
+        !empty($_GET["mailClient"]) &&
+        !empty($_GET["pwdClient"]) &&
+        !empty($_GET["bdayClient"]) &&
+        !empty($_GET["pcodeClient"]) &&
+        !empty($_GET["regionClient"]) &&
+        !empty($_GET["addressClient"])
     ) {
         $client = new Client(
-            null,
-            $_POST["fnameClient"],
-            $_POST["lnameClient"],
-            $_POST["pnbClient"], 
-            $_POST["mailClient"],
-            $_POST["pwdClient"],
-            new DateTime($_POST["bdayClient"]),
-            $_POST["pcodeClient"],
-            $_POST["regionClient"],
-            $_POST["addressClient"]
+            $_GET["idClient"],
+            $_GET["fnameClient"],
+            $_GET["lnameClient"],
+            $_GET["pnbClient"], 
+            $_GET["mailClient"],
+            $_GET["pwdClient"],
+            new DateTime($_GET["bdayClient"]),
+            $_GET["pcodeClient"],
+            $_GET["regionClient"],
+            $_GET["addressClient"]
         );
-        $clientC->updateClient($client, $_POST["idClient"]);
+        $clientC->updateClient($client, $_GET["idClient"]);
         header('Location:listClients.php');
     } else
         $error = "Missing information";
@@ -65,8 +67,8 @@ if (
     </div>
 
     <?php
-    if (isset($_POST['idClient'])) {
-        $client = $clientC->showClients($_POST['idClient']);
+    if (isset($_GET['idClient'])) {
+        $client = $clientC->showClients($_GET['idClient']);
 
     ?>
 
