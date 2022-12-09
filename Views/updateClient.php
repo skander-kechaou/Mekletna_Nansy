@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 include '../Controller/UserFct.php';
@@ -167,6 +166,3 @@ if (
 </body>
 
 </html>
-=======
-j
->>>>>>> 6daab74adacc15b259a9871bd08643b2850f7d0c

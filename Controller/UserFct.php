@@ -1,6 +1,5 @@
 <?php
 include '../config.php';
-include '../Model/user.php'
 
 class ClientC {
     public function listClients() {

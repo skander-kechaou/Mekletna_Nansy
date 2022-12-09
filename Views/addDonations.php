@@ -1,3 +1,39 @@
+<?php
+
+include '../controller/donationC.php';
+include '../model/Donation.php';
+$error = "";
+
+$Donation = null;
+
+$Donation_core = new donationC();
+if ((
+    isset($_POST["id_menu"]) &&
+    isset($_POST["date"]) &&
+    isset($_POST["location"]) &&
+    isset($_POST["reason"])
+) 
+    && (
+        !empty($_POST["id_menu"]) &&
+        !empty($_POST["date"]) &&
+        !empty($_POST["location"]) &&
+        !empty($_POST["reason"])
+    ) ){
+        echo('name:'.$_POST['location']);
+        $Donation = new donation(
+            Null,
+            $_POST["id_menu"],
+            new DateTime($_POST["date"]),
+            $_POST["location"],
+            $_POST["reason"],
+        );
+        $Donation_core->addDonation($Donation);
+        header('Location:listDonation.php');
+     
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,89 +77,53 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a
+        href="home.html"
+        class="logo d-flex align-items-center me-auto me-lg-0"
+      >
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Mekletna<span>.</span></h1>
+        <img src="assets/img/mekletna.png" alt="mekletna logo" width="150" height="250">
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
-<<<<<<< HEAD
-          <li><a href="C:\Users\youss\github-classroom\2A-22-23\project2223_2a1-2a1_nansy\Views\home.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="">Menu</a></li>
-          <li><a href="#events">Donations</a></li>
-          <li><a href="C:\Users\youss\github-classroom\2A-22-23\project2223_2a1-2a1_nansy\Views\Chef.html">Chefs</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
-=======
           <li><a href="home.html">Home</a></li>
           <li><a href="menu.html">menu</a></li>
           <li><a href="order.html">Order</a></li>
           <li><a href="Chef.html">Chefs</a></li>
           <li><a href="Donations.html">Donations</a></li>
->>>>>>> afcf255c85310f5543a48527f31a64abb01aa039
         </ul>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
 
-<<<<<<< HEAD
-      <a class="btn-book-a-table" href="#book-a-table">Order Food</a>
-=======
-      <a class="btn-book-a-table" href="registerassio.html">Log in/Sign in as an association</a>
->>>>>>> afcf255c85310f5543a48527f31a64abb01aa039
+      <a class="btn-book-a-table" href="addassio.php">Log in/Sign in as an association</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
       <div class="container-fluid" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Donations</h2>
-          <p>Our Chefs <span>Share Their Food</span> With The Needy</p>
+          <p>Associations <span>We Work</span> With</p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
-              <h3>Assosiation 1</h3>
-              <div class="price align-self-start">$99</div>
               <p class="description">
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
-              <h3>Assosiation 2</h3>
-              <div class="price align-self-start">$289</div>
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/pic1.png)">
               <p class="description">
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
-              <h3>Assosiation 3</h3>
-              <div class="price align-self-start">$499</div>
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/pic2.png)">
               <p class="description">
               </p>
             </div><!-- End Event item -->
@@ -136,33 +136,6 @@
     </section><!-- End Events Section -->
 
     
-<<<<<<< HEAD
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>gallery</h2>
-          <p>Check <span>Our Gallery</span></p>
-        </div>
-
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-=======
        <!-- ======= Make a donation ======= -->
        <section id="donation" class="donation">
         <div class="container" data-aos="fade-up">
@@ -174,13 +147,13 @@
   
           <div class="row g-0">
   
-            <div class="col-lg-4 reservation-img" style="background-image: url(Views/assets/img/reservation.jpg);" data-aos="zoom-out" data-aos-delay="200"></div>
+            <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/book.jpg);" data-aos="zoom-out" data-aos-delay="200"></div>
   
             <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-              <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+              <form action="addDonations.php" method="post" role="form" class="php-Donation-form" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
                   <div class="col-lg-4 col-md-6">
-                    <input type="text" location="name" class="form-control" id="location" placeholder="Location" minlength="10" required>
+                    <input type="number" name="id_menu" class="form-control" id="id_menu" placeholder="Menu" min="1" required>
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
@@ -188,24 +161,34 @@
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
-                    <input type="number" class="form-control" name="id_menu" id="id_menu" placeholder="menu You want to order" max="5" required>
+                  <select name="location" id="location" placeholder="location">
+                      <option value="Tunis"selected>Tunis</option>
+                        <option value="Sfax" >Sfax </option>
+                        <option value="Benzart">Benzart</option>
+                        <option value="Hammamet">Hammamet</option>
+                        <option value="Beja">Beja</option>
+                        <option value="Sousse">Sousse</option>
+                        <option value="Kairouan">Kairouan</option>
+                        <option value="Gabès">Gabès</option>
+                   </select>
                 </div>
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="reason" rows="5" placeholder="Reason" required></textarea>
+                  <textarea class="form-control" id="reason" name="reason" rows="5" placeholder="Reason" required></textarea>
                   <div class="validate"></div>
                 </div>
                 <div class="mb-3">
                   <div class="error-message"></div>
                 </div>
-                <div class="text-center"><button type="submit">Book</button></div>
-              </form>
+                <button >
+                   Submit
+                </button>             
+               </form>
             </div><!-- End donation Form -->
   
           </div>
   
         </div>
       </section><!-- End donation Section --> 
->>>>>>> afcf255c85310f5543a48527f31a64abb01aa039
 
 
   <!-- ======= Footer ======= -->
@@ -231,7 +214,7 @@
             <h4>Reservations</h4>
             <p>
               <strong>Phone:</strong> +216 51 653 115<br>
-              <strong>Email:</strong>  info@Mekletna.com<br>
+              <strong>Email:</strong>  info@mekletna.com<br>
             </p>
           </div>
         </div>
@@ -241,7 +224,7 @@
           <div>
             <h4>Opening Hours</h4>
             <p>
-              <strong>Mon-Sat: 11AM</strong> - 23PM<br>
+              <strong>Mon-Sat: 11AM</strong> - 11PM<br>
               Sunday: Closed
             </p>
           </div>

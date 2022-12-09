@@ -1,9 +1,9 @@
 <?php
-include '../controller/donationc.php';
-$Donation_core = new donationC ();
-$list = $Donation_core ->listDonation();
+include '../controller/assioC.php';
+$assioC = new AssioC();
+$list = $assioC->listassio();
 $conn=mysqli_connect("localhost","root","","donations");
-$result = mysqli_query($conn,"SELECT * from donation");
+$result = mysqli_query($conn,"SELECT * from association");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
     <?php
         while($val=mysqli_fetch_assoc($result))
         {
-            echo"['".$val['location']."',".$val['id_menu']."],";
+            echo"['".$val['location']."',".$val['phone']."],";
         }
     ?>
         ]);
@@ -46,10 +46,6 @@ $result = mysqli_query($conn,"SELECT * from donation");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -88,8 +84,8 @@ $result = mysqli_query($conn,"SELECT * from donation");
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">User Managment</a>
-                                <a class=" dropdown-item" href="listassio.php">Association Managment</a>
-                                <a class="active dropdown-item" href="listDonation.php">Donation Managment</a>
+                                <a class="active dropdown-item" href="#">Association Managment</a>
+                                <a class="dropdown-item" href="listDonation.php">Donation Managment</a>
                                 <a class="dropdown-item" href="#">Chef Report</a>
                                 <a class="dropdown-item" href="#">Menu Report</a>
                                 <a class="dropdown-item" href="#">orders Report</a>
@@ -134,29 +130,29 @@ $result = mysqli_query($conn,"SELECT * from donation");
             </div>
 
         </nav>
-
         <div class="container">
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-            <!-- row -->
             <div class="row mt-2">
             <div class="col-12">
              <div id="piechart" style="width: 1000px; height: 500px;"></div>
             </div>
             </div>
+
+            <!-- row -->
             <div class="row mt-2">
               <div class="col-12">
-                <form action="searchdon.php" method="POST" class="tm-login-form">
+                <form action="search.php" method="POST" class="tm-login-form">
                   <div class="form-group">
                     <label for="username">Search</label>
                     <input
-                      name="searchdon"
+                      name="search"
                       type="text"
                       class="form-control validate"
-                      id="searchdon"
+                      id="search"
                       value=""
                       required
                     />
@@ -165,9 +161,9 @@ $result = mysqli_query($conn,"SELECT * from donation");
                     <button
                       type="submit"
                       class="btn btn-primary btn-block text-uppercase"
-                      name="submit-search-don"
+                      name="submit-search"
                     >
-                    Search Based On Location
+                    Search
                     </button>
                   </div>
                 </form>
@@ -175,35 +171,37 @@ $result = mysqli_query($conn,"SELECT * from donation");
             </div>
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                    <h2 class="tm-block-title">Donation List <a class="bi bi-sort-down-alt" href="sortDonation.php"></a></h2>
+                        <h2 class="tm-block-title">Association List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID donation</th>
-                                    <th scope="col">id menu</th>
-                                    <th scope="col">date</th>
-                                    <th scope="col">location</th>
-                                    <th scope="col">reason</th>
+                                    <th scope="col">ID ASSOCIATION</th>
+                                    <th scope="col">NAME ASSOCIATION</th>
+                                    <th scope="col">MAIL</th>
+                                    <th scope="col">PHONE</th>
+                                    <th scope="col">PRESIDENT</th>
+                                    <th scope="col">Location</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($list as $donation) {
+                                foreach ($list as $assio) {
                                 ?>
                                     <tr>
-                                        <td><?= $donation['id_donation']; ?></td>
-                                        <td><?= $donation['id_menu']; ?></td>
-                                        <td><?= $donation['date']; ?></td>
-                                        <td><?= $donation['location']; ?></td>
-                                        <td><?= $donation['reason']; ?></td>
+                                        <td><?= $assio['id_association']; ?></td>
+                                        <td><?= $assio['name_assio']; ?></td>
+                                        <td><?= $assio['mail']; ?></td>
+                                        <td><?= $assio['phone']; ?></td>
+                                        <td><?= $assio['president']; ?></td>
+                                        <td><?= $assio['location']; ?></td>
                                         <td align="center">
-                                            <form method="POST" action="updatedonation.php">
+                                            <form method="POST" action="updateassio.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $donation['id_donation']; ?> name="id_donation">
+                                                <input type="hidden" value=<?PHP echo $assio['id_association']; ?> name="id_association">
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deletdoantion.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deleteassio.php?id_association=<?php echo $assio['id_association']; ?>">Delete</a>
                                         </td>
                                         </tr>
         <?php

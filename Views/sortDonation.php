@@ -1,40 +1,9 @@
 <?php
-include '../controller/donationc.php';
-$Donation_core = new donationC ();
-$list = $Donation_core ->listDonation();
-$conn=mysqli_connect("localhost","root","","donations");
-$result = mysqli_query($conn,"SELECT * from donation");
+include '../controller/donationC.php';
+$donationC = new donationC();
+$list = $donationC->SortDonation();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-    <?php
-        while($val=mysqli_fetch_assoc($result))
-        {
-            echo"['".$val['location']."',".$val['id_menu']."],";
-        }
-    ?>
-        ]);
-
-        var options = {
-          title: 'Based Location'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -46,14 +15,14 @@ $result = mysqli_query($conn,"SELECT * from donation");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 </head>
 
 <body id="reportsPage">
@@ -142,40 +111,9 @@ $result = mysqli_query($conn,"SELECT * from donation");
                 </div>
             </div>
             <!-- row -->
-            <div class="row mt-2">
-            <div class="col-12">
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
-            </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12">
-                <form action="searchdon.php" method="POST" class="tm-login-form">
-                  <div class="form-group">
-                    <label for="username">Search</label>
-                    <input
-                      name="searchdon"
-                      type="text"
-                      class="form-control validate"
-                      id="searchdon"
-                      value=""
-                      required
-                    />
-                  </div>
-                  <div class="form-group mt-4">
-                    <button
-                      type="submit"
-                      class="btn btn-primary btn-block text-uppercase"
-                      name="submit-search-don"
-                    >
-                    Search Based On Location
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                    <h2 class="tm-block-title">Donation List <a class="bi bi-sort-down-alt" href="sortDonation.php"></a></h2>
+                        <h2 class="tm-block-title">Donation List <a class="bi bi-sort-down-alt" herf="sortDonation.php"></a></h2>
                         <table class="table">
                             <thead>
                                 <tr>

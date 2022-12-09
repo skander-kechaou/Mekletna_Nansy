@@ -1,40 +1,20 @@
 <?php
-include '../controller/donationc.php';
-$Donation_core = new donationC ();
-$list = $Donation_core ->listDonation();
+include '../config.php';
 $conn=mysqli_connect("localhost","root","","donations");
-$result = mysqli_query($conn,"SELECT * from donation");
+if(isset($_POST['submit-search-don']))
+
+    {
+    $search = mysqli_real_escape_string($conn,$_POST['searchdon']);
+    $sql = "SELECT * FROM donation WHERE location LIKE'%$search%' ";
+    $result = mysqli_query($conn,$sql);
+    $queryresult=mysqli_num_rows($result);  
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-    <?php
-        while($val=mysqli_fetch_assoc($result))
-        {
-            echo"['".$val['location']."',".$val['id_menu']."],";
-        }
-    ?>
-        ]);
-
-        var options = {
-          title: 'Based Location'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -46,10 +26,6 @@ $result = mysqli_query($conn,"SELECT * from donation");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -88,8 +64,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">User Managment</a>
-                                <a class=" dropdown-item" href="listassio.php">Association Managment</a>
-                                <a class="active dropdown-item" href="listDonation.php">Donation Managment</a>
+                                <a class="active dropdown-item" href="#">Association Managment</a>
                                 <a class="dropdown-item" href="#">Chef Report</a>
                                 <a class="dropdown-item" href="#">Menu Report</a>
                                 <a class="dropdown-item" href="#">orders Report</a>
@@ -134,7 +109,6 @@ $result = mysqli_query($conn,"SELECT * from donation");
             </div>
 
         </nav>
-
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -142,11 +116,6 @@ $result = mysqli_query($conn,"SELECT * from donation");
                 </div>
             </div>
             <!-- row -->
-            <div class="row mt-2">
-            <div class="col-12">
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
-            </div>
-            </div>
             <div class="row mt-2">
               <div class="col-12">
                 <form action="searchdon.php" method="POST" class="tm-login-form">
@@ -167,7 +136,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                       class="btn btn-primary btn-block text-uppercase"
                       name="submit-search-don"
                     >
-                    Search Based On Location
+                    Search
                     </button>
                   </div>
                 </form>
@@ -175,40 +144,33 @@ $result = mysqli_query($conn,"SELECT * from donation");
             </div>
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                    <h2 class="tm-block-title">Donation List <a class="bi bi-sort-down-alt" href="sortDonation.php"></a></h2>
+                        <h2 class="tm-block-title">Association List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID donation</th>
-                                    <th scope="col">id menu</th>
-                                    <th scope="col">date</th>
-                                    <th scope="col">location</th>
+                                    <th scope="col">ID Donation</th>
+                                    <th scope="col">ID Menu</th>
+                                    <th scope="col">Date<th>
                                     <th scope="col">reason</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                foreach ($list as $donation) {
-                                ?>
+                            <?php
+                                    $i=0;
+                                    while($row = mysqli_fetch_array($result)) {
+                                    ?>
                                     <tr>
-                                        <td><?= $donation['id_donation']; ?></td>
-                                        <td><?= $donation['id_menu']; ?></td>
-                                        <td><?= $donation['date']; ?></td>
-                                        <td><?= $donation['location']; ?></td>
-                                        <td><?= $donation['reason']; ?></td>
-                                        <td align="center">
-                                            <form method="POST" action="updatedonation.php">
-                                                <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $donation['id_donation']; ?> name="id_donation">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-primary" href="deletdoantion.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
-                                        </td>
-                                        </tr>
-        <?php
-        }
-        ?>
+                                    <td><?php echo $row["id_donation"]; ?></td>
+                                    <td><?php echo $row["id_menu"]; ?></td>
+                                    <td><?php echo $row["date"]; ?></td>
+                                    <td><?php echo $row["location"]; ?></td>
+                                    <td><?php echo $row['reason']; ?></td>
+                                    </tr>
+                                    <?php
+                                    $i++;
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>

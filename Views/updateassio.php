@@ -1,37 +1,37 @@
 <?php
 
-include '../controller/donationC.php';
+include '../controller/assioC.php';
 include '../model/Association.php';
 $error = "";
 
 // create client
-$donation = null;
+$assio = null;
 
 // create an instance of the controller
-$donationC = new donationC();
+$assioC = new AssioC();
 if (
-    isset($_POST["id_donation"])&&
-    isset($_POST["id_menu"]) &&
-    isset($_POST["date"]) &&
-    isset($_POST["location"]) &&
-    isset($_POST["reason"]) 
+    isset($_POST["id_association"])&&
+    isset($_POST["name_assio"]) &&
+    isset($_POST["mail"]) &&
+    isset($_POST["phone"]) &&
+    isset($_POST["president"]) 
 ) {
     if (
-        !empty($_POST["id_donation"])&&
-        !empty($_POST["id_menu"]) &&
-        !empty($_POST["date"]) &&
-        !empty($_POST["location"]) &&
-        !empty($_POST["reason"]) 
+        !empty($_POST["id_association"])&&
+        !empty($_POST["name_assio"]) &&
+        !empty($_POST["mail"]) &&
+        !empty($_POST["phone"]) &&
+        !empty($_POST["president"]) 
     ) {
-        $donation = new donation(
-            $_POST["id_donation"],
-            $_POST["id_menu"],
-            $_POST["date"],
-            $_POST["location"], 
-            $_POST["reason"]
+        $assio = new Assio(
+            $_POST["id_association"],
+            $_POST["name_assio"],
+            $_POST["mail"],
+            $_POST["phone"], 
+            $_POST["president"]
         );
-        $donationC->updateDonation($donation, $_POST["id_donation"]);
-        header('Location:listdonation.php');
+        $assioC->updateassio($assio, $_POST["id_association"]);
+        header('Location:listassio.php');
     } else
         $error = "Missing information";
 }
@@ -101,7 +101,7 @@ if (
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">User Managment</a>
-                <a class="active dropdown-item" href="listdonation.php">Association Managment</a>
+                <a class="active dropdown-item" href="listassio.php">Association Managment</a>
                 <a class="dropdown-item" href="#">Chef Report</a>
                 <a class="dropdown-item" href="#">Menu Report</a>
                 <a class="dropdown-item" href="#">orders Report</a>
@@ -158,55 +158,55 @@ if (
 
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
-              <h2 class="tm-block-title">Update Donation Settings</h2>
+              <h2 class="tm-block-title">Update Asscosiation Settings</h2>
               <?php
-    if (isset($_POST['id_donation'])) {
-        $donation = $donationC->showdonation($_POST['id_donation']);
+    if (isset($_POST['id_association'])) {
+        $assio = $assioC->showassio($_POST['id_association']);
 
     ?>
               <form action="" class="tm-signup-form row">
                 <div class="form-group col-lg-6">
-                  <label for="id_donation">ID Donation</label>
+                  <label for="pres">President</label>
                   <input
-                    id="id_donation"
-                    name="id_donation"
+                    id="pres"
+                    name="pres"
                     type="number"
                     class="form-control validate"
                   />
                 </div>
                 <div class="form-group col-lg-6">
-                  <label for="id_menu">Menu</label>
+                  <label for="name_assio">Name Association</label>
                   <input
-                    id="id_menu"
-                    name="id_menu"
+                    id="name_assio"
+                    name="name_assio"
                     type="text"
                     class="form-control validate"
                   />
                 </div>
                 <div class="form-group col-lg-6">
-                  <label for="date">date</label>
+                  <label for="mail">Mail</label>
                   <input
-                    id="date"
-                    name="date"
+                    id="mail"
+                    name="mail"
                     type="text"
                     class="form-control validate"
                   />
                 </div>
                 <div class="form-group col-lg-6">
-                  <label for="location">location</label>
+                  <label for="phone">Phone</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="number"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="phone">Location</label>
                   <input
                     id="location"
                     name="location"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="reason">reason</label>
-                  <input
-                    id="reason"
-                    name="reason"
-                    type="number"
+                    type="text"
                     class="form-control validate"
                   />
                 </div>
