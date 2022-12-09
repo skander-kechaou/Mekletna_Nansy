@@ -1,41 +1,12 @@
 <?php
-include '../Controller/orderC.php';
-$orderC =new orderC();
-$list =$orderC->listOrder();
-$conn=mysqli_connect("localhost","root","","catering");
-$result = mysqli_query($conn,"SELECT * from orderse");
+include '../controller/orderC.php';
+$orderC = new orderC();
+$list = $orderC->SortPrice();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-    <?php
-        while($val=mysqli_fetch_assoc($result))
-        {
-            echo"['".$val['dateOrder']."',".$val['statusOrder']."],";
-        }
-    ?>
-        ]);
-
-        var options = {
-          title: 'Based Location'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -155,17 +126,11 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                     </form>
                 </div>
             </div>
-            <!-- pie chart -->
-            <div class="row mt-2">
-            <div class="col-12">
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
-            </div>
-            </div>
             <!-- row -->
         
                 <div class="col-14 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List <a class="bi bi-sort-down-alt " href="sortOrder.php"></a></h2>
+                        <h2 class="tm-block-title">orders List<a class="bi bi-sort-down-alt " href="sortOrder.php"></a></h2>
                         <table class="table">
                             <thead>
                                 <tr>

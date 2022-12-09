@@ -1,41 +1,23 @@
 <?php
-include '../Controller/orderC.php';
-$orderC =new orderC();
-$list =$orderC->listOrder();
+include '../controller/orderC.php';
+$orderC = new orderC();
+$list = $orderC->listOrder();
 $conn=mysqli_connect("localhost","root","","catering");
-$result = mysqli_query($conn,"SELECT * from orderse");
+if(isset($_POST['submit-search']))
+
+    {
+    $search = mysqli_real_escape_string($conn,$_POST['search']);
+    $sql = "SELECT * FROM orderse WHERE idOrder LIKE'%$search%' ";
+    $result = mysqli_query($conn,$sql);
+    $queryresult=mysqli_num_rows($result);  
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-    <?php
-        while($val=mysqli_fetch_assoc($result))
-        {
-            echo"['".$val['dateOrder']."',".$val['statusOrder']."],";
-        }
-    ?>
-        ]);
-
-        var options = {
-          title: 'Based Location'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,10 +29,6 @@ $result = mysqli_query($conn,"SELECT * from orderse");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
@@ -90,9 +68,9 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">User Management </a>
                                 <a class="dropdown-item" href="#"> Association Management</a>
-                                <a class="dropdown-item " href="#">Chef Management</a>
+                                <a class="dropdown-item active " href="#">Chef Management</a>
                                 <a class="dropdown-item" href="#">Menu Management</a>
-                                <a class="dropdown-item active" href="#">Orders Management</a>
+                                <a class="dropdown-item" href="#">Orders Management</a>
                               </div>
                         </li>
                         <li class="nav-item">
@@ -155,17 +133,11 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                     </form>
                 </div>
             </div>
-            <!-- pie chart -->
-            <div class="row mt-2">
-            <div class="col-12">
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
-            </div>
-            </div>
             <!-- row -->
         
                 <div class="col-14 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List <a class="bi bi-sort-down-alt " href="sortOrder.php"></a></h2>
+                        <h2 class="tm-block-title">Chefs List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -181,15 +153,16 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                             </thead>
                             <tbody>
                                     <?php
-                                    foreach ($list as $Order) {
+                                    $i=0;
+                                    while ($row=mysqli_fetch_array($result)) {
                                     ?>
                                         <tr>
-                                        <td><?= $Order['idMenu']; ?></td>
-                                        <td><?= $Order['idClient']; ?></td>
-                                        <td><?= $Order['priceOrder']; ?></td>
-                                        <td><?= $Order['dateOrder']; ?></td>
-                                        <td><?= $Order['idOrder']; ?></td>
-                                        <td><?= $Order['statusOrder']; ?></td>
+                                        <td><?= $row['idMenu']; ?></td>
+                                        <td><?= $row['idClient']; ?></td>
+                                        <td><?= $row['priceOrder']; ?></td>
+                                        <td><?= $row['dateOrder']; ?></td>
+                                        <td><?= $row['idOrder']; ?></td>
+                                        <td><?= $row['statusOrder']; ?></td>
                                         <td align="center">
                                             <form method="POST" action="updateOrder.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
@@ -201,6 +174,7 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                                         </td>
                                     </tr>
                                     <?php
+                                    $i++;
                                     }
                                     ?>
                                 </table>

@@ -1,41 +1,15 @@
-<?php
-include '../Controller/orderC.php';
-$orderC =new orderC();
-$list =$orderC->listOrder();
-$conn=mysqli_connect("localhost","root","","catering");
-$result = mysqli_query($conn,"SELECT * from orderse");
+<?PHP
+include "../controller/basketC.php";
+$basketC=new basketC();
+$list=$basketC->listBasket();
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-    <?php
-        while($val=mysqli_fetch_assoc($result))
-        {
-            echo"['".$val['dateOrder']."',".$val['statusOrder']."],";
-        }
-    ?>
-        ]);
-
-        var options = {
-          title: 'Based Location'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -47,10 +21,6 @@ $result = mysqli_query($conn,"SELECT * from orderse");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
@@ -72,7 +42,7 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">
+                            <a class="nav-link" href="#">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
@@ -88,17 +58,17 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">User Management </a>
-                                <a class="dropdown-item" href="#"> Association Management</a>
-                                <a class="dropdown-item " href="#">Chef Management</a>
-                                <a class="dropdown-item" href="#">Menu Management</a>
-                                <a class="dropdown-item active" href="#">Orders Management</a>
-                              </div>
+                                <a class="dropdown-item " href="listClients.php">User Management</a>
+                                <a class="dropdown-item" href="#">Association Management</a>
+                                <a class="dropdown-item" href="#">Chef Report</a>
+                                <a class="dropdown-item" href="#">Menu Report</a>
+                                <a class="dropdown-item active" href="listBasket.php">Orders Report</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="products.html">
                                 <i class="fas fa-shopping-cart"></i>
-                               Menu 
+                                Menu
                             </a>
                         </li>
 
@@ -140,70 +110,52 @@ $result = mysqli_query($conn,"SELECT * from orderse");
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-12">
-                    <form action="searchOrder.php" method="POST" class="tm-login-form">
-                        <div class="form-group">
-                            <label for="username">Search</label>
-                            <input name="search" type="text" class="form-control validate" id="search" value="" required />
-                        </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary btn-block text-uppercase" name="submit-search">
-                                Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- pie chart -->
-            <div class="row mt-2">
-            <div class="col-12">
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
-            </div>
-            </div>
-            <!-- row -->
-        
-                <div class="col-14 tm-block-col">
+                <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List <a class="bi bi-sort-down-alt " href="sortOrder.php"></a></h2>
+                        <h2 class="tm-block-title">basket List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID MENU.</th>
-                                    <th scope="col">ID CLIENT</th>
-                                    <th scope="col">PRICE ORDER</th>
-                                    <th scope="col">DATE ORDER</th>
-                                    <th scope="col">ID ORDER</th>
-                                    <th scope="col">STATUS ORDER</th>
+                                    <th scope="col">ID Basket</th>
+                                    <th scope="col">Name Order</th>
+                                    <th scope="col">ID client</th>
+                                    <th scope="col">Price Order</th>
+                                    <th scope="col">date Order</th>
+                                    <th scope="col">ID order</th>
+                                    <th scope="col">Status Order</th>
+                                    <th scope="col">Id Product</th>
                                     <th scope="col">UPDATE</th>
                                     <th scope="col">DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    <?php
-                                    foreach ($list as $Order) {
-                                    ?>
-                                        <tr>
-                                        <td><?= $Order['idMenu']; ?></td>
-                                        <td><?= $Order['idClient']; ?></td>
-                                        <td><?= $Order['priceOrder']; ?></td>
-                                        <td><?= $Order['dateOrder']; ?></td>
-                                        <td><?= $Order['idOrder']; ?></td>
-                                        <td><?= $Order['statusOrder']; ?></td>
-                                        <td align="center">
-                                            <form method="POST" action="updateOrder.php">
+                            <?php
+                                foreach ($list as $basket) {
+                                ?>
+                                    <tr>
+                                        <td><?= $basket['idBasket']; ?></td>
+                                        <td><?= $basket['nameOrder']; ?></td>
+                                        <td><?= $basket['idClient']; ?></td>
+                                        <td><?= $basket['priceOrder']; ?></td>
+                                        <td><?= $basket['dateOrder']; ?></td>
+                                        <td><?= $basket['idOrder']; ?></td>
+                                        <td><?= $basket['statusOrder']; ?></td>
+                                        <td><?= $basket['idProduct']; ?></td>
+                                      <td align="center">
+                                            <form method="POST" action="updateBasket.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $Order['idOrder']; ?> name="idOrder">
+                                                <input type="hidden" value=<?PHP echo $basket['idBasket']; ?> name="idBasket">
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deleteOrder.php?idOrder=<?php echo $order['idOrder']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deleteBasket.php?idBasket=<?php echo $basket['idBasket']; ?>">Delete</a>
                                         </td>
                                     </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </table>
+                            <?php
+                                }
+                            ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
