@@ -2,7 +2,7 @@
 include '../controller/assioC.php';
 $assioC = new AssioC();
 $list = $assioC->listassio();
-$conn=mysqli_connect("localhost","root","","donations");
+$conn=mysqli_connect("localhost","root","","catering");
 $result = mysqli_query($conn,"SELECT * from association");
 ?>
 <!DOCTYPE html>
