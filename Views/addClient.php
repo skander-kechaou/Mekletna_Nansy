@@ -1,12 +1,14 @@
 <?php
 
 include '../Controller/UserFct.php';
+include '../Model/user.php';
 
 $error = "";
 
 $client = null;
 
 $ClientC = new ClientC();
+
 if (
     isset($_POST["fnameClient"]) &&
     isset($_POST["lnameClient"]) &&
@@ -35,126 +37,152 @@ if (
             $_POST["lnameClient"],
             $_POST["pnbClient"], 
             $_POST["mailClient"],
-            $_POST["pwdClient"],
+            md5($_POST["pwdClient"]),
             new DateTime($_POST["bdayClient"]),
             $_POST["pcodeClient"],
             $_POST["regionClient"],
             $_POST["addressClient"]
         );
-        $UserFct->addClient($client);
+        $ClientC->addClient($client);
         header('Location:listClients.php');
+        ECHO "Registration is successful...";
     } else
         $error = "Missing information";
 }
 
 
 ?>
+
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Display</title>
-</head>
-
-<body>
-    <a href="listClients.php">Back to list </a>
-    <hr>
-
-    <div id="error">
-        <?php echo $error; ?>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="assets/css/signup.css"/>
+  </head>
+  <body>
+    <!-- <div class="container">
+        <img src="Views/assets/img/mekletna login.png" alt="logo">
+        <p>Sign up to benefit from our services!</p>
+    </div> -->
+    
+    <header>
+    <div class="container">
+      <div class="header">
+        <h2>Create Account</h2>
+      </div>
+      <form action="" id="form" class="form" method="POST">
+        <div class="form-control">
+          <label for="fnameClient">First Name</label>
+          <input type="text" placeholder="First Name (only characters)" id="fnameClient" name="fnameClient" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="lnameClient">Last Name</label>
+          <input type="text" placeholder="Last Name (only characters)" id="lnameClient" name="lnameClient"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="emailClient">Email</label>
+          <input type="email" placeholder="username@gmail.com" id="mailClient" name="mailClient"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="pnbClient">Phone Number</label>
+          <input type="number" placeholder="123-456-78" id="pnbClient" name="pnbClient" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="pwdClient">Password</label>
+          <input type="password" placeholder="Password (at least 8 characters)" id="pwdClient" name="pwdClient"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="bdayClient">Date of Birth</label>
+          <input type="date" id="bdayClient" name="bdayClient"/>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="pcodeClient">Postal Code</label>
+          <input type="text" placeholder="Postal Code" id="pcodeClient" name="pcodeClient" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="regionClient">Region</label>
+          <input type="text" placeholder="Region (Ariana, Tunis, Sousse, Sfax)" id="regionClient" name="regionClient" />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <div class="form-control">
+          <label for="addressClient">Street Address</label>
+          <input type="text" placeholder="Address (i.e : street 123, city)" id="addressClient" name="addressClient"/>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error message</small>
+        </div>
+        <button onclick="checkInputs()">
+          Submit
+        </button>
+        <p align="center">Already have an account ? <a href="login.php">Log In</a></p>
+      </form>
     </div>
 
-    <form action="" method="POST">
-        <table border="1" align="center">
 
-            <tr>
-                <td>
-                    <label for="fnameClient">First Name:
-                    </label>
-                </td>
-                <td><input type="text" name="fnameClient" id="fnameClient" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="lnameClient">Last Name:
-                    </label>
-                </td>
-                <td><input type="text" name="lnameClient" id="lnameClient" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="pnbClient">Phone Number:
-                    </label>
-                </td>
-                <td><input type="number" name="pnbClient" id="pnbClient" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="mailClient">E-mail Address:
-                    </label>
-                </td>
-                <td><input type="text" name="mailClient" id="mailClient" maxlength="20"></td>
-            </tr>
-            <tr>
-
-            <tr>
-                <td>
-                    <label for="pwdClient">Password:
-                    </label>
-                </td>
-                <td><input type="password" name="pwdClient" id="pwdClient" maxlength="20"></td>
-            </tr>
-            <tr>
-            <tr>
-                <td>
-                    <label for="bdayClient">Date of Birth:
-                    </label>
-                </td>
-                <td>
-                    <input type="date" name="bdayClient" id="bdayClient">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="pcodeClient">Postal Code:
-                    </label>
-                </td>
-                <td>
-                    <input type="number" name="pcodeClient" id="pcodeClient">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="regionClient">Region:
-                    </label>
-                </td>
-                <td>
-                    <input type="text" name="regionClient" id="regionClient">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="addressClient">Address:
-                    </label>
-                </td>
-                <td>
-                    <input type="text" name="addressClient" id="addressClient">
-                </td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="submit" value="Save">
-                </td>
-                <td>
-                    <input type="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
-</body>
-
+    <!-- SOCIAL PANEL HTML -->
+    <div class="social-panel-container">
+      <div class="social-panel">
+        <p>Created with <i class="fa fa-heart"></i> by
+          <a target="_blank" href="https://florin-pop.com">Florin Pop</a></p>
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+        <h4>Get in touch on</h4>
+        <ul>
+          <li>
+            <a href="https://www.patreon.com/florinpop17" target="_blank">
+              <i class="fab fa-discord"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/florinpop1705" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/florinpop17" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://facebook.com/florinpop17" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/florinpop17" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="floating-btn">
+      Get in Touch
+    </button>
+    </header>
+    <script src="assets/js/signup.js"></script>
+  </body>
 </html>

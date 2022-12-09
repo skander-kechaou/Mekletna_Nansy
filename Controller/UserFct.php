@@ -1,6 +1,5 @@
 <?php
 include '../config.php';
-include '../Model/user.php'
 
 class ClientC {
     public function listClients() {
@@ -16,11 +15,11 @@ class ClientC {
     }
     // List all clients
     
-    public function showDetails() {
+    public function showClients($id) {
         $sql = "SELECT * FROM Client WHERE idClient=".$id;
         $db = config::getConnexion();
         try {
-            $Client = $db->prepare($sql);
+            $query = $db->prepare($sql);
             $query->execute();
             $client=$query->fetch();
             return $client;
@@ -69,12 +68,13 @@ class ClientC {
     }
     // Delete a client 
 
-    function updateClient($Client, $id)
+    public function updateClient($Client, $id)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE Client SET 
+                    idClient = :idClient,
                     fnameClient = :fnameClient, 
                     lnameClient = :lnameClient,
                     pnbClient = :pnbClient,
@@ -87,7 +87,7 @@ class ClientC {
                 WHERE idClient= :idClient'
             );
             $query->execute([
-                'id' => $Client->getIdClient(),
+                'idClient' => $id,
                 'fnameClient' => $Client->getFirstName(),
                 'lnameClient' => $Client->getLastName(),
                 'pnbClient' => $Client->getPhoneNumber(),
@@ -102,6 +102,32 @@ class ClientC {
         } catch (PDOException $e) {
             $e->getMessage();
         }
+    }
+
+    public function resetPassword($newPwdHash, $tokenEmail){
+        $this->db->query('UPDATE Client SET pwdClient=:pwd WHERE mailClient=:email');
+        $this->db->bind(':pwd', $newPwdHash);
+        $this->db->bind(':email', $tokenEmail);
+
+        //Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function SortAlpha (){
+        $sql = "SELECT * FROM client ORDER BY fnameClient";
+        $db  = config ::getConnexion();
+        try {
+         $list = $db->query($sql);
+         return $list;
+        }
+    
+    catch (Exception $e){
+        echo($e->getMessage());
+    }
     }
 
 }

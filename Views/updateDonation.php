@@ -1,143 +1,247 @@
 <?php
 
-include '../Controller/Donation_core.php';
-
+include '../controller/donationC.php';
+include '../model/Association.php';
 $error = "";
 
-// create Donation
-$Donation = null;
+// create client
+$donation = null;
 
 // create an instance of the controller
-$Donation_ = new DonationC();
+$donationC = new donationC();
 if (
-    isset($_POST["id_Donation"]) &&
-    isset($_POST["Name_Assio"]) &&
-    isset($_POST["id_Menu"]) &&
-    isset($_POST["id_Assio"]) &&
-    isset($_POST["Date_Commande"])&&
-    isset($_POST["reason"])&&
-    isset($_POST["Name_Assio"])
+    isset($_POST["id_donation"])&&
+    isset($_POST["id_menu"]) &&
+    isset($_POST["date"]) &&
+    isset($_POST["location"]) &&
+    isset($_POST["reason"]) 
 ) {
     if (
-        !empty($_POST["id_Donation"]) &&
-        !empty($_POST['Name_Assio']) &&
-        !empty($_POST["id_Menu"]) &&
-        !empty($_POST["id_Assio"]) &&
-        !empty($_POST["Date_Commande"])&&
-        !empty($_POST["mail"])&&
-        !empty($_POST["reason"])&&
+        !empty($_POST["id_donation"])&&
+        !empty($_POST["id_menu"]) &&
+        !empty($_POST["date"]) &&
+        !empty($_POST["location"]) &&
+        !empty($_POST["reason"]) 
     ) {
-        $Donation = new Donation(
-            $_POST['id_Donation'],
-            $_POST['Name_Assio'],
-            $_POST['id_Menu'],
-            $_POST['id_Assio'],
-            $_POST['Date_Commande'],
-            $_POST['mail'],
-            $_POST['reason']
-            new DateTime($_POST['Date_Commande'])
+        $donation = new donation(
+            $_POST["id_donation"],
+            $_POST["id_menu"],
+            $_POST["date"],
+            $_POST["location"], 
+            $_POST["reason"]
         );
-        $Donation_core->updateDonation($Donation, $_POST["id_Donation"]);
-        header('Location:ListDonations.php');
+        $donationC->updateDonation($donation, $_POST["id_donation"]);
+        header('Location:listdonation.php');
     } else
         $error = "Missing information";
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Accounts - Product Admin Template</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Display</title>
-</head>
+  <body id="reportsPage">
+    <div class="" id="home">
+      <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+          <a class="navbar-brand" href="index.html">
+            <h1 class="tm-site-title mb-0">Product Admin</h1>
+          </a>
+          <button
+            class="navbar-toggler ml-auto mr-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars tm-nav-icon"></i>
+          </button>
 
-<body>
-    <button><a href="ListDonations.php">Back to list</a></button>
-    <hr>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto h-100">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link active dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="far fa-file-alt"></i>
+                  <span> Modules <i class="fas fa-angle-down"></i> </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">User Managment</a>
+                <a class="active dropdown-item" href="listdonation.php">Association Managment</a>
+                <a class="dropdown-item" href="#">Chef Report</a>
+                <a class="dropdown-item" href="#">Menu Report</a>
+                <a class="dropdown-item" href="#">orders Report</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="products.html">
+                  <i class="fas fa-shopping-cart"></i> Products
+                </a>
+              </li>
 
-    <div id="error">
-        <?php echo $error; ?>
-    </div>
+              <li class="nav-item">
+                <a class="nav-link " href="accounts.html">
+                  <i class="far fa-user"></i> Accounts
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-cog"></i>
+                  <span> Settings <i class="fas fa-angle-down"></i> </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Billing</a>
+                  <a class="dropdown-item" href="#">Customize</a>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link d-block" href="login.html">
+                  Admin, <b>Logout</b>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container mt-5">
+        <div class="row tm-content-row ">
+          <div class="col-12 tm-block-col">
+          </div>
+        </div>
+        <!-- row -->
+        <div class="row tm-content-row">
 
-    <?php
-    if (isset($_POST['id_Donation'])) {
-        $Donation = $Donation_core->showDonation($_POST['id_Donation']);
+          <div class="tm-block-col tm-col-account-settings">
+            <div class="tm-bg-primary-dark tm-block tm-block-settings">
+              <h2 class="tm-block-title">Update Donation Settings</h2>
+              <?php
+    if (isset($_POST['id_donation'])) {
+        $donation = $donationC->showdonation($_POST['id_donation']);
 
     ?>
-
-        <form action="" method="POST">
-            <table border="1" align="center">
-                <tr>
-                    <td>
-                        <label for="id_Donation">Id Donation:
-                        </label>
-                    </td>
-                    <td><input type="text" name="id_Donation" id="id_Donation" value="<?php echo $Donation['id_Donation']; ?>" maxlength="20"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Name_Assio">Name Assio:
-                        </label>
-                    </td>
-                    <td><input type="text" name="Name_Assio" id="Name_Assio" value="<?php echo $Donation['Name_Assio']; ?>" maxlength="20"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="id_Menu">id menu:
-                        </label>
-                    </td>
-                    <td><input type="text" name="id_Menu" id="id_Menu" value="<?php echo $Donation['id_Menu']; ?>" maxlength="20"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="id_Assio">id_Assio:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" name="id_Assio" value="<?php echo $Donation['id_Assio']; ?>" id="id_Assio">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Date_Commande">Date of Commande:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="date" name="Date_Commande" id="Date_Commande" value="<?php echo $Donation['Date_Commande']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Date_Commande">mail:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="varchar" name="mail" id="mail" value="<?php echo $Donation['mail']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="Date_Commande">reason
-                        </label>
-                    </td>
-                    <td>
-                        <input type="varchar" name="reason" id="reason" value="<?php echo $Donation['reason']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Update">
-                    </td>
-                    <td>
-                        <input type="reset" value="Reset">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    <?php
+              <form action="" class="tm-signup-form row">
+                <div class="form-group col-lg-6">
+                  <label for="id_donation">ID Donation</label>
+                  <input
+                    id="id_donation"
+                    name="id_donation"
+                    type="number"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="id_menu">Menu</label>
+                  <input
+                    id="id_menu"
+                    name="id_menu"
+                    type="text"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="date">date</label>
+                  <input
+                    id="date"
+                    name="date"
+                    type="text"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="location">location</label>
+                  <input
+                    id="location"
+                    name="location"
+                    type="number"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="reason">reason</label>
+                  <input
+                    id="reason"
+                    name="reason"
+                    type="number"
+                    class="form-control validate"
+                  />
+                </div>
+                <div class="form-group col-lg-6">
+                  <label class="tm-hide-sm">&nbsp;</label>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block text-uppercase"
+                  >
+                    Update
+                  </button>
+                </div>
+                </div>
+              </form>
+              <?php
     }
     ?>
-</body>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+          <p class="text-center text-white mb-0 px-4 small">
+            Copyright &copy; <b>2018</b> All rights reserved. 
+            
+            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+          </p>
+        </div>
+      </footer>
+    </div>
 
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- https://getbootstrap.com/ -->
+  </body>
 </html>
