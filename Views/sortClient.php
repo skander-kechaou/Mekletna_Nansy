@@ -1,7 +1,7 @@
 <?php
 include '../Controller/UserFct.php';
 $clientC = new ClientC();
-$list = $clientC->listClients();
+$list = $clientC->SortAlpha();
 ?>
 
 <!DOCTYPE html>
