@@ -1,101 +1,105 @@
-
-
 <?php
 
 include '../controller/assioC.php';
+include '../model/Association.php';
 
 $error = "";
 
 $assio = null;
 
 $assioC = new AssioC();
-if (
-    isset($_POST["na"]) &&
-    isset($_POST["mla"]) &&
-    isset($_POST["pha"]) &&
-    isset($_POST["pr"]) 
-) {
-    if (
-        !empty($_POST["na"]) &&
-        !empty($_POST["mla"]) &&
-        !empty($_POST["pha"]) &&
-        !empty($_POST["pr"]) 
-    ) {
+if ((
+    isset($_POST["name_assio"]) &&
+    isset($_POST["mail"]) &&
+    isset($_POST["phone"]) &&
+    isset($_POST["president"])&&
+    isset($_POST["location"])
+) 
+    && (
+        !empty($_POST["name_assio"]) &&
+        !empty($_POST["mail"]) &&
+        !empty($_POST["phone"]) &&
+        !empty($_POST["president"]) &&
+        !empty($_POST["location"])
+    ) ){
+        echo('name:'.$_POST['name_assio']);
         $assio = new Assio(
             null,
-            $_POST["na"],
-            $_POST["mla"],
-            $_POST["pha"], 
-            $_POST["pr"]
+            $_POST["name_assio"],
+            $_POST["mail"],
+            $_POST["phone"], 
+            $_POST["president"],
+            $_POST["location"],
         );
         $assioC->addassio($assio);
         header('Location:listassio.php');
-    } else
-        $error = "Missing information";
 }
 
 
 ?>
-<html lang="en">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Association Display</title>
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="assets\css\signupassio.css">
+    
 </head>
-
 <body>
-    <a href="listassio.php">Back to list </a>
-    <hr>
 
-    <div id="error">
-        <?php echo $error; ?>
+<div class="container">
+  <div class="header">
+    <h2>Register as an association</h2>
+  </div>
+  <form action="" method="POST" id="form" class="form">
+    <div class="form-control">
+      <label for="name_assio">Name</label>
+      <input type="text" name="name_assio" id="name_assio" placeholder="Enter your association's name">
+      <small>Error Message</small>
     </div>
+    <div class="form-control">
+      <label for="name_assio">Email</label>
+      <input type="email" name="mail" id="mail" placeholder="Enter your email address">
+      <small>Error Message</small>
+    </div>
+    <div class="form-control">
+      <label for="name_assio">Phone Number</label>
+      <input type="number" id="phone" name="phone" placeholder="12 345 678" title="Your Phone Number" />
+      <small>Error Message</small>
+    </div>
+    <div class="form-control">
+      <label for="name_assio">Client ID</label>
+      <input type="number" name="president" id="president" placeholder="Enter your ID">
+      <small>Error Message</small>
+    </div>
+    <div class="form-control">
+      <label for="name_assio">Location</label>
+      <select name="location" id="location" placeholder="location">
+      <option value="Tunis"selected>Tunis</option>
+        <option value="Sfax" >Sfax </option>
+        <option value="Benzart">Benzart</option>
+        <option value="Hammamet">Hammamet</option>
+        <option value="Beja">Beja</option>
+        <option value="Sousse">Sousse</option>
+        <option value="Kairouan">Kairouan</option>
+        <option value="Gabès">Gabès</option>
+    </select>
+      <small>Error Message</small>
+    </div>
+    <button>
+      Submit
+    </button>
 
-    <form action="" method="POST">
-        <table border="1" align="center">
-
-            <tr>
-                <td>
-                    <label for="na">name assiociation :
-                    </label>
-                </td>
-                <td><input type="text" name="na" id="na" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="mla">mla:
-                    </label>
-                </td>
-                <td><input type="text" name="mla" id="mla" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="pha">pha:
-                    </label>
-                </td>
-                <td><input type="text" name="pha" id="pha" maxlength="20"></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label for="pr">pr:
-                    </label>
-                </td>
-                <td><input type="text" name="pr" id="pr" maxlength="50"></td>
-            </tr>
-            <tr align="center">
-                <td>
-                    <input type="submit" value="Save">
-                </td>
-                <td>
-                    <input type="reset" value="Reset">
-                </td>
-            </tr>
-        </table>
-    </form>
+    <p>Don't have an account? <a href="login.html">Log In</a> </p>
+    <button type="submit" name="btn_mail">
+    Request Your Id
+    </button>
+          <!-- <script src="assets\js\assio.js"></script> -->
+  </form>
+</div>
+   
 </body>
-
 </html>
