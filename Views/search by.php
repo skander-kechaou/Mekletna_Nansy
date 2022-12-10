@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$conn = mysqli_connect("localhost","root","","project2223_2a1-2a1_nansy");
+$conn = mysqli_connect("localhost","root","","catering");
 if(count($_POST)>0) {
 $reg=$_POST['search'];
 $result = mysqli_query($conn,"SELECT * FROM chef where Reg='$reg' ");
