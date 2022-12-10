@@ -1,85 +1,87 @@
 <?PHP
-include "fooditem.php";
-class fooditemC 
+include "../config.php";
+include '../Model/fooditem.php';
+class fooditemC
 {
+    function showfooditem($idfooditem)
+    {
+        $sql = "SELECT * FROM fooditem WHERE idfooditem = $id";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
 
-    
-    function displayfooditem ($fooditem)
-    {
-		echo "idfooditem: ".$fooditem->getidfooditem()."<br>";
-		echo "Namefooditem: ".$fooditem->getNamefooditem()."<br>";
-		echo "Pricefooditem: ".$fooditem->getPricefooditem()."<br>";
-
-	}
-	
-    function addfooditem($fooditem)
-    {
-		$sql="insert into fooditem (idfooditem,Namefooditem,Pricefooditem) values (:idfooditem, :Namefooditem0, :Pricefooditem)";
-		$db = config::getConnexion();
-		try{
-        $req=$db->prepare($sql);
-
-        $idfooditem=$fooditem->getidfooditem();
-        $Namefooditem=$fooditem->getNamefooditem();
-        $Pricefooditem=$fooditem->getPricefooditem();
-		$req->bindValue(':idfooditem',$idfooditem);
-		$req->bindValue(':Namefooditem0',$Namefooditem);
-		$req->bindValue(':Pricefooditem',$Pricefooditem);
-		
-
-		
-        $req->execute();
-           
-        }
-        catch (Exception $e){
-            echo 'Erreur: '.$e->getMessage();
-        }
-		
-	}
-	
-    function displayfooditem()
-    {
-		$sql="SElECT * From fooditem";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }	
-    }
-    
-    
-    
-    
-    
-    function retrievefooditem($idfooditem)
-    {
-		$sql="SELECT * from fooditem where idfooditem=$idfooditem";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
-	}
-	
-    function searchlistefooditem($idfooditem)
-    {
-		$sql="SELECT * from fooditem where idfooditem=$idfooditem";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+            $fooditem = $query->fetchAll();
+            return $fooditem;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
         }
     }
-   
+
+    function upcomingfooditem()
+    {
+        echo date("Y/m/d");
+        $sql = "SELECT * FROM fooditem WHERE datefooditem >= '" . date("Y-m-d") . "'";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+
+            $fooditem = $query->fetchAll();
+            return $fooditem;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function listfooditem()
+    {
+        $sql = "SELECT * FROM fooditem";
+        $db = config::getConnexion();
+        try {
+            $list = $db->query($sql);
+            return $list;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function bookfooditem($idfooditem, $idClient)
+    {
+        $sql = "INSERT INTO reservation  
+        VALUES (NULL, :idClient,:idfooditem)";
+
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([
+                'idClient' => $idClient,
+                'idfooditem' => $idfooditem
+            ]);
+            $fooditem = $this->getfooditem($idfooditem);
+            echo $fooditem['nbPlaces'] - 1;
+            $query = $db->prepare(
+                'UPDATE fooditem SET nbPlaces = ' . $fooditem['nbPlaces'] - 1
+                    . ' WHERE idfooditem= ' . $idfooditem
+            );
+            $query->execute();
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    function getfooditem($id)
+    {
+        $sql = "SELECT * from fooditem where idfooditem = $id";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+
+            $fooditem = $query->fetch();
+            return $fooditem;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
 }
-
-?>

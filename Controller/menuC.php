@@ -1,5 +1,6 @@
 <?PHP
 include "../config.php";
+include '../Model/menu.php';
 class MenuC
 {
 function listMenu ()

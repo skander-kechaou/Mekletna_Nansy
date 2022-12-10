@@ -1999,7 +1999,7 @@ const CLASS_NAME_DROPUP_CENTER = 'dropup-center';
 const CLASS_NAME_DROPDOWN_CENTER = 'dropdown-center';
 const SELECTOR_DATA_TOGGLE$3 = '[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)';
 const SELECTOR_DATA_TOGGLE_SHOWN = `${SELECTOR_DATA_TOGGLE$3}.${CLASS_NAME_SHOW$6}`;
-const SELECTOR_MENU = '.dropdown-menu';
+const SELECTOR_menu = '.dropdown-menu';
 const SELECTOR_NAVBAR = '.navbar';
 const SELECTOR_NAVBAR_NAV = '.navbar-nav';
 const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
@@ -2038,7 +2038,7 @@ class Dropdown extends BaseComponent {
     this._parent = this._element.parentNode; // dropdown wrapper
     // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
 
-    this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
+    this._menu = SelectorEngine.next(this._element, SELECTOR_menu)[0] || SelectorEngine.prev(this._element, SELECTOR_menu)[0] || SelectorEngine.findOne(SELECTOR_menu, this._parent);
     this._inNavbar = this._detectNavbar();
   } // Getters
 
@@ -2269,7 +2269,7 @@ class Dropdown extends BaseComponent {
     };
   }
 
-  _selectMenuItem({
+  _selectmenuItem({
     key,
     target
   }) {
@@ -2301,7 +2301,7 @@ class Dropdown extends BaseComponent {
     });
   }
 
-  static clearMenus(event) {
+  static clearmenus(event) {
     if (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY$1) {
       return;
     }
@@ -2316,9 +2316,9 @@ class Dropdown extends BaseComponent {
       }
 
       const composedPath = event.composedPath();
-      const isMenuTarget = composedPath.includes(context._menu);
+      const ismenuTarget = composedPath.includes(context._menu);
 
-      if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
+      if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !ismenuTarget || context._config.autoClose === 'outside' && ismenuTarget) {
         continue;
       } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
 
@@ -2363,7 +2363,7 @@ class Dropdown extends BaseComponent {
       event.stopPropagation();
       instance.show();
 
-      instance._selectMenuItem(event);
+      instance._selectmenuItem(event);
 
       return;
     }
@@ -2383,9 +2383,9 @@ class Dropdown extends BaseComponent {
 
 
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$3, Dropdown.dataApiKeydownHandler);
-EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
-EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
-EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
+EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_menu, Dropdown.dataApiKeydownHandler);
+EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearmenus);
+EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearmenus);
 EventHandler.on(document, EVENT_CLICK_DATA_API$3, SELECTOR_DATA_TOGGLE$3, function (event) {
   event.preventDefault();
   Dropdown.getOrCreateInstance(this).toggle();
@@ -4702,7 +4702,7 @@ const CLASS_NAME_FADE$1 = 'fade';
 const CLASS_NAME_SHOW$1 = 'show';
 const CLASS_DROPDOWN = 'dropdown';
 const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
-const SELECTOR_DROPDOWN_MENU = '.dropdown-menu';
+const SELECTOR_DROPDOWN_menu = '.dropdown-menu';
 const NOT_SELECTOR_DROPDOWN_TOGGLE = ':not(.dropdown-toggle)';
 const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
 const SELECTOR_OUTER = '.nav-item, .list-group-item';
@@ -4913,7 +4913,7 @@ class Tab extends BaseComponent {
     };
 
     toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_ACTIVE);
-    toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW$1);
+    toggle(SELECTOR_DROPDOWN_menu, CLASS_NAME_SHOW$1);
     outerElem.setAttribute('aria-expanded', open);
   }
 

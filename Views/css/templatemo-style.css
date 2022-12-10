@@ -30,7 +30,15 @@ button:focus {
   align-items: center;
 }
 .tm-site-icon {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  color: #656565;
+=======
   color: #fff;
+>>>>>>> 111d160630379d99b1acebc399e6a9b0b57fd064
+=======
+  color: #656565;
+>>>>>>> 6e354db069d1b80c9b95607ed9434bdc74fe8e50
 }
 .tm-site-title {
   display: inline-block;
@@ -136,7 +144,15 @@ button:focus {
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  background-color: #567086;
+=======
   background-color: #fff;
+>>>>>>> 111d160630379d99b1acebc399e6a9b0b57fd064
+=======
+  background-color: #567086;
+>>>>>>> 6e354db069d1b80c9b95607ed9434bdc74fe8e50
 }
 .navbar-nav a:hover,
 .navbar-nav a:hover i {
@@ -159,6 +175,8 @@ button:focus {
   justify-content: space-between;
   margin-left: -20px;
   margin-right: -20px;
+  align-items: center;
+
 }
 .tm-col {
   padding-left: 20px;
@@ -344,11 +362,24 @@ thead {
   font-size: 90%;
   font-weight: 600;
 }
+.btn-sub {
+  color: #fff;
+  background-color: #f50505;
+  border: 2px solid #fb0303;
+  font-size: 90%;
+  font-weight: 600;
+}
 .btn-primary:active,
 .btn-primary:hover {
   color: #f5a623;
   background-color: transparent;
   border: 2px solid #f5a623;
+}
+.btn-sub:active,
+.btn-sub:hover {
+  color: #fd0000;
+  background-color: transparent;
+  border: 2px solid #ff0000;
 }
 .custom-file-input {
   cursor: pointer;
