@@ -2,7 +2,7 @@
 include '../controller/donationc.php';
 $Donation_core = new donationC ();
 $list = $Donation_core ->listDonation();
-$conn=mysqli_connect("localhost","root","","donations");
+$conn=mysqli_connect("localhost","root","","catering");
 $result = mysqli_query($conn,"SELECT * from donation");
 ?>
 <!DOCTYPE html>
