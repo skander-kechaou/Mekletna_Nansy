@@ -32,7 +32,7 @@
 </HTML>
 
 <?PHP
-if (isset($_GET['add']))
+if (isset($_GET['idfooditem']))
 {
     include "../Model/fooditem.php";
     include "../Controller/fooditemC.php";
@@ -41,7 +41,7 @@ if (isset($_GET['add']))
     $fooditemC=new fooditemC();
     $fooditemC->addfooditem($fooditem);
     
-    header('Location: displayfooditem.php');
+    header('Location: listfooditem.php');
 
 }
 
