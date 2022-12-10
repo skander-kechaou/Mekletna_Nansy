@@ -1,35 +1,33 @@
 <?PHP 
-class Order{
-  private ?int $idOrder=null;
-	private ?int $idMenu=null;
-	private ?int $idClient=null;
-	private ?int $priceOrder=null;
-  private ?DateTime $dateOrder=null;
+
+class basket{
+	private ?string $nameOrder=null;
+  private ?int  $idOrder=null;
+	private ?int  $priceOrder=null;
+  private ?DateTime  $dateOrder=null;
   private ?int $statusOrder=null;
+    
+   
 
 
-    function __construct($idOrder=NULL,$idMenu,$idClient,$priceOrder,$dateOrder,$statusOrder)
+    function __construct($nameOrder,$idOrder=NULL,$priceOrder,$dateOrder,$statusOrder)
     {
+    $this->nameOrder=$nameOrder;
     $this->idOrder=$idOrder;
-		$this->idMenu=$idMenu;
-		$this->idClient=$idClient;
 		$this->priceOrder=$priceOrder;
     $this->dateOrder=$dateOrder;
     $this->statusOrder=$statusOrder;
-
+       
 	}
      
     //////////////////////////////////////////////////////////////
-
-    function getidMenu()
+    function getnameOrder()
     {
-		return $this->idMenu;
+		return $this->nameOrder;
     }
-    
-
-    function getidClient()
+    function getidOrder()
     {
-		return $this->idClient;
+		return $this->idOrder;
     }
     
     function getpriceOrder()
@@ -42,29 +40,19 @@ class Order{
 		return $this->dateOrder;
     }
     
-    function getidOrder()
-    {
-		return $this->idOrder;
-    }
-    
     function getstatusOrder()
     {
 		return $this->statusOrder;
     }
-
     //////////////////////////////////////////////////////////////
-    
-    function setidMenu($idMenu)
+    function setnameOrder($nameOrder)
     {
-		$this->idMenu=$idMenu;
+		$this->nameOrder=$nameOrder;
     }
-
-  
-    function setidClient($idClient)
+    function setidOrder($idOrder)
     {
-		$this->idClient;
+		$this->idOrder=$idOrder;
     }
-    
     function setpriceOrder($priceOrder)
     {
 		$this->priceOrder=$priceOrder;
@@ -72,19 +60,17 @@ class Order{
     
     function setdateOrder($dateOrder)
     {
-		$this->dateOrder=$dateOrder;
-    }
-    
-    function setidOrder($idOrder)
-    {
-		$this->idOrder=$idOrder;
+		$this->dateOrder;
     }
 
     function setstatusOrder($statusOrder)
     {
 		$this->statusOrder=$statusOrder;
     }
-	
+
+  
+   
+
 }
 
 ?>

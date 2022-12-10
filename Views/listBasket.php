@@ -2,7 +2,8 @@
 include "../controller/basketC.php";
 $basketC=new basketC();
 $list=$basketC->listBasket();
-
+$conn=mysqli_connect("localhost","root","","catering");
+$result = mysqli_query($conn,"SELECT * from basket");
 
 ?>
 
@@ -116,14 +117,12 @@ $list=$basketC->listBasket();
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID Basket</th>
+                                    
                                     <th scope="col">Name Order</th>
-                                    <th scope="col">ID client</th>
+                                    <th scope="col">ID order</th>
                                     <th scope="col">Price Order</th>
                                     <th scope="col">date Order</th>
-                                    <th scope="col">ID order</th>
-                                    <th scope="col">Status Order</th>
-                                    <th scope="col">Id Product</th>
+
                                     <th scope="col">UPDATE</th>
                                     <th scope="col">DELETE</th>
                                 </tr>
@@ -133,22 +132,20 @@ $list=$basketC->listBasket();
                                 foreach ($list as $basket) {
                                 ?>
                                     <tr>
-                                        <td><?= $basket['idBasket']; ?></td>
+                                      
                                         <td><?= $basket['nameOrder']; ?></td>
-                                        <td><?= $basket['idClient']; ?></td>
+                                        <td><?= $basket['idOrder']; ?></td>
                                         <td><?= $basket['priceOrder']; ?></td>
                                         <td><?= $basket['dateOrder']; ?></td>
-                                        <td><?= $basket['idOrder']; ?></td>
-                                        <td><?= $basket['statusOrder']; ?></td>
-                                        <td><?= $basket['idProduct']; ?></td>
+   
                                       <td align="center">
                                             <form method="POST" action="updateBasket.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $basket['idBasket']; ?> name="idBasket">
+                                                <input type="hidden" value=<?PHP echo $basket['idOrder']; ?> name="idOrder">
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deleteBasket.php?idBasket=<?php echo $basket['idBasket']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deleteBasket.php?idOrder=<?php echo $basket['idOrder']; ?>">Delete</a>
                                         </td>
                                     </tr>
                             <?php
