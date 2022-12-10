@@ -30,7 +30,11 @@ button:focus {
   align-items: center;
 }
 .tm-site-icon {
+<<<<<<< HEAD
   color: #656565;
+=======
+  color: #fff;
+>>>>>>> 111d160630379d99b1acebc399e6a9b0b57fd064
 }
 .tm-site-title {
   display: inline-block;
@@ -136,7 +140,11 @@ button:focus {
 }
 .dropdown-item:focus,
 .dropdown-item:hover {
+<<<<<<< HEAD
   background-color: #567086;
+=======
+  background-color: #fff;
+>>>>>>> 111d160630379d99b1acebc399e6a9b0b57fd064
 }
 .navbar-nav a:hover,
 .navbar-nav a:hover i {

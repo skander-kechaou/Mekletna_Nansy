@@ -1,23 +1,26 @@
 <?PHP 
-class Chef{
+class chef {
 	private ?int $id_chef=null;
 	private ?string $Name_chef=null;
   private ?string $Add_chef=null;
 	private ?string $mail_chef=null;
 	private ?int $Phone=null;
-  private ?DateTime $Date_Birth=null;
+  private ?Datetime $Date_Birth=null;
   private ?string $Cv=null;
+  private ?int $Reg=null;
 
 
-    function __construct($id_chef = null, $Name_chef,$Add_chef,$mail_chef,$Phone,$Date_Birth,$Cv)
+
+    function __construct($id= null, $Name,$Ad,$mail,$Phon,$Date,$cv,$reg)
     {
-		$this->id_chef=$id_chef;
-		$this->Name_chef=$Name_chef;
-		$this->Add_chef=$Add_chef;
-		$this->mail_chef=$mail_chef;
-    $this->Phone=$Phone;
-    $this->Date_Birth=$Date_Birth;
-    $this->Cv=$Cv;
+		$this->id_chef=$id;
+		$this->Name_chef=$Name;
+		$this->Add_chef=$Ad;
+		$this->mail_chef=$mail;
+    $this->Phone=$Phon;
+    $this->Date_Birth=$Date;
+    $this->Cv=$cv;
+    $this->Reg=$reg;
 	}
      
     //////////////////////////////////////////////////////////////
@@ -55,6 +58,10 @@ class Chef{
     function getCv()
     {
 		return $this->Cv;
+    }
+    function getReg()
+    {
+		return $this->Reg;
     }
 
     //////////////////////////////////////////////////////////////
@@ -138,6 +145,19 @@ class Chef{
     function setCv($Cv)
     {
 		$this->Cv=$Cv;
+
+    return $this;
+
+    }
+     /**
+     * Set the value of cv
+     *
+     * @return  self
+     */
+
+    function setReg($Reg)
+    {
+		$this->Reg=$Reg;
 
     return $this;
 

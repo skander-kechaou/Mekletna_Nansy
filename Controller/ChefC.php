@@ -1,6 +1,6 @@
 <?php
-include '../config.php';
-include '../Model/chef.php';
+include 'D:\XAMPP project\htdocs\last04+display chefs by regions\config.php';
+include 'D:\XAMPP project\htdocs\last04+display chefs by regions\Model\chef.php';
 
 class ChefC
 {
@@ -32,19 +32,20 @@ class ChefC
 
     function addChef($chef)
     {
-        $sql = "INSERT INTO chef VALUES (NULL,:Name_chef, :Add_chef,:mail_chef,:Phone,:Date_Birth,:Cv)";
+        $sql = "INSERT INTO chef VALUES (NULL,:Name, :Ad,:mail,:Phon,:Date,:cv,:reg)";
         $db = config::getConnexion();
         try {
-            print_r($chef->getDate_Birth()->format('Y-m-d'));
+            print_r($chef->getDate_Birth()->format('yyyy/mm/dd'));
             $query = $db->prepare($sql);
             $query->execute([
-              
-                'Name_chef' => $chef->getName_chef(),
-                'Add_chef' => $chef->getAdd_chef(),
-                'mail_chef'=> $chef->getmail_chef(),
-                'Phone' => $chef->getPhone(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y-m-d'),
-                'Cv' => $chef->getCv()
+           
+                'Name' => $chef->getName_chef(),
+                'Ad' => $chef->getAdd_chef(),
+                'mail'=> $chef->getmail_chef(),
+                'Phon' => $chef->getPhone(),
+                'Date' => $chef->getDate_Birth()->format('Y-m-d'),
+                'cv' => $chef->getCv(),
+                'reg' => $chef->getReg()
            
               
             ]);
@@ -59,22 +60,24 @@ class ChefC
             $db = config::getConnexion();
             $query = $db->prepare(
                 'UPDATE chef SET 
-                    Name_chef = :Name_chef, 
-                    Add_chef = :Add_chef, 
-                    Date_Birth=:Date_Birth,
-                    mail_chef =:mail_chef ,
+                    Name_chef = : Name_chef, 
+                    Add_chef = : Add_chef, 
+                    mail_chef =:mail_chef,
                     Phone=:Phone,
-                    Cv = :Cv,
-                WHERE id_chef= :id_chef'
+                    Date_Birth=:Date_Birth,
+                    Cv = :Cv
+                    Reg = :Reg
+                WHERE id_chef= $id'
             );
             $query->execute([
-                'id_chef' =>  $chef-> getid_chef(),
-                'Name_chef ' => $chef-> getName_chef(),
+                'id_chef' => $id,
+                ' Name_chef' => $chef-> getName_chef(),
                 'Add_chef' => $chef->getAdd_chef(),
                 'mail_chef' => $chef->getmail_chef(),
-                'Date_Birth' => $chef->getDate_Birth()->format('Y/m/d'),
-                'Phone' => $chef->getPhone(),
-                'Cv'=> $chef->getCv()
+                'Phone'=> $chef->getPhone(),
+                'Date_Birth' => $chef->getDate_Birth()->format('yyyy/mm/dd'),
+                'Cv'=> $chef->getCv(),
+                'Reg'=> $chef->getReg()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
@@ -84,7 +87,7 @@ class ChefC
 
     function showChef($id)
     {
-        $sql = "SELECT * from chef where id_chef =". $id;
+        $sql = "SELECT * from chef where id_chef =$id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);

@@ -1,75 +1,150 @@
-<HTML>
+<?php
+
+include '../Controller/orderC.php';
+
+$error = "";
+
+$order = null;
+
+$orderC = new orderC();
+if (
+    isset($_POST["idOrder"]) &&
+    isset($_POST["idMenu"]) &&
+    isset($_POST["idClient"]) &&
+    isset($_POST["priceOrder"]) &&
+    isset($_POST["dateOrder"]) &&
+    isset($_POST["statusOrder"]) 
+) {
+    if (
+        !empty($_POST["idOrder"]) &&
+        !empty($_POST["idMenu"]) &&
+        !empty($_POST["idClient"]) &&
+        !empty($_POST["priceOrder"]) &&
+        !empty($_POST["dateOrder"]) &&
+        !empty($_POST["statusOrder"]) 
+       
+    ) {
+        $order = new order(
+            null,
+            $_POST["idOrder"],
+            $_POST["idMenu"], 
+            $_POST["idClient"],
+            new DateTime($_POST["dateOrder"]),
+            $_POST["priceOrder"],
+            $_POST["statusOrder"]
+        );
+        $orderC->updateOrder($order, $_POST["idOrder"]);
+        header('Location:listOrder.php');
+    } else
+        $error = "Missing information";
+}
+?>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Display</title>
 </head>
+
 <body>
-<?PHP
-include "../Model/order.php";
-include "../Controller/menuC.php";
+    <button><a href="ListOrder.php">Back to list</a></button>
+    <hr>
 
-if (isset($_GET['idMenu']))
-{
-	$menuC=new menuC();
-    $result=$menuC->recupererorder($_GET['idMenu']);
-    foreach($result as $row)
-    {
-		$idMenu=$row['idMenu'];
-		$nbOrder=$row['nbOrder'];
-		$idClient=$row['idClient'];
-		$priceOrder=$row['priceOrder'];
-		$dateOrder=$row['dateOrder'];
-		$idMenu=$row['idMenu'];
-?>
-<form method="POST">
-<table>
-<caption>update order</caption>
-<tr>
-<td>idMenu</td>
-<td><input type="number" name="idMenu" value="<?PHP echo $idMenu ?>"></td>
-</tr>
-<tr>
-<td>nbOrder</td>
-<td><input type="text" name="nbOrder" value="<?PHP echo $nbOrder ?>"></td>
-</tr>
-<tr>
-<td>idClient</td>
-<td><input type="number" name="idClient" value="<?PHP echo $idClient ?>"></td>
-</tr>
-<tr>
-<td>priceOrder</td>
-<td><input type="number" name="priceOrder" value="<?PHP echo $priceOrder ?>"></td>
-</tr>
-<tr>
-<td>dateOrder</td>
-<td><input type="date" name="dateOrder" value="<?PHP echo $dateOrder ?>"></td>
-</tr>
-<tr>
-<td>idMenu</td>
-<td><input type="number" name="idMenu" value="<?PHP echo $idMenu ?>"></td>
-</tr>
-<tr>
-<td>statusOrder</td>
-<td><input type="number" name="statusOrder" value="<?PHP echo $statusOrder ?>"></td>
-</tr>
+    <div id="error">
+        <?php echo $error; ?>
+    </div>
 
-<tr>
-<td></td>
-<td><input type="submit" name="update" value="update"></td>
-</tr>
-<tr>
-<td></td>
-<td><input type="hidden" name="idMenu_INIT" value="<?PHP echo $_GET['idMenu'];?>"></td>
-</tr>
-</table>
-</form>
-<?PHP
-	}
-}
-if (isset($_POST['update'])){
-	$order=new order($_POST['idMenu'],$_POST['nbOrder'],$_POST['idClient'],$_POST['priceOrder'],$_POST['dateOrder'],$_POST['idMenu'],$_POST['statusOrder']);
-	$menuCore->updateOrder($order,$_POST['idMenu_INIT']);
-	echo $_POST['idMenu_INIT'];
-	header('Location: listOrder.php');
-}
-?>
+    <?php
+    if (isset($_POST['idOrder'])) {
+        $order = $orderC->showOrder($_POST['idOrder']);
+
+    ?>
+
+        <form action="" method="POST">
+            <table border="1" align="center">
+            <tr>
+                <td>
+                    <label for="idOrder">Id Order:
+                    </label>
+                </td>
+                <td><input type="number" name="idOrder" id="idOrder" value="<?php echo $order['idOrder']; ?>" maxlength="20"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="idMenu">id Menu:
+                    </label>
+                </td>
+                <td><input type="number" name="idProduct" id="idProduct" value="<?php echo $order['idProduct']; ?>" maxlength="20"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="priceOrder">Price Order:
+                    </label>
+                </td>
+                <td><input type="price" name="priceOrder" id="priceOrder" value="<?php echo $order['priceOrder']; ?>" maxlength="20"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="idClient">ID CLIENT:
+                    </label>
+                </td>
+                <td><input type="number" name="idClient" id="idClient" value="<?php echo $basket['idClient']; ?>" maxlength="20"></td>
+            </tr>
+            <tr>
+
+            <tr>
+                <td>
+                    <label for="priceOrder">Price Order:
+                    </label>
+                </td>
+                <td><input type="number" name="priceOrder" id="priceOrder" value="<?php echo $basket['priceOrder']; ?>" maxlength="20"></td>
+            </tr>
+            <tr>
+            <tr>
+                <td>
+                    <label for="dateOrder">Date order:
+                    </label>
+                </td>
+                <td>
+                    <input type="date" name="dateOrder" id="dateOrder" value="<?php echo $basket['dateOrder']; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="idOrder">id order:
+                    </label>
+                </td>
+                <td>
+                    <input type="number" name="idOrder" id="idOrder" value="<?php echo $basket['idOrder']; ?>" >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="statusOrder">status:
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="statusOrder" id="statusOrder" value="<?php echo $basket['statusOrder']; ?>" >
+                </td>
+            </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Update">
+                    </td>
+                    <td>
+                        <input type="reset" value="Reset">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <?php
+    }
+    ?>
 </body>
-</HTMl>
+
+</html>
