@@ -1,14 +1,14 @@
 <?php 
-require('../config.php');
+require_once("../config.php");
 require '../Model/user.php';
 
-session_start();
-
-if (!isset($_SESSION["idClient"])) {
-  echo "bitch";
+if (!isset($_SESSION["login_sess"])) {
+  echo "unsuccessful";
 } else {
-  echo $_SESSION["idClient"];
+  echo $_SESSION["login_sess"];
   echo "login success";
+  echo $_SESSION["id"];
+  $_SESSION["login_sess"]=1;
 }
 ?>
 <!DOCTYPE html>

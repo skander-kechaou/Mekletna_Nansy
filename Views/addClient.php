@@ -183,6 +183,6 @@ if (
       Get in Touch
     </button>
     </header>
-    <script src="assets/js/signup.js"></script>
+   <!-- <script src="assets/js/signup.js"></script>-->
   </body>
 </html>

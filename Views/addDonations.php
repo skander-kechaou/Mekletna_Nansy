@@ -1,7 +1,7 @@
 <?php
 
-include '../controller/donationC.php';
-include '../model/Donation.php';
+include '../Controller/donationC.php';
+include '../Model/Donation.php';
 $error = "";
 
 $Donation = null;

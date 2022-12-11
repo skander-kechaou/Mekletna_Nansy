@@ -1,8 +1,7 @@
 <?php
+require_once("../config.php");
 include '../Controller/UserFct.php';
 include '../Model/user.php';
-session_start();
-// $_SESSION['idClient'] = $fetch['idClient'];
 
 $Client = null;
 
@@ -30,12 +29,13 @@ if (
       $query->execute(array($mail, $pwd));
       $row = $query->rowCount();
       $fetch = $query->fetch();
-      $stat = $_fetch['statusClient'];
       $control= $query->fetch(PDO::FETCH_OBJ);
-      if ($control > 0) {
-        $_SESSION['idClient'] = $idClient;
-      }
       if ($row > 0) {
+        $_SESSION['login_sess'] = 1;
+        $_SESSION['id']=$fetch['idClient'];
+        $_SESSION['status']=$fetch['statusClient'];
+        $stat = $_SESSION['status'];
+        echo $stat;
         if ($stat == 0) {
           header("location: home.php");
         } else {
