@@ -3,7 +3,7 @@ class donation
 {
 	private $id_menu= null;//food item to donate
 	private $id_assiociation= null;// association id
-  private DateTime $date= null;
+  private ?DateTime $date= null;
   private $id_donation= null;
   private $location= null;
   private $reason= null;
