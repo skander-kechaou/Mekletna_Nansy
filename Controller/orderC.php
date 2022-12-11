@@ -1,5 +1,5 @@
 <?PHP
-include "C:/xampp/htdocs/CRUD/config.php";
+include "../config.php";
 class OrderC
 {
 function listOrder ()
@@ -31,7 +31,7 @@ function listOrder ()
 		$req->bindValue(':idMenu',$idMenu);
 		$req->bindValue(':nbOrder0',$nbOrder);
 		$req->bindValue(':idClient',$idClient);
-		$req->bindValue(':priceOrder',$price);
+		$req->bindValue(':priceOrder',$priceOrder);
         $req->bindValue(':DateOrder',$dateOrder);
         $req->bindValue(':statusOrder',$statusOrder);
 

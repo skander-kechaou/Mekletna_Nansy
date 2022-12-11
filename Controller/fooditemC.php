@@ -8,9 +8,17 @@ class fooditemC
     
     function showfooditem ($fooditem)
     {
+<<<<<<< HEAD
 		echo "idfooditem: ".$fooditem->getidfooditem()."<br>";
 		echo "Namefooditem: ".$fooditem->getNamefooditem()."<br>";
 		echo "Pricefooditem: ".$fooditem->getPricefooditem()."<br>";
+=======
+        $sql = "SELECT * FROM fooditem WHERE idfooditem = $idfooditem";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+>>>>>>> 35a0e6e95ce7b0154df165fbb866ae3ee0d0e7bf
 
 	}
 	

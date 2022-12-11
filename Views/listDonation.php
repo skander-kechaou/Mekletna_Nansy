@@ -184,6 +184,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                                     <th scope="col">date</th>
                                     <th scope="col">location</th>
                                     <th scope="col">reason</th>
+                                    <th scope="col">ID Client</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -196,6 +197,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                                         <td><?= $donation['date']; ?></td>
                                         <td><?= $donation['location']; ?></td>
                                         <td><?= $donation['reason']; ?></td>
+                                        <td><?= $donation['id_client']; ?></td>
                                         <td align="center">
                                             <form method="POST" action="updatedonation.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
@@ -203,7 +205,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deletdoantion.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deleteDonation.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
                                         </td>
                                         </tr>
         <?php
