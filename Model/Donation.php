@@ -1,23 +1,23 @@
-<?php
+<?PHP 
 class donation
 {
-
+	private $id_menu= null;//food item to donate
+	private $id_assiociation= null;// association id
+  private DateTime $date= null;
   private $id_donation= null;
-  private $id_menu= null;
-  private ?DateTime $date= null;
   private $location= null;
   private $reason= null;
-  private $id_client= null;
 
 
-    function __construct($idd = NULL,$idm,$d,$loc,$rea,$idc)
+    function __construct($id_donation=NULL,$id_menu,$id_assiociation,$date,$reason,$location)
     {
-    $this->id_donation=$idd;
-		$this->id_menu=$idm;
-    $this->date=$d;
-    $this->location=$loc;
-    $this->reason=$rea;
-    $this->id_client=$idc;
+		$this->id_menu=$id_menu;
+		$this->id_assiociation=$id_assiociation;
+    $this->date=$date;
+    $this->reason=$reason;
+    $this->id_donation=$id_donation;
+    $this->location=$location;
+
 	}
      
     //////////////////////////////////////////////////////////////
@@ -27,9 +27,9 @@ class donation
 		return $this->id_menu;
     }
   
-    function getid_donation()
+    function getid_assiociation()
     {
-		return $this->id_donation;
+		return $this->id_assiociation;
     }
     
     function getdate()
@@ -37,6 +37,10 @@ class donation
 		return $this->date;
     }
     
+    function getid_Donation()
+    {
+		return $this->id_donation;
+    }
     function get_reason()
     {
       return $this->reason;
@@ -45,41 +49,39 @@ class donation
     {
       return $this->location;
     }
-function get_id_client()
-    {
-      return $this->id_client;
-    }
 
 
 
 
     //////////////////////////////////////////////////////////////
-     
+    
     function setid_menu($id_menu)
     {
 		$this->id_menu=$id_menu;
-    return $this;
+    }
+    
+    function setid_assiociation($id_assiociation)
+    {
+		$this->id_assiociation;
     }
     
     function setdate($date)
     {
 		$this->date;
-    return $this;
     }
     function set_reason($reason)
     {
       $this->reason;
-      return $this;
     }
-
-    function set_location($location)
+    function set_name($id_donation)
+    {
+      $this->$id_donation;
+    }
+    function set_email($location)
     {
       $this->location;
-      return $this;
     }
-    function set_client($id_client)
-    {
-      $this->id_client;
-      return $this;
-    }
-	}
+	
+}
+
+?>
