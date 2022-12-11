@@ -13,7 +13,7 @@ class Client
     private ?string $addressClient = null;
     private ?int $statusClient = null;
 
-    public function __construct($id = null, $fn, $ln, $pn, $ml, $pw, $bd, $pc, $rg, $a)
+    public function __construct($id = null, $fn, $ln, $pn, $ml, $pw, $bd, $pc, $rg, $a, $s)
     {
         $this->idClient = $id;
         $this->fnameClient = $fn;
@@ -25,6 +25,7 @@ class Client
         $this->pcodeClient = $pc;
         $this->regionClient = $rg;
         $this->addressClient = $a;
+        $this->statusClient = $s;
     }
 
     /**

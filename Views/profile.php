@@ -9,17 +9,18 @@ if (!isset($_SESSION["login_sess"])) {
     echo $_SESSION["login_sess"];
     echo "login success";
     echo $_SESSION["id"];
-    $sql = "SELECT * FROM Client WHERE idClient=".$_SESSION['id'];
-      $db = config::getConnexion();
-      try {
-            $query = $db->prepare($sql);
-            $query->execute();
-            $client=$query->fetch();
-            return $client;
-        }
-        catch (Exception $e) {
-            $e->getMessage();
-        }
+    $id=$_SESSION['id'];
+    // $sql = "SELECT * FROM Client WHERE idClient=".$_SESSION['id'];
+    //   $db = config::getConnexion();
+    //   try {
+    //         $query = $db->prepare($sql);
+    //         $query->execute();
+    //         $client=$query->fetch();
+    //         return $client;
+    //     }
+    //     catch (Exception $e) {
+    //         $e->getMessage();
+    //     }
   }
 
 $client = null;
@@ -57,10 +58,11 @@ if (
             new DateTime($_POST["bdayClient"]),
             $_POST["pcodeClient"],
             $_POST["regionClient"],
-            $_POST["addressClient"]
+            $_POST["addressClient"],
+            $_POST["statusClient"]
         );
         $clientC->updateClient($client, $_POST["idClient"]);
-        header('Location:listClients.php');
+        header('Location:profile.php');
     } else
         $error = "Missing information";
 }
@@ -137,12 +139,12 @@ if (
                 <div class="col-lg-4 reservation-img aos-init aos-animate" style="background-image: url(assets/img/avatar.png);" data-aos="zoom-out" data-aos-delay="200">
                 </div>
                 <?php
-    if (isset($_POST['idClient'])) {
-        $client = $clientC->showClients($_POST['idClient']);
+    if (isset($id)) {
+        $client = $clientC->showClients($id);
     }
     ?>
                 <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                    <form action="" method="post" role="form" class="php-email-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <form action="updateClient.php" method="post" role="form" class="php-email-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                         <div class="row gy-4">
                             <div class="col-lg-4 col-md-6">
                                 <input type="text" name="fnameClient" class="form-control" id="fnameClient" value="<?php echo $client['fnameClient']; ?>">

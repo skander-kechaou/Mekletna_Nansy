@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-$conn=mysqli_connect("localhost","root","","donations");
+$conn=mysqli_connect("localhost","root","","catering");
 if(isset($_POST['submit-search-don']))
 
     {
