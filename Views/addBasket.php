@@ -1,6 +1,6 @@
 <?PHP
 
-include '../Model/basket.php';
+include '../Model/Views/basket.php';
 include '../Controller/basketC.php';
 
 $error="";
