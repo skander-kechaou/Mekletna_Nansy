@@ -1,5 +1,5 @@
 <?php
-include '../controller/donationC.php';
+include '../Controller/donationC.php';
 $donationC = new donationC();
 $list = $donationC->SortDonation();
 ?>
@@ -122,6 +122,7 @@ $list = $donationC->SortDonation();
                                     <th scope="col">date</th>
                                     <th scope="col">location</th>
                                     <th scope="col">reason</th>
+                                    <th scope="col">ID Client</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,6 +135,8 @@ $list = $donationC->SortDonation();
                                         <td><?= $donation['date']; ?></td>
                                         <td><?= $donation['location']; ?></td>
                                         <td><?= $donation['reason']; ?></td>
+                                        <td><?= $donation['id_client']; ?></td>
+                                        
                                         <td align="center">
                                             <form method="POST" action="updatedonation.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">

@@ -1,40 +1,42 @@
 <?php
 
-include '../controller/assioC.php';
-include '../model/Association.php';
-$error = "";
+// php update data in mysql database using PDO
 
-// create client
-$assio = null;
-
-// create an instance of the controller
-$assioC = new AssioC();
-if (
-    isset($_POST["id_association"])&&
-    isset($_POST["name_assio"]) &&
-    isset($_POST["mail"]) &&
-    isset($_POST["phone"]) &&
-    isset($_POST["president"]) 
-) {
-    if (
-        !empty($_POST["id_association"])&&
-        !empty($_POST["name_assio"]) &&
-        !empty($_POST["mail"]) &&
-        !empty($_POST["phone"]) &&
-        !empty($_POST["president"]) 
-    ) {
-        $assio = new Assio(
-            $_POST["id_association"],
-            $_POST["name_assio"],
-            $_POST["mail"],
-            $_POST["phone"], 
-            $_POST["president"]
-        );
-        $assioC->updateassio($assio, $_POST["id_association"]);
-        header('Location:listassio.php');
-    } else
-        $error = "Missing information";
+if(isset($_POST['update']))
+{
+  $hostname = "localhost";
+  $username = "root";
+  $password = "";
+  $databaseName = "catering";
+  
+  $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    
+    // get values form input text and number
+    
+    $id_association = $_POST['id_association'];
+    $name_assio = $_POST['name_assio'];
+    $mail = $_POST['mail'];
+    $phone = $_POST['phone'];
+    $president = $_POST['president'];
+    $location = $_POST['location'];
+    
+    // mysql query to Update data
+    
+    $query = "UPDATE `association` SET `name_assio`='".$name_assio."',`mail`='".$mail."',`phone`='".$phone."',`president`='".$president."',`location`='".$location."' WHERE `id_association` = '".$id_association."'";
+    
+    
+    $result = mysqli_query($connect, $query);
+   
+   if($result)
+   {
+       echo 'Data Updated';
+       header('Location:listassio.php');
+   }else{
+       echo 'Data Not Updated';
+   }
+   mysqli_close($connect);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,71 +161,25 @@ if (
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
               <h2 class="tm-block-title">Update Asscosiation Settings</h2>
-              <?php
-    if (isset($_POST['id_association'])) {
-        $assio = $assioC->showassio($_POST['id_association']);
+            
+              <form action="updateassio.php" method="post">
 
-    ?>
-              <form action="" class="tm-signup-form row">
-                <div class="form-group col-lg-6">
-                  <label for="pres">President</label>
-                  <input
-                    id="pres"
-                    name="pres"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="name_assio">Name Association</label>
-                  <input
-                    id="name_assio"
-                    name="name_assio"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="mail">Mail</label>
-                  <input
-                    id="mail"
-                    name="mail"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="phone">Phone</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="phone">Location</label>
-                  <input
-                    id="location"
-                    name="location"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label class="tm-hide-sm">&nbsp;</label>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Update
-                  </button>
-                </div>
-                </div>
-              </form>
-              <?php
-    }
-    ?>
+            <label >Id to update</label> <input class="form-control validate" type="text" name="id_association" required><br><br>
+
+            <label >New Name</label><input class="form-control validate" type="text" name="name_assio" required><br><br>
+
+            <label >Mail</label><input class="form-control validate" type="text" name="mail" required><br><br>
+
+            <label >Phone</label><input class="form-control validate" type="number" name="phone" required><br><br>
+            
+            <label>President</label><input class="form-control validate" type="number" name="president" required><br><br>
+
+           <label >Location</label><input class="form-control validate" type="text" name="location" required><br><br>
+
+            <input class="btn btn-primary btn-block text-uppercase" type="submit" name="update" value="Update Data">
+
+        </form>
+    
             </div>
           </div>
         </div>
