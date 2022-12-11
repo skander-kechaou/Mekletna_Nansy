@@ -41,7 +41,7 @@ class donationC {
                 'd' => $donation->getdate()->format('dd/mm/yyyy'),
                 'loc' => $donation->get_location(),
                 'rea' => $donation->get_reason(),
-                'idc'=>$donation->getidclient()
+                'idc'=>$donation->get_id_client()
             ]);
         } catch (Exception $e) {
             $e->getMessage();
