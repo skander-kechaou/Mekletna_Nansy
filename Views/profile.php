@@ -1,10 +1,26 @@
 <?php
-
+require_once("../config.php");
 include '../Controller/UserFct.php';
 include '../Model/user.php';
-$id = $_POST["fnameClient"];
-echo $id;
-$error = "";
+
+if (!isset($_SESSION["login_sess"])) {
+    echo "unsuccessful";
+  } else {
+    echo $_SESSION["login_sess"];
+    echo "login success";
+    echo $_SESSION["id"];
+    $sql = "SELECT * FROM Client WHERE idClient=".$_SESSION['id'];
+      $db = config::getConnexion();
+      try {
+            $query = $db->prepare($sql);
+            $query->execute();
+            $client=$query->fetch();
+            return $client;
+        }
+        catch (Exception $e) {
+            $e->getMessage();
+        }
+  }
 
 $client = null;
 
