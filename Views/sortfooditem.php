@@ -1,7 +1,7 @@
 <?php
 include '../Controller/fooditemC.php';
 $fooditemC = new fooditemC();
-$list = $fooditemC->listfooditem();
+$list = $fooditemC->sortPrice();
 ?>
 
 <!DOCTYPE html>

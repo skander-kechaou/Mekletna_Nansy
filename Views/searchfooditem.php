@@ -2,6 +2,15 @@
 include '../Controller/fooditemC.php';
 $fooditemC = new fooditemC();
 $list = $fooditemC->listfooditem();
+$conn=mysqli_connect("localhost","root","","catering");
+if(isset($_POST['submit-search']))
+
+    {
+    $search = mysqli_real_escape_string($conn,$_POST['search']);
+    $sql = "SELECT * FROM fooditem WHERE Namefooditem LIKE'%$search%' ";
+    $result = mysqli_query($conn,$sql);
+    $queryresult=mysqli_num_rows($result);  
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +28,6 @@ $list = $fooditemC->listfooditem();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
@@ -113,23 +118,34 @@ $list = $fooditemC->listfooditem();
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-12">
-                    <form action="searchfooditem.php" method="POST" class="tm-login-form">
-                        <div class="form-group">
-                            <label for="username">Search</label>
-                            <input name="search" type="text" class="form-control validate" id="search" value="" required />
-                        </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary btn-block text-uppercase" name="submit-search">
-                                Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
+              <div class="col-12">
+                <form action="" method="POST" class="tm-login-form">
+                  <div class="form-group">
+                    <label for="username">Search</label>
+                    <input
+                      name="search"
+                      type="text"
+                      class="form-control validate"
+                      id="search"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block text-uppercase"
+                      name="submit-search"
+                    >
+                    Search
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
                 <div class="col-14 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">FOOD ITEMS' LIST<a class="bi bi-sort-down-alt" href="sortfooditem.php"></a></h2>
+                        <h2 class="tm-block-title">fooditem List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -142,24 +158,23 @@ $list = $fooditemC->listfooditem();
                             </thead>
                             <tbody>
                             <?php
-                                foreach ($list as $fooditem) {
+                                $i=0;
+                                while($row = mysqli_fetch_array($result)) {
                                 ?>
                                     <tr>
-                                        <td><?= $fooditem['idfooditem']; ?></td>
-                                        <td><?= $fooditem['Namefooditem']; ?></td>
-                                        <td><?= $fooditem['Pricefooditem']; ?></td>
+                                        <td><?= $row['idfooditem']; ?></td>
+                                        <td><?= $row['Namefooditem']; ?></td>
+                                        <td><?= $row['Pricefooditem']; ?></td>
                                         
-                                        <td align="center">
-                                            <form method="POST" action="updatefooditem.php">
-                                                <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $fooditem['idfooditem']; ?> name="idfooditem">
-                                            </form>
+                                        <td>
+                                            <a class="btn btn-primary" href="updatefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Update</a>
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href="deletefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Delete</a>
                                         </td>
                                     </tr>
                             <?php
+                            $i++;
                                 }
                             ?>
                             </tbody>

@@ -1,7 +1,7 @@
 <?php
-include '../Controller/fooditemC.php';
-$fooditemC = new fooditemC();
-$list = $fooditemC->listfooditem();
+include '../Controller/menuC.php';
+$menuC = new menuC();
+$list = $menuC->listmenu();
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +19,6 @@ $list = $fooditemC->listfooditem();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
@@ -63,12 +59,12 @@ $list = $fooditemC->listfooditem();
                                 <a class="dropdown-item " href="listClients.php">User Management</a>
                                 <a class="dropdown-item" href="#">Association Management</a>
                                 <a class="dropdown-item" href="#">Chef Report</a>
-                                <a class="dropdown-item active" href="listfooditem.php">Menu Report</a>
+                                <a class="dropdown-item active" href="listmenu.php">Menu Report</a>
                                 <a class="dropdown-item" href="#">Orders Report</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.php">
+                            <a class="nav-link" href="products.html">
                                 <i class="fas fa-shopping-cart"></i>
                                 Menu
                             </a>
@@ -112,51 +108,40 @@ $list = $fooditemC->listfooditem();
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-12">
-                    <form action="searchfooditem.php" method="POST" class="tm-login-form">
-                        <div class="form-group">
-                            <label for="username">Search</label>
-                            <input name="search" type="text" class="form-control validate" id="search" value="" required />
-                        </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary btn-block text-uppercase" name="submit-search">
-                                Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-                <div class="col-14 tm-block-col">
+                <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">FOOD ITEMS' LIST<a class="bi bi-sort-down-alt" href="sortfooditem.php"></a></h2>
+                        <h2 class="tm-block-title">menu List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID food.</th>
-                                    <th scope="col">name food</th>
-                                    <th scope="col">price food</th>
+                                    <th scope="col">ID menu.</th>
+                                    <th scope="col">item menu</th>
+                                    <th scope="col">price menu</th>
+                                    <th scope="col">region menu</th>
+                                    <th scope="col">chef menu</th>
                                     <th scope="col">UPDATE</th>
                                     <th scope="col">DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                foreach ($list as $fooditem) {
+                                foreach ($list as $menu) {
                                 ?>
                                     <tr>
-                                        <td><?= $fooditem['idfooditem']; ?></td>
-                                        <td><?= $fooditem['Namefooditem']; ?></td>
-                                        <td><?= $fooditem['Pricefooditem']; ?></td>
+                                        <td><?= $menu['idMenu']; ?></td>
+                                        <td><?= $menu['itemsMenu']; ?></td>
+                                        <td><?= $menu['priceMenu']; ?></td>
+                                        <td><?= $menu['regionMenu']; ?></td>
+                                        <td><?= $menu['chefMenu']; ?></td>
                                         
                                         <td align="center">
-                                            <form method="POST" action="updatefooditem.php">
+                                            <form method="POST" action="updatemenu.php">
                                                 <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $fooditem['idfooditem']; ?> name="idfooditem">
+                                                <input type="hidden" value=<?PHP echo $menu['idMenu']; ?> name="idMenu">
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deletefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deletemenu.php?idMenu=<?php echo $menu['idMenu']; ?>">Delete</a>
                                         </td>
                                     </tr>
                             <?php

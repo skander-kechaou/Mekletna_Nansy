@@ -1,11 +1,11 @@
 <?PHP 
-class Order{
-  private ?int $idOrder=null;
-	private ?int $idMenu=null;
-	private ?int $idClient=null;
-	private ?int $priceOrder=null;
-  private ?DateTime $dateOrder=null;
-  private ?int $statusOrder=null;
+class order{
+	private $idMenu;
+	private $idClient;
+	private $priceOrder;
+  private $dateOrder;
+  private $idOrder;
+  private $statusOrder;
 
 
     function __construct($idOrder=NULL,$idMenu,$idClient,$priceOrder,$dateOrder,$statusOrder)

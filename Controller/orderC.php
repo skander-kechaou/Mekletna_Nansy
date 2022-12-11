@@ -1,5 +1,5 @@
-a<?PHP
-include "C:/xampp/htdocs/CRUD/config.php";
+<?PHP
+include "../config.php";
 class OrderC
 {
 function listOrder ()
