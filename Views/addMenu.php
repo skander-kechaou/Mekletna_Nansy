@@ -1,43 +1,38 @@
 <?php
 
 include '../Controller/menuC.php';
-include '../Model/menu.php';
+
 
 $error = "";
 
 $menu = null;
 
-$menuC = new menuC();
-if (
+$menuC = new MenuC();
+if ((
     isset($_POST["itemsMenu"]) &&
-    isset($_POST["idMenu"]) &&
     isset($_POST["priceMenu"]) &&
     isset($_POST["regionMenu"]) &&
-    isset($_POST["chefMenu"]) &&
+    isset($_POST["chefMenu"])
     
-) {
-    if (
+) 
+    &&(
         !empty($_POST["itemsMenu"]) &&
-        !empty($_POST["idMenu"]) &&
         !empty($_POST["priceMenu"]) &&
         !empty($_POST["regionMenu"]) &&
-        !empty($_POST["chefMenu"]) &&
+        !empty($_POST["chefMenu"]) 
        
-    ) {
+    ) )
+    {
         $menu = new menu(
             null,
             $_POST["itemsMenu"],
-            $_POST["idMenu"],
             $_POST["priceMenu"], 
             $_POST["regionMenu"],
-            $_POST["chefMenu"],
+            $_POST["chefMenu"]
         );
         $menuC->addmenu($menu);
-        header('Location:listmenu.php');
-    } else
-        $error = "Missing information";
-}
-
+        header('Location:listmenu2.php');
+    }
 
 ?>
 <html lang="en">
@@ -58,17 +53,6 @@ if (
 
     <form action="" method="POST">
         <table border="1" align="center">
-
-            
-
-             <tr>
-                <td>
-                    <label for="idMenu">Menu:
-                    </label>
-                </td>
-                <td><input type="number" name="idMenu" id="idMenu" maxlength="20"></td>
-            </tr>
-
             <tr>
                 <td>
                     <label for="itemsMenu">item:

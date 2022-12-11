@@ -1,6 +1,6 @@
 <?php
-include 'D:\XAMPP project\htdocs\last04+display chefs by regions\config.php';
-include 'D:\XAMPP project\htdocs\last04+display chefs by regions\Model\chef.php';
+include '../config.php';
+include '../Model/chef.php';
 
 class ChefC
 {

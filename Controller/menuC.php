@@ -17,38 +17,36 @@ function listMenu ()
 	}
 	
 	function addMenu($Menu){
-		$sql="insert into Menu (idMenu,itemsMenu,priceMenu,priceMenu,chefMenu,regionMenu) values (:idProduit, :itemsMenu0,:priceMenu,:priceMenu0,:chefMenu,:regionMenu0)";
-		$db = config::getConnexion();
-		try{
-        $req=$db->prepare($sql);
 
-        $idMenu=$Menu->getidMenu();
-        $itemsMenu=$Menu->getitemsMenu();
-        $priceMenu=$Menu->getpriceMenu();
-        $chefMenu=$Menu->getchefMenu();
-        $regionMenu=$Menu->getregionMenu();
-		$req->bindValue(':idMenu',$idMenu);
-		$req->bindValue(':itemsMenu0',$itemsMenu);
-		$req->bindValue(':priceMenu',$priceMenu);
-        $req->bindValue(':chefMenu',$chefMenu);
-        $req->bindValue(':regionMenu',$regionMenu);
+		$sql="INSERT  INTO Menu VALUES (NULL,:itemsMenu,:priceMenu,:regionMenu,:chefMenu) ";
+		$db = config::getConnexion();
+            try {
+                $query = $db->prepare($sql);
+                $query->execute([
+
+                    'itemsMenu' => $Menu->getitemsMenu(),
+                    'priceMenu'=> $Menu->getpriceMenu(),
+                    'chefMenu' => $Menu->getchefMenu(),
+                    'regionMenu' => $Menu->getregionMenu()
+               
+                  
+                ]);
+            } catch (Exception $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        }
+
+       
 
 		
-            $req->execute();
            
-        }
-        catch (Exception $e){
-            echo 'error: '.$e->getMessage();
-        }
-		
-	}
     
-    function deleteMenu($idMenu)
+    function deleteMenu($id)
     {
-		$sql="DELETE FROM Menu where idMenu= :idMenu";
+		$sql="DELETE FROM Menu where idMenu= :id";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
-		$req->bindValue(':idMenu',$idMenu);
+		$req->bindValue(':id',$id);
 		try{
             $req->execute();
         }
@@ -57,36 +55,45 @@ function listMenu ()
         }
     }
     
-	function updateMenu($Menu,$idMenu){
-		$sql="UPDATE Menu SET idMenu=:idMenu0,regionMenu=:regionMenu, itemsMenu=:itemsMenu, priceMenu=:priceMenu, chefMenu=:chefMenu WHERE idMenu=:idMenu";
-		
-		$db = config::getConnexion();
-try{		
-        $req=$db->prepare($sql);
-		$idMenu0=$Menu->getidMenu();
-        $itemsMenu=$Menu->getitemsMenu();
-        $priceMenu=$Menu->getpriceMenu();
-        $regionMenu=$Menu->getregionMenu();
-        $chefMenu=$Menu->getchefMenu();
-		$datas = array(':idMenu0'=>$idMenu0, ':itemsMenu'=>$itemsMenu, ':regionMenu'=>$regionMenu, ':priceMenu'=>$priceMenu,':chefMenu'=>$chefMenu, ':idMenu'=>$idMenu);
-		$req->bindValue(':idMenu0',$idMenu0);
-		$req->bindValue(':itemsMenu',$itemsMenu);
-		$req->bindValue(':priceMenu',$priceMenu);
-		$req->bindValue(':regionMenu',$regionMenu);
-        $req->bindValue(':chefMenu',$chefMenu);
-		
-		
-            $s=$req->execute();
-			
-
+	function updateChef($Menu, $id)
+    {
+        try {
+            $db = config::getConnexion();
+            $query = $db->prepare(
+                'UPDATE Menu SET 
+                    itemsMenu = :itemsMenu, 
+                    priceMenu = :priceMenu, 
+                    chefMenu=:chefMenu,
+                    regionMenu =:regionMenu,
+                WHERE idMenu= :idMenu'
+            );
+            $query->execute([
+                'idMenu' =>  $Menu-> getidMenu(),
+                'itemsMenu ' => $Menu-> getitemsMenu(),
+                'priceMenu' => $Menu->getpriceMenu(),
+                'chefMenu' => $Menu->getchefMenu(),
+                'regionMenu' => $Menu->getregionMenu(),
+            ]);
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
-        catch (Exception $e){
-            echo " error ! ".$e->getMessage();
-   echo " Les datas : " ;
-  print_r($datas);
-        }
+    }
 		
     }
+    function showMenu($id)
+    {
+        $sql = "SELECT * from Menu where idMenu =". $id;
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+
+            $Menu = $query->fetch();
+            return $Menu;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
+
     
-    
-}

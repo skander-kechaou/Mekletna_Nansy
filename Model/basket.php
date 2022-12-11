@@ -4,19 +4,16 @@ class basket{
 	private ?string $nameOrder=null;
   private ?int  $idOrder=null;
 	private ?int  $priceOrder=null;
-  private ?DateTime  $dateOrder=null;
-  private ?int $statusOrder=null;
-    
+  private ?DateTime  $dateOrder=null;    
    
 
 
-    function __construct($nameOrder,$idOrder=NULL,$priceOrder,$dateOrder,$statusOrder)
+    function __construct($nameOrder,$idOrder=NULL,$priceOrder,$dateOrder)
     {
     $this->nameOrder=$nameOrder;
     $this->idOrder=$idOrder;
 		$this->priceOrder=$priceOrder;
     $this->dateOrder=$dateOrder;
-    $this->statusOrder=$statusOrder;
        
 	}
      
@@ -40,10 +37,6 @@ class basket{
 		return $this->dateOrder;
     }
     
-    function getstatusOrder()
-    {
-		return $this->statusOrder;
-    }
     //////////////////////////////////////////////////////////////
     function setnameOrder($nameOrder)
     {
@@ -63,10 +56,6 @@ class basket{
 		$this->dateOrder;
     }
 
-    function setstatusOrder($statusOrder)
-    {
-		$this->statusOrder=$statusOrder;
-    }
 
   
    

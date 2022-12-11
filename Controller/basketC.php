@@ -32,24 +32,16 @@ class basketC
     }
 	
 	function addBasket($basket){
-		$sql="INSERT INTO basket values (:idProduct, :nameOrder,:idClient,:priceOrder,:dateOrder,:idOrder,:statusOrder,NULL)";
+		$sql="INSERT INTO basket values (:nameOrder,:idOrder,:priceOrder,:dateOrder)";
 		$db = config::getConnexion();
 		try{
-        $req=$db->prepare($sql);
-
-        $nameOrder=$basket->getnameOrder();
-        $idOrder=$basket->getidOrder();
-        $priceOrder=$basket->getpriceOrder();
-        $dateOrder=$basket->getdateOrder();
-       
-		$req->bindValue(':nameOrder',$nameOrder);
-        $req->bindValue(':idOrder',$idOrder);
-		$req->bindValue(':priceOrder',$priceOrder);
-        $req->bindValue(':dateOrder',$dateOrder);
-        $req->bindValue(':idOrder',$idOrder);
-       
-            $req->execute();
-           
+        $req=$db->prepare($sql);    
+        $req->execute([
+            'nameOrder'=>$basket->getnameOrder(),
+            'idOrder'=>$basket->getidOrder(),
+            'priceOrder'=>$basket->getpriceOrder(),
+            'dateOrder'=>$basket->getdateOrder()->format('Y-m-d'),
+                ]);
         }
         catch (Exception $e){
             echo 'Error: '.$e->getMessage();
@@ -227,5 +219,3 @@ try{
 // }
 
 }
-
-?>

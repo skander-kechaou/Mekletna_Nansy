@@ -1,7 +1,16 @@
 <?php
-include '../Controller/RegionC.php';
-$regionC = new RegionC();
-$list = $regionC->listRegions();
+include '../Controller/fooditemC.php';
+$fooditemC = new fooditemC();
+$list = $fooditemC->listfooditem();
+$conn=mysqli_connect("localhost","root","","catering");
+if(isset($_POST['submit-search']))
+
+    {
+    $search = mysqli_real_escape_string($conn,$_POST['search']);
+    $sql = "SELECT * FROM fooditem WHERE Namefooditem LIKE'%$search%' ";
+    $result = mysqli_query($conn,$sql);
+    $queryresult=mysqli_num_rows($result);  
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +20,7 @@ $list = $regionC->listRegions();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chef Admin - Dashboard HTML Template</title>
+    <title>Product Admin - Dashboard HTML Template</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
@@ -20,9 +29,9 @@ $list = $regionC->listRegions();
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
     <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    Product Admin CSS Template
+    https://templatemo.com/tm-524-product-admin
+    -->
 </head>
 
 <body id="reportsPage">
@@ -30,7 +39,7 @@ $list = $regionC->listRegions();
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="index.html">
-                    <h1 class="tm-site-title mb-0">Chef Admin</h1>
+                    <h1 class="tm-site-title mb-0">Product Admin</h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +49,7 @@ $list = $regionC->listRegions();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">
+                            <a class="nav-link" href="#">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
@@ -56,17 +65,17 @@ $list = $regionC->listRegions();
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">User Management </a>
-                                <a class="dropdown-item" href="#"> Association Management</a>
-                                <a class="dropdown-item active " href="#">Chef Management</a>
-                                <a class="dropdown-item" href="#">Menu Management</a>
-                                <a class="dropdown-item" href="#">Orders Management</a>
-                              </div>
+                                <a class="dropdown-item " href="listClients.php">User Management</a>
+                                <a class="dropdown-item" href="#">Association Management</a>
+                                <a class="dropdown-item" href="#">Chef Report</a>
+                                <a class="dropdown-item active" href="listfooditem.php">Menu Report</a>
+                                <a class="dropdown-item" href="#">Orders Report</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="products.php">
                                 <i class="fas fa-shopping-cart"></i>
-                               Menu 
+                                Menu
                             </a>
                         </li>
 
@@ -104,57 +113,72 @@ $list = $regionC->listRegions();
         </nav>
         <div class="container">
             <div class="row">
-            <div class="col-12">
-                <form class="form-inline" method="post" action="searchregion.php">
-                <input type="text" name="search" class="form-control" placeholder="Search id  .">
-                <button type="submit" name="submit-search" class="btn btn-primary">Search</button>
-               </form>
-               
-                <a class="btn "  style="color:white" href=" chef management.php" role="button"> See  All Chefs</a>
-                <a class="btn "  style="color:white" href=" sortregion.php" role="button"> Sort</a>
+                <div class="col">
+                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-            <!-- row -->
-        
-                <div class="col-12 tm-block-col">
+            <div class="row mt-2">
+              <div class="col-12">
+                <form action="" method="POST" class="tm-login-form">
+                  <div class="form-group">
+                    <label for="username">Search</label>
+                    <input
+                      name="search"
+                      type="text"
+                      class="form-control validate"
+                      id="search"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block text-uppercase"
+                      name="submit-search"
+                    >
+                    Search
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+                <div class="col-14 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Region List</h2>
+                        <h2 class="tm-block-title">fooditem List</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id Region.</th>
-                                    <th scope="col">Name Region .</th>
-                                    <th scope="col">Nb people</th>
-                                    
+                                    <th scope="col">ID food.</th>
+                                    <th scope="col">name food</th>
+                                    <th scope="col">price food</th>
+                                    <th scope="col">UPDATE</th>
+                                    <th scope="col">DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                              
                             <?php
-        foreach ($list as $region) {
-        ?>
-            <tr>
-                <td><?= $region['id_region']; ?></td>
-                <td><?= $region['name_region']; ?></td>
-                <td><?= $region['nb_people']; ?></td>
-                <td align="center">
-                                             <form method="POST" action="updateRegion.php">
-                                                <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $region['id_region']; ?> name="id_region">
-                                             </form>
-                                             </td>
-                                            <td>
-                                                <a class="btn btn-primary" href="deleteRegion.php?id_region=<?php  echo $region['id_region']; ?>" >Delete Region</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary" href="addRegion.php?id_region=<?php  echo $region['id_region']; ?>" >Add Region</a>
-                                            </td>
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
+                                $i=0;
+                                while($row = mysqli_fetch_array($result)) {
+                                ?>
+                                    <tr>
+                                        <td><?= $row['idfooditem']; ?></td>
+                                        <td><?= $row['Namefooditem']; ?></td>
+                                        <td><?= $row['Pricefooditem']; ?></td>
+                                        
+                                        <td>
+                                            <a class="btn btn-primary" href="updatefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Update</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary" href="deletefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Delete</a>
+                                        </td>
+                                    </tr>
+                            <?php
+                            $i++;
+                                }
+                            ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
