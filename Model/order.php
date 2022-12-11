@@ -1,6 +1,5 @@
 <?PHP 
-class Order
-{
+class order{
 	private $idMenu;
 	private $idClient;
 	private $priceOrder;
@@ -9,8 +8,9 @@ class Order
   private $statusOrder;
 
 
-    function __construct($idMenu,$idClient,$priceOrder,$dateOrder,$idOrder,$statusOrder)
+    function __construct($idOrder=NULL,$idMenu,$idClient,$priceOrder,$dateOrder,$statusOrder)
     {
+    $this->idOrder=$idOrder;
 		$this->idMenu=$idMenu;
 		$this->idClient=$idClient;
 		$this->priceOrder=$priceOrder;
@@ -72,7 +72,7 @@ class Order
     
     function setdateOrder($dateOrder)
     {
-		$this->dateOrder;
+		$this->dateOrder=$dateOrder;
     }
     
     function setidOrder($idOrder)

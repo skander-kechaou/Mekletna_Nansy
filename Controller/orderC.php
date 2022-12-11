@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <?PHP
 include "../config.php";
+=======
+a<?PHP
+include "C:/xampp/htdocs/CRUD/config.php";
+>>>>>>> b06cd8a7e3c5b4bc4fc10c2c4c92038474134da0
 class OrderC
 {
 function listOrder ()
@@ -31,7 +36,7 @@ function listOrder ()
 		$req->bindValue(':idMenu',$idMenu);
 		$req->bindValue(':nbOrder0',$nbOrder);
 		$req->bindValue(':idClient',$idClient);
-		$req->bindValue(':priceOrder',$price);
+		$req->bindValue(':priceOrder',$priceOrder);
         $req->bindValue(':DateOrder',$dateOrder);
         $req->bindValue(':statusOrder',$statusOrder);
 

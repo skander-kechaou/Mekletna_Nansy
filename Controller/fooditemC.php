@@ -5,7 +5,7 @@ class fooditemC
 {
     function showfooditem($idfooditem)
     {
-        $sql = "SELECT * FROM fooditem WHERE idfooditem = $id";
+        $sql = "SELECT * FROM fooditem WHERE idfooditem = $idfooditem";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
