@@ -1,6 +1,6 @@
 <?php
 
-include '../controller/Donation_core.php';
+include '../Controller/donationC.php';
 include '../Model/Donation.php';
 $error = "";
 
