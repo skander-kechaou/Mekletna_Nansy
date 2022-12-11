@@ -32,7 +32,7 @@ if (
         !empty($_POST["addressClient"])
     ) {
         $client = new Client(
-            null,
+            NULL,
             $_POST["fnameClient"],
             $_POST["lnameClient"],
             $_POST["pnbClient"], 
@@ -41,10 +41,11 @@ if (
             new DateTime($_POST["bdayClient"]),
             $_POST["pcodeClient"],
             $_POST["regionClient"],
-            $_POST["addressClient"]
+            $_POST["addressClient"],
+            0
         );
         $ClientC->addClient($client);
-        header('Location:listClients.php');
+        header('Location:login.php');
         ECHO "Registration is successful...";
     } else
         $error = "Missing information";
@@ -135,7 +136,7 @@ if (
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>
         </div>
-        <button onclick="checkInputs()">
+        <button>
           Submit
         </button>
         <p align="center">Already have an account ? <a href="login.php">Log In</a></p>
@@ -183,6 +184,6 @@ if (
       Get in Touch
     </button>
     </header>
-    <script src="assets/js/signup.js"></script>
+    <!-- <script src="assets/js/signup.js"></script> -->
   </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include '../config.php';
+require_once('../config.php');
 
 class ClientC {
     public function listClients() {
@@ -31,8 +31,8 @@ class ClientC {
     // Show details (id) in the URL at the bottom of the page
 
     public function addClient($Client) {
-        $sql = "INSERT INTO Client VALUES
-        (NULL, :fn, :ln, :pn, :ml, :pw, :bd, :pc, :rg, :a)";
+        $sql = "INSERT INTO client VALUES
+        (NULL, :fn, :ln, :pn, :ml, :pw, :bd, :pc, :rg, :a, 0)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
