@@ -1,5 +1,5 @@
 <?PHP
-include "C:/xampp/htdocs/CRUD/config.php";
+include "../config.php";
 class OrderC
 {
 function listOrder ()
