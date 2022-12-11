@@ -8,7 +8,6 @@ if (!isset($_SESSION["login_sess"])) {
   echo $_SESSION["login_sess"];
   echo "login success";
   echo $_SESSION["id"];
-  $_SESSION["login_sess"]=1;
 }
 ?>
 <!DOCTYPE html>
