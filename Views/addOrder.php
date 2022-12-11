@@ -27,7 +27,7 @@ if (
 
 
     ) {
-        $order = new Order(
+        $order = new order(
             null,
             $_POST["idMenu"],
             $_POST["idClient"],
