@@ -4,12 +4,14 @@ class fooditem
     private ?int $idfooditem = null;
     private ?string $Namefooditem= null;
     private ?int $Pricefooditem = null;
+    private ?int $IDmen = null;
 
-    public function __construct($id = null, $Namefd, $Pricefd)
+    public function __construct($id = null, $Namefd, $Pricefd, $IDmen)
     {
         $this->idfooditem = $id;
         $this->Namefooditem = $Namefd;
         $this->Pricefooditem = $Pricefd;
+        $this->IDmen = $IDmen;
     
     }
 
@@ -27,6 +29,14 @@ class fooditem
     public function getNamefooditem()
     {
         return $this->Namefooditem;
+    }
+
+    /**
+     * Get the value of Namefooditem
+     */
+    public function getIDmen()
+    {
+        return $this->IDmen;
     }
 
     /**
@@ -62,43 +72,16 @@ class fooditem
     }
 
     /**
-     * Get the value of nbPlaces
-     */
-    public function getNbPlaces()
-    {
-        return $this->nbPlaces;
-    }
-
-    /**
-     * Set the value of nbPlaces
+     * Set the value of IDmen
      *
      * @return  self
      */
-    public function setNbPlaces($nbPlaces)
+    public function setIDmen($IDmen)
     {
-        $this->nbPlaces = $nbPlaces;
+        $this->IDmen = $IDmen;
 
         return $this;
     }
-
-    /**
-     * Get the value of datefooditem
-     */
-    public function getDatefooditem()
-    {
-        return $this->datefooditem;
-    }
-
-    /**
-     * Set the value of datefooditem
-     *
-     * @return  self
-     */
-    public function setDatefooditem($datefooditem)
-    {
-        $this->datefooditem = $datefooditem;
-
-        return $this;
-    }
+    
 }
    

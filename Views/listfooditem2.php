@@ -19,6 +19,10 @@ $list = $fooditemC->listfooditem();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="css/templatemo-style.css">
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <!--
     Product Admin CSS Template
     https://templatemo.com/tm-524-product-admin
@@ -56,15 +60,15 @@ $list = $fooditemC->listfooditem();
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item active" href="listClients.php">User Management</a>
+                                <a class="dropdown-item " href="listClients.php">User Management</a>
                                 <a class="dropdown-item" href="#">Association Management</a>
                                 <a class="dropdown-item" href="#">Chef Report</a>
-                                <a class="dropdown-item" href="#">Menu Report</a>
+                                <a class="dropdown-item active" href="listfooditem.php">Menu Report</a>
                                 <a class="dropdown-item" href="#">Orders Report</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="products.php">
                                 <i class="fas fa-shopping-cart"></i>
                                 Menu
                             </a>
@@ -108,22 +112,30 @@ $list = $fooditemC->listfooditem();
                     <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                 </div>
             </div>
-                <div class="col-12 tm-block-col">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <form action="searchfooditem.php" method="POST" class="tm-login-form">
+                        <div class="form-group">
+                            <label for="username">Search</label>
+                            <input name="search" type="text" class="form-control validate" id="search" value="" required />
+                        </div>
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase" name="submit-search">
+                                Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                <div class="col-14 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">fooditem List</h2>
+                        <h2 class="tm-block-title">FOOD ITEMS' LIST<a class="bi bi-sort-down-alt" href="sortfooditem.php"></a></h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID NO.</th>
-                                    <th scope="col">FIRST NAME</th>
-                                    <th scope="col">LAST NAME</th>
-                                    <th scope="col">PHONE NUMBER</th>
-                                    <th scope="col">E-MAIL</th>
-                                    <th scope="col">PASSWORD</th>
-                                    <th scope="col">DATE OF BIRTH</th>
-                                    <th scope="col">POSTAL CODE</th>
-                                    <th scope="col">REGION</th>
-                                    <th scope="col">ADDRESS</th>
+                                    <th scope="col">ID food.</th>
+                                    <th scope="col">name food</th>
+                                    <th scope="col">price food</th>
                                     <th scope="col">UPDATE</th>
                                     <th scope="col">DELETE</th>
                                 </tr>
@@ -144,7 +156,7 @@ $list = $fooditemC->listfooditem();
                                             </form>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deleteClient.php?idClient=<?php echo $fooditem['idClient']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deletefooditem.php?idfooditem=<?php echo $fooditem['idfooditem']; ?>">Delete</a>
                                         </td>
                                     </tr>
                             <?php

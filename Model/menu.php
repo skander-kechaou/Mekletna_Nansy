@@ -1,19 +1,20 @@
 <?PHP 
 class menu{
-	private $idMenu;
-	private $priceMenu;
-	private $regionMenu;
-    private $chefMenu;
-    private $itemsMenu;
+	private ?int $idMenu=null;
+	private ?int $priceMenu=null;
+	private ?string $regionMenu=null;
+  private ?string $chefMenu=null;
+    private ?string $itemsMenu=null;
 
 
-    function __construct($idMenu,$priceMenu,$regionMenu,$chefMenu,$itemsMenu)
+    function __construct($idMenu=null,$itemsMenu,$priceMenu,$regionMenu,$chefMenu)
     {
 		$this->idMenu=$idMenu;
-		$this->itemsMenu=$priceMenu;
-		$this->regionMenu=$regionMenu;
-     $this->chefMenu=$chefMenu;
     $this->itemsMenu=$itemsMenu;
+		$this->priceMenu=$priceMenu;
+		$this->regionMenu=$regionMenu;
+    $this->chefMenu=$chefMenu;
+  
 
 	}
      
@@ -39,12 +40,7 @@ class menu{
     {
 		return $this->chefMenu;
     }
-    
-    function getidOrder()
-    {
-		return $this->idOrder;
-    }
-    
+
     function getitemsMenu()
     {
 		return $this->itemsMenu;
@@ -52,35 +48,47 @@ class menu{
 
     //////////////////////////////////////////////////////////////
     
+    /**
+     * @return self
+     */
     function setidMenu($idMenu)
     {
 		$this->idMenu=$idMenu;
+    return $this;
     }
 
-  
+   /**
+     * @return self
+     */
     function setpriceMenu($priceMenu)
     {
-		$this->priceMenu;
+		$this->priceMenu=$priceMenu;
+    return $this;
     }
-    
+     /**
+     * @return self
+     */
     function setregionMenu($regionMenu)
     {
 		$this->regionMenu=$regionMenu;
+    return $this;
     }
-    
+     /**
+     * @return self
+     */
     function setchefMenu($chefMenu)
     {
-		$this->chefMenu;
+		$this->chefMenu=$chefMenu;
+    return $this;
     }
-    
-    function setidOrder($idOrder)
-    {
-		$this->idOrder=$idOrder;
-    }
+     /**
+     * @return self
+     */
 
     function setitemsMenu($itemsMenu)
     {
 		$this->itemsMenu=$itemsMenu;
+    return $this;
     }
 	
 }
