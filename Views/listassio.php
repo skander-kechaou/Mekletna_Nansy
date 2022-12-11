@@ -83,18 +83,18 @@ $result = mysqli_query($conn,"SELECT * from association");
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">User Managment</a>
-                                <a class="active dropdown-item" href="#">Association Managment</a>
+                                <a class="dropdown-item" href="listClients.php">User Managment</a>
+                                <a class="active dropdown-item" href="listassio.php">Association Managment</a>
                                 <a class="dropdown-item" href="listDonation.php">Donation Managment</a>
-                                <a class="dropdown-item" href="#">Chef Report</a>
-                                <a class="dropdown-item" href="#">Menu Report</a>
-                                <a class="dropdown-item" href="#">orders Report</a>
+                                <a class="dropdown-item" href="chef management.php">Chef Report</a>
+                                <a class="dropdown-item" href="listMenu.php">Menu Report</a>
+                                <a class="dropdown-item" href="listOrder.php">orders Report</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="products.php">
                                 <i class="fas fa-shopping-cart"></i>
-                                Products
+                                Menu
                             </a>
                         </li>
 
