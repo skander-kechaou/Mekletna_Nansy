@@ -1,5 +1,6 @@
 <?PHP 
-class order{
+class Order
+{
 	private $idMenu;
 	private $idClient;
 	private $priceOrder;
