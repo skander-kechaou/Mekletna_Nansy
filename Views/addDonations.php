@@ -11,13 +11,15 @@ if ((
     isset($_POST["id_menu"]) &&
     isset($_POST["date"]) &&
     isset($_POST["location"]) &&
-    isset($_POST["reason"])
+    isset($_POST["reason"]) &&
+    isset($_POST["id_client"])
 ) 
     && (
         !empty($_POST["id_menu"]) &&
         !empty($_POST["date"]) &&
         !empty($_POST["location"]) &&
-        !empty($_POST["reason"])
+        !empty($_POST["reason"]) &&
+        !empty($_POST["id_client"])
     ) ){
         echo('name:'.$_POST['location']);
         $Donation = new donation(
@@ -26,6 +28,7 @@ if ((
             new DateTime($_POST["date"]),
             $_POST["location"],
             $_POST["reason"],
+            $_POST["id_client"]
         );
         $Donation_core->addDonation($Donation);
         header('Location:listDonation.php');
@@ -157,20 +160,24 @@ if ((
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
+                    <input type="number" name="id_client" class="form-control" id="id_client" placeholder="Id client" min="1" required>
+                    <div class="validate"></div>
+                  <div class="col-lg-4 col-md-6">
                     <input type="date" class="form-control" name="date" id="date" placeholder="Date" data-rule="date" data-msg="Please enter a date" required>
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
-                  <select name="location" id="location" placeholder="location">
-                      <option value="Tunis"selected>Tunis</option>
-                        <option value="Sfax" >Sfax </option>
-                        <option value="Benzart">Benzart</option>
-                        <option value="Hammamet">Hammamet</option>
-                        <option value="Beja">Beja</option>
-                        <option value="Sousse">Sousse</option>
-                        <option value="Kairouan">Kairouan</option>
-                        <option value="Gabès">Gabès</option>
-                   </select>
+                    <select name="location" id="location" placeholder="location">
+                          <option value="Tunis"selected>Tunis</option>
+                          <option value="Sfax" >Sfax </option>
+                          <option value="Benzart">Benzart</option>
+                          <option value="Hammamet">Hammamet</option>
+                          <option value="Beja">Beja</option>
+                          <option value="Sousse">Sousse</option>
+                          <option value="Kairouan">Kairouan</option>
+                          <option value="Gabès">Gabès</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group mt-3">
                   <textarea class="form-control" id="reason" name="reason" rows="5" placeholder="Reason" required></textarea>
