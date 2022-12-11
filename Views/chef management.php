@@ -2,12 +2,40 @@
 include '../Controller/ChefC.php';
 $chefC = new ChefC();
 $list = $chefC->listChefs();
+$conn=mysqli_connect("localhost","root","","catering");
+$result = mysqli_query($conn,"SELECT * from chef");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+    <?php
+        while($val=mysqli_fetch_assoc($result))
+        {
+            echo"['".$val['Name_chef']."',".$val['Reg']."],";
+        }
+    ?>
+        ]);
+
+        var options = {
+          title: 'Based Location'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -102,9 +130,15 @@ $list = $chefC->listChefs();
             </div>
 
         </nav>
+
         <div class="container">
-            <div class="row">
-                <div class="col">
+        <div class="row mt-2">
+              <div class="col-12">
+        <div id="piechart" style="width: 1000px; height: 500px;"></div>
+        </div>
+            </div>
+        <div class="row mt-2">
+              <div class="col-12">
                 <form class="form-inline" method="post" action="search by.php">
                 <input type="text" name="search" class="form-control" placeholder="Search name .">
                 <button type="submit" name="submit-search" class="btn btn-primary">Search</button>

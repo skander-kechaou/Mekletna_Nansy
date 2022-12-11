@@ -1,7 +1,7 @@
 <?php
 
 include '../controller/assioC.php';
-include '../model/Association.php';
+//include '../Model/Association.php';
 
 $error = "";
 

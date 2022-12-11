@@ -1,6 +1,6 @@
 <?PHP
 
-//include '../Model/basket.php';
+include '../Model/Views/basket.php';
 include '../Controller/basketC.php';
 
 $error="";
@@ -26,14 +26,13 @@ if (
 
     ) {
         $basket = new Basket(
-            null,
             $_POST["nameOrder"],
             $_POST["idOrder"],
             $_POST["priceOrder"],
             new DateTime($_POST["dateOrder"])
           
         );
-        $basketCC->addBasket($order);
+        $basketC->addBasket($basket);
         header('Location:listBasket.php');
     } else
         $error = "Missing information";
@@ -68,7 +67,7 @@ if (
 
     <body>
     <h1>add basket</h1>
-    <form>
+    <form action="addBasket.php" method="POST">
         <table>
           
 
