@@ -38,7 +38,7 @@ class donationC {
             $query = $db->prepare($sql);
             $query->execute([
                 'idm' => $donation->getid_menu(),
-                'd' => $donation->getdate()->format('Y-m-d'),
+                'd' => $donation->getdate()->format('dd/mm/yyyy'),
                 'loc' => $donation->get_location(),
                 'rea' => $donation->get_reason(),
                 'idc'=>$donation->getidclient()
