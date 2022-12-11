@@ -104,7 +104,7 @@ $list = $regionC->listRegions();
         </nav>
         <div class="container">
             <div class="row">
-                <div class="col">
+            <div class="col-12">
                 <form class="form-inline" method="post" action="searchregion.php">
                 <input type="text" name="search" class="form-control" placeholder="Search id  .">
                 <button type="submit" name="submit-search" class="btn btn-primary">Search</button>
