@@ -63,93 +63,80 @@ if(isset($_POST['update']))
 
   <body id="reportsPage">
     <div class="" id="home">
-      <nav class="navbar navbar-expand-xl">
-        <div class="container h-100">
-          <a class="navbar-brand" href="index.html">
-            <h1 class="tm-site-title mb-0">Product Admin</h1>
-          </a>
-          <button
-            class="navbar-toggler ml-auto mr-0"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars tm-nav-icon"></i>
-          </button>
+    <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="tm-site-title mb-0">Product Admin</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto h-100">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                  <i class="fas fa-tachometer-alt"></i> Dashboard
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link active dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="far fa-file-alt"></i>
-                  <span> Modules <i class="fas fa-angle-down"></i> </span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">User Managment</a>
-                <a class="active dropdown-item" href="listdonation.php">Association Managment</a>
-                <a class="dropdown-item" href="#">Chef Report</a>
-                <a class="dropdown-item" href="#">Menu Report</a>
-                <a class="dropdown-item" href="#">orders Report</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="products.html">
-                  <i class="fas fa-shopping-cart"></i> Products
-                </a>
-              </li>
+                <div class="collapse  navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link  " href="index.php">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Dashboard
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
 
-              <li class="nav-item">
-                <a class="nav-link " href="accounts.html">
-                  <i class="far fa-user"></i> Accounts
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-cog"></i>
-                  <span> Settings <i class="fas fa-angle-down"></i> </span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Billing</a>
-                  <a class="dropdown-item" href="#">Customize</a>
+                            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-file-alt"></i>
+                                <span>
+                                    Modules <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="listassio.php">Association Managment</a>
+                                <a class="dropdown-item" href="listDonation.php">Donation Managment</a>
+                                <a class="dropdown-item" href="chef management.php">Chef Report</a>
+                                <a class="dropdown-item" href="listOrder.php">orders Report</a>
+                                <a class="dropdown-item" href="addRegion.php">Region managment</a>
+                                <a class="dropdown-item" href="listBasket.php">Basket List</a>
+                                <a class="dropdown-item" href="listRegions.php">List Regions</a>
+                                
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>
+                                Products
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="listfooditem2.php">food items</a>
+                                <a class="dropdown-item" href="listmenu2.php">Menus</a>
+                                <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
+                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="listClients.php">
+                                <i class="far fa-user"></i>
+                                Accounts
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link d-block" href="login.html">
+                                Admin, <b>Logout</b>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-              </li>
-            </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link d-block" href="login.html">
-                  Admin, <b>Logout</b>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+            </div>
+
+        </nav>
       <div class="container mt-5">
         <div class="row tm-content-row ">
           <div class="col-12 tm-block-col">

@@ -1,34 +1,89 @@
-<?PHP
-include "../../Core/paniercore.php";
-$panier1core=new paniercore();
-
-
-if (isset($_GET['idmod']) and isset($_GET['Etat']))
-    $panier1core->modifierEtat($_GET['Etat'],$_GET['idmod']);
-
-
-
-
-
-if(isset($_GET['recherche']))
-  $listepanier=$panier1core->afficherpanier($_GET['recherche']);
-  else
-  $listepanier=$panier1core->afficherpanier();
-
-
-
-
-  if (isset($_POST['tri'])) {
-    $listepanier = $panier1core->tridate();
-    }
-
-?> 
-
-
+<?php
+$conn=mysqli_connect("localhost","root","","catering");
+$queryassio = "SELECT location, count(*) as number FROM association GROUP BY location";
+$querydonation = "SELECT location, count(*) as number1 FROM donation GROUP BY location";
+$resultreg = mysqli_query($conn,"SELECT * from region");
+$resultassio = mysqli_query($conn,$queryassio);
+$resultdonation = mysqli_query($conn,$querydonation);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart1() {
+
+                    var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Hours per Day'],
+                <?php
+                    while($val=mysqli_fetch_assoc($resultassio))
+                    {
+                        echo"['".$val['location']."',".$val['number']."],";
+                    }
+                ?>
+                    ]);
+
+                    var options = {
+                    title: 'Based Location association'
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                    chart.draw(data, options);
+                }
+
+
+      function drawChart() 
+      {
+            var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            <?php
+            while($val=mysqli_fetch_assoc($resultdonation))
+            {
+                echo"['".$val['location']."',".$val['number1']."],";
+            }
+            ?>
+            ]);
+
+            var options = {
+            title: 'Based Location donation'
+            
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+            chart.draw(data, options);
+    }
+
+
+    function drawChart2() {
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        <?php
+            while($val=mysqli_fetch_assoc($resultreg))
+            {
+                echo"['".$val['name_region']."',".$val['nb_people']."],";
+            }
+            ?>
+            ]);
+    
+
+            var options = {
+            title: 'Based on population'
+            
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('columnchart_values'));
+
+            chart.draw(data, options);
+  }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -48,7 +103,7 @@ if(isset($_GET['recherche']))
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
+    <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="index.html">
                     <h1 class="tm-site-title mb-0">Product Admin</h1>
@@ -58,10 +113,10 @@ if(isset($_GET['recherche']))
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse  navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                        <li class="nav-item active">
+                            <a class="nav-link  " href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
@@ -69,46 +124,47 @@ if(isset($_GET['recherche']))
                         </li>
                         <li class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-file-alt"></i>
                                 <span>
-                                    Reports <i class="fas fa-angle-down"></i>
+                                    Modules <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Daily Report</a>
-                                <a class="dropdown-item" href="#">Weekly Report</a>
-                                <a class="dropdown-item" href="#">Yearly Report</a>
+                                <a class="dropdown-item" href="listassio.php">Association Managment</a>
+                                <a class="dropdown-item" href="listDonation.php">Donation Managment</a>
+                                <a class="dropdown-item" href="chef management.php">Chef Report</a>
+                                <a class="dropdown-item" href="listOrder.php">orders Report</a>
+                                <a class="dropdown-item" href="addRegion.php">Region managment</a>
+                                <a class="dropdown-item" href="listBasket.php">Basket List</a>
+                                <a class="dropdown-item" href="listRegions.php">List Regions</a>
+                                
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Products
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
+                                <i class="fas fa-shopping-cart"></i>
                                 <span>
-                                    Settings <i class="fas fa-angle-down"></i>
+                                Products
                                 </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="listfooditem2.php">food items</a>
+                                <a class="dropdown-item" href="listmenu2.php">Menus</a>
+                                <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
+                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                                </div>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="listClients.php">
+                                <i class="far fa-user"></i>
+                                Accounts
+                            </a>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -124,188 +180,33 @@ if(isset($_GET['recherche']))
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+                    <p class="text-white mt-5 mb-5">Dashborad</p>
                 </div>
+            </div>
+            <!-- CHARTS -->
+            <div class="row mt-2">
+            <div class="col-12">
+            
+             <div id="piechart" style="width: 1000px; height: 500px;"></div>
+            
+             </div>
+            </div>
+            <div class="row mt-2">
+            <div class="col-12">
+             <div id="piechart1" style="width: 1000px; height: 500px;"></div>
+            </div>
+            </div>
+            <div class="row mt-2">
+            <div class="col-12">
+            <div id="columnchart_values" style="width: 1000px; height: 500px;"></div>
+            </div>
             </div>
             <!-- row -->
-            <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Latest Hits</h2>
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block">
-                        <h2 class="tm-block-title">Performance</h2>
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller">
-                        <h2 class="tm-block-title">Storage Information</h2>
-                        <div id="pieChartContainer">
-                            <canvas id="pieChart" class="chartjs-render-monitor" width="200" height="200"></canvas>
-                        </div>                        
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-                        <h2 class="tm-block-title">Notification List</h2>
-                        <div class="tm-notification-items">
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new <a href="#"
-                                            class="tm-notification-link">product updates</a>. Check new orders.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Oliver Too</b> and <b>6 others</b> sent you existing <a href="#"
-                                            class="tm-notification-link">product updates</a>. Read more reports.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Victoria</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order updates</a>. Read order information.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Laura Cute</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product records</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Samantha</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">order stuffs</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Sophie</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Lily A</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-02.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Amara</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                            <div class="media tm-notification-item">
-                                <div class="tm-gray-circle"><img src="img/notification-03.jpg" alt="Avatar Image" class="rounded-circle"></div>
-                                <div class="media-body">
-                                    <p class="mb-2"><b>Cinthela</b> and <b>6 others</b> sent you <a href="#"
-                                            class="tm-notification-link">product updates</a>.</p>
-                                    <span class="tm-small tm-text-color-secondary">6h ago.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                        <!-- Partie panier -->
-
-                <div class="col-12 tm-block-col">
-                
-                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Orders List</h2>
-                        <form method="post" action="mailconf.php" >
-                        <div> <input type="email" placeholder="Mail client.." name="email" >                                        </div>
-                        <div> <button class="btn btn-primary btn-block text-uppercase" name="send">send</button>     </div>
-                        </form>
-                        <table class="table">
-                        
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID Panier.</th>
-                                    <th scope="col">ID Produit.</th>
-                                    <th scope="col">Etat</th>
-                                    <th scope="col">ID Client</th>
-                                    <th scope="col">Prix</th>
-                                    <th scope="col">Mail</th>
-                                    <th scope="col">Date Commande</th>
-                                    <th scope="col">Commande livrée</th>
-                                    <th scope="col">Commande annulée</th>
-                                    <form class="searchtri" method="post" action="index.php">
-                                    <th scope="col"> 
-                                    <input type="submit" class="btn btn-primary btn-block text-uppercase" name="tri" value="Trier par date">
-                                </input>
-                                                     </th>
-                                    
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                            
-                            
-                            
-                    <?php
-                foreach($listepanier as $row)
-                { ?>
-                                <tr>
-                                
-                                    <td><b><?PHP echo $row['id_Panier']; ?></b> </td>
-                                    <td><b><?PHP echo $row['id_Produit']; ?></b></td>
-                                    <td><b><?PHP echo $row['Etat']; ?></b></td>
-                                    <td><b><?PHP echo $row['id_Client']; ?></b></td>
-                                    <td><b><?PHP echo $row['Prix']; ?></b></td>
-                                    <td><b><?PHP echo $row['Mail']; ?></b></td>
-                                    <td><b><?PHP echo $row['Date_Commande']; ?></b></td>
-                                    
-                                    <td>
-                                        <a style="color:gold" href="index.php?idmod=<?php echo $row['id_Panier'];?>&Etat=1">
-                                        livrée </a>
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <div class="commande-annulée">
-                                        <form method="POST" action="supprimerpanier.php" >
-                                        <input type="hidden" value="<?php echo $row['id_Panier']?>" name="id_Panier">
-                                        <button><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    </td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                            <?PHP
-                }
-                ?>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
         <footer class="tm-footer row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2018</b> All rights reserved. 
+                    Copyright &copy; <b>2022</b> All rights reserved. 
                     
                     Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
                 </p>
@@ -346,8 +247,6 @@ if(isset($_GET['recherche']))
                 updateBarChart();                
             });
         })
-
-        
     </script>
 </body>
 
