@@ -168,7 +168,6 @@ $result = mysqli_query($conn,"SELECT * from chef");
                                 </tr>
                             </thead>
                             <tbody>
-                                
                               
                                     <?php
                                     foreach ($list as $chef) {
