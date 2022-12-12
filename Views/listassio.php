@@ -3,6 +3,7 @@ include '../Controller/assioC.php';
 $assioC = new AssioC();
 $list = $assioC->listassio();
 $conn=mysqli_connect("localhost","root","","catering");
+$query = "SELECT location, count(*) as number FROM association GROUP BY location";
 $result = mysqli_query($conn,"SELECT * from association");
 ?>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ $result = mysqli_query($conn,"SELECT * from association");
     <?php
         while($val=mysqli_fetch_assoc($result))
         {
-            echo"['".$val['location']."',".$val['phone']."],";
+            echo"['".$val['location']."',".$val['number']."],";
         }
     ?>
         ]);

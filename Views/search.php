@@ -165,7 +165,7 @@ if(isset($_POST['submit-search']))
                                     <td><?php echo $row["mail"]; ?></td>
                                     <td><?php echo $row["phone"]; ?></td>
                                     <td><?php echo $row['president']; ?></td>
-                                    <td><?php echo $row['id_client']; ?></td>
+                                    
                                     </tr>
                                     <?php
                                     $i++;

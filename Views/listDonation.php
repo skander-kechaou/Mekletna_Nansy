@@ -3,7 +3,8 @@ include '../Controller/donationc.php';
 $Donation_core = new donationC ();
 $list = $Donation_core ->listDonation();
 $conn=mysqli_connect("localhost","root","","catering");
-$result = mysqli_query($conn,"SELECT * from donation");
+$query = "SELECT location, count(*) as number FROM donation GROUP BY location";
+$result = mysqli_query($conn,$query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,11 +18,11 @@ $result = mysqli_query($conn,"SELECT * from donation");
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
+          ['Location', 'Date'],
     <?php
         while($val=mysqli_fetch_assoc($result))
         {
-            echo"['".$val['location']."',".$val['id_menu']."],";
+            echo"['".$val['location']."',".$val['number']."],";
         }
     ?>
         ]);
@@ -204,7 +205,7 @@ $result = mysqli_query($conn,"SELECT * from donation");
                                                 </a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary" href="deleteDonation.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
+                                            <a class="btn btn-primary" href="deleteDonation.php?id_donation=<?php echo $donation['id_donation']; ?>">Delete</a>
                                         </td>
                                         </tr>
         <?php
