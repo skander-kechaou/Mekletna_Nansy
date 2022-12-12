@@ -14,7 +14,7 @@ function listOrder ()
             $e->getMessage();
         }
 	}
-	
+	//no nb order in the database please check your code again 
 	function addOrder($Order){
 		$sql="insert into Order (idMenu,nbOrder,idClient,priceOrder,dateOrder,statusOrder) values (:idProduit, :nbOrder0,:idClient,:priceOrder0,:DateOrder,:statusOrder0)";
 		$db = config::getConnexion();

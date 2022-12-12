@@ -160,9 +160,6 @@ if ((
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-4 col-md-6">
-                    <input type="number" name="id_client" class="form-control" id="id_client" placeholder="Id client" min="1" required>
-                    <div class="validate"></div>
-                  <div class="col-lg-4 col-md-6">
                     <input type="date" class="form-control" name="date" id="date" placeholder="Date" data-rule="date" data-msg="Please enter a date" required>
                     <div class="validate"></div>
                   </div>
@@ -178,6 +175,10 @@ if ((
                           <option value="Gabès">Gabès</option>
                     </select>
                   </div>
+                  <div class="col-lg-4 col-md-6">
+                    <input type="number" name="id_client" class="form-control" id="id_client" placeholder="Id client" min="1" required>
+                    <div class="validate"></div>
+                  </div>
                 </div>
                 <div class="form-group mt-3">
                   <textarea class="form-control" id="reason" name="reason" rows="5" placeholder="Reason" required></textarea>
@@ -185,10 +186,8 @@ if ((
                 </div>
                 <div class="mb-3">
                   <div class="error-message"></div>
-                </div>
-                <button >
-                   Submit
-                </button>             
+                </div>   
+                <input class="btn btn-book-a-table" type="submit"  value="Make Donation">          
                </form>
             </div><!-- End donation Form -->
   

@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-include '../model/Association.php';
+
 
 class AssioC {
     public function listassio() {
