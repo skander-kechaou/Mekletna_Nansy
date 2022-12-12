@@ -1,6 +1,6 @@
 <?PHP
 
-include '../Model/Views/basket.php';
+//include '../Model/Views/basket.php';
 include '../Controller/basketC.php';
 
 $error="";
@@ -25,7 +25,7 @@ if (
 
 
     ) {
-        $basket = new Basket(
+        $basket = new basket(
             $_POST["nameOrder"],
             $_POST["idOrder"],
             $_POST["priceOrder"],
