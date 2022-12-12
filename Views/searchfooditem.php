@@ -36,7 +36,7 @@ if(isset($_POST['submit-search']))
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
+    <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
                 <a class="navbar-brand" href="index.html">
                     <h1 class="tm-site-title mb-0">Product Admin</h1>
@@ -46,10 +46,10 @@ if(isset($_POST['submit-search']))
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse  navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link  " href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
@@ -65,40 +65,39 @@ if(isset($_POST['submit-search']))
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item " href="listClients.php">User Management</a>
-                                <a class="dropdown-item" href="#">Association Management</a>
-                                <a class="dropdown-item" href="#">Chef Report</a>
-                                <a class="dropdown-item active" href="listfooditem.php">Menu Report</a>
-                                <a class="dropdown-item" href="#">Orders Report</a>
+                                <a class="dropdown-item" href="listassio.php">Association Managment</a>
+                                <a class="dropdown-item" href="listDonation.php">Donation Managment</a>
+                                <a class="dropdown-item" href="chef management.php">Chef Report</a>
+                                <a class="dropdown-item" href="listOrder.php">orders Report</a>
+                                <a class="dropdown-item" href="addRegion.php">Region managment</a>
+                                <a class="dropdown-item" href="listBasket.php">Basket List</a>
+                                <a class="dropdown-item" href="listRegions.php">List Regions</a>
+                                
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.php">
-                                <i class="fas fa-shopping-cart"></i>
-                                Menu
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Accounts
-                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
+                                <i class="fas fa-shopping-cart"></i>
                                 <span>
-                                    Settings <i class="fas fa-angle-down"></i>
+                                Products
                                 </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="listfooditem2.php">food items</a>
+                                <a class="dropdown-item" href="listmenu2.php">Menus</a>
+                                <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
+                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                                </div>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="listClients.php">
+                                <i class="far fa-user"></i>
+                                Accounts
+                            </a>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
