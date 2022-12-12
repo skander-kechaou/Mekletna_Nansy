@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost","root","","project2223_2a1-2a1_nansy");
+$conn = mysqli_connect("localhost","root","","catering");
 $result = mysqli_query($conn,"SELECT *FROM  region ORDER BY nb_people");
 
 
