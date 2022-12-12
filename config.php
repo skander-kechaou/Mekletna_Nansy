@@ -1,5 +1,6 @@
 <?php
   session_start();
+  // idk idk
   class config {
     private static $pdo = NULL;
 
