@@ -1,40 +1,42 @@
 <?php
 
-include '../controller/donationC.php';
-include '../model/Association.php';
-$error = "";
+// php update data in mysql database using PDO
 
-// create client
-$donation = null;
-
-// create an instance of the controller
-$donationC = new donationC();
-if (
-    isset($_POST["id_donation"])&&
-    isset($_POST["id_menu"]) &&
-    isset($_POST["date"]) &&
-    isset($_POST["location"]) &&
-    isset($_POST["reason"]) 
-) {
-    if (
-        !empty($_POST["id_donation"])&&
-        !empty($_POST["id_menu"]) &&
-        !empty($_POST["date"]) &&
-        !empty($_POST["location"]) &&
-        !empty($_POST["reason"]) 
-    ) {
-        $donation = new donation(
-            $_POST["id_donation"],
-            $_POST["id_menu"],
-            $_POST["date"],
-            $_POST["location"], 
-            $_POST["reason"]
-        );
-        $donationC->updateDonation($donation, $_POST["id_donation"]);
-        header('Location:listdonation.php');
-    } else
-        $error = "Missing information";
+if(isset($_POST['update']))
+{
+  $hostname = "localhost";
+  $username = "root";
+  $password = "";
+  $databaseName = "catering";
+  
+  $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+    
+    // get values form input text and number
+    
+    $id_donation = $_POST['id_donation'];
+    $id_menu = $_POST['id_menu'];
+    $date = $_POST['date'];
+    $location = $_POST['location'];
+    $reason = $_POST['reason'];
+    $id_client = $_POST['id_client'];
+    
+    // mysql query to Update data
+    
+    $query = "UPDATE `donation` SET `id_menu`='".$id_menu."',`date`='".$date."',`location`='".$location."',`reason`='".$reason."',`id_client`='".$id_client."' WHERE `id_donation` = '".$id_donation."'";
+    
+    
+    $result = mysqli_query($connect, $query);
+   
+   if($result)
+   {
+       echo 'Data Updated';
+       header('Location:listDonation.php');
+   }else{
+       echo 'Data Not Updated';
+   }
+   mysqli_close($connect);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,71 +161,25 @@ if (
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
               <h2 class="tm-block-title">Update Donation Settings</h2>
-              <?php
-    if (isset($_POST['id_donation'])) {
-        $donation = $donationC->showdonation($_POST['id_donation']);
+              
+            <form action="updateDonation.php" method="post">
 
-    ?>
-              <form action="" class="tm-signup-form row">
-                <div class="form-group col-lg-6">
-                  <label for="id_donation">ID Donation</label>
-                  <input
-                    id="id_donation"
-                    name="id_donation"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="id_menu">Menu</label>
-                  <input
-                    id="id_menu"
-                    name="id_menu"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="date">date</label>
-                  <input
-                    id="date"
-                    name="date"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="location">location</label>
-                  <input
-                    id="location"
-                    name="location"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="reason">reason</label>
-                  <input
-                    id="reason"
-                    name="reason"
-                    type="number"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label class="tm-hide-sm">&nbsp;</label>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Update
-                  </button>
-                </div>
-                </div>
-              </form>
-              <?php
-    }
-    ?>
+                <label >Id to update</label> <input class="form-control validate" type="number" name="id_donation" required><br><br>
+
+                <label >New Menu</label><input class="form-control validate" type="number" name="id_menu" required><br><br>
+
+                <label >New Date</label><input class="form-control validate" type="date" name="date" required><br><br>
+
+                <label >New Phone</label><input class="form-control validate" type="text" name="location" required><br><br>
+                
+                <label>New Reason</label><input class="form-control validate" type="text" name="reason" required><br><br>
+
+                <label >New President</label><input class="form-control validate" type="number" name="id_client" required><br><br>
+
+                <input class="btn btn-primary btn-block text-uppercase" type="submit" name="update" value="Update Data">
+
+            </form>
+
             </div>
           </div>
         </div>

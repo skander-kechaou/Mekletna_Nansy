@@ -1,5 +1,5 @@
 <?php
-include '../controller/assioC.php';
+include '../Controller/assioC.php';
 $assioC = new AssioC();
 $list = $assioC->listassio();
 $conn=mysqli_connect("localhost","root","","catering");
@@ -195,10 +195,12 @@ $result = mysqli_query($conn,"SELECT * from association");
                                         <td><?= $assio['president']; ?></td>
                                         <td><?= $assio['location']; ?></td>
                                         <td align="center">
-                                            <form method="POST" action="updateassio.php">
-                                                <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $assio['id_association']; ?> name="id_association">
-                                            </form>
+                                        
+                                                <a class="btn btn-primary"  href="updateassio.php">
+                                                    UPDATE
+                                                </a>
+                                                
+                                            
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href="deleteassio.php?id_association=<?php echo $assio['id_association']; ?>">Delete</a>

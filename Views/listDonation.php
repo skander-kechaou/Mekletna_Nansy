@@ -1,5 +1,5 @@
 <?php
-include '../controller/donationc.php';
+include '../Controller/donationc.php';
 $Donation_core = new donationC ();
 $list = $Donation_core ->listDonation();
 $conn=mysqli_connect("localhost","root","","catering");
@@ -199,10 +199,9 @@ $result = mysqli_query($conn,"SELECT * from donation");
                                         <td><?= $donation['reason']; ?></td>
                                         <td><?= $donation['id_client']; ?></td>
                                         <td align="center">
-                                            <form method="POST" action="updatedonation.php">
-                                                <input class="btn btn-primary" type="submit" name="update" value="Update">
-                                                <input type="hidden" value=<?PHP echo $donation['id_donation']; ?> name="id_donation">
-                                            </form>
+                                        <a class="btn btn-primary"  href="updateDonation.php">
+                                                    UPDATE
+                                                </a>
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href="deleteDonation.php?id_donationn=<?php echo $donation['id_donation']; ?>">Delete</a>
