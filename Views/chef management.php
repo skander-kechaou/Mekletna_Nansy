@@ -140,8 +140,8 @@ $result = mysqli_query($conn,"SELECT * from chef");
         <div class="row mt-2">
               <div class="col-12">
                 <form class="form-inline" method="post" action="search by.php">
-                <input type="text" name="search" class="form-control" placeholder="Search name .">
-                <button type="submit" name="submit-search" class="btn btn-primary">Search</button>
+                <input type="text" name="search" class="form-control" placeholder="Search chef by region .">
+                <button type="submit" name="submit-search" class="btn btn-primary">Search Chef By Region</button>
                </form>
                
                 <a class="btn "  style="color:white" href=" region management.php" role="button"> See  All Regions</a>
