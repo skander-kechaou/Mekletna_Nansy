@@ -7,7 +7,6 @@ class basket{
   private ?DateTime  $dateOrder=null;    
    
 
-
     function __construct($nameOrder,$idOrder=NULL,$priceOrder,$dateOrder)
     {
     $this->nameOrder=$nameOrder;
