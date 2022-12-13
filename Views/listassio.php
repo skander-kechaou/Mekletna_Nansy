@@ -138,15 +138,12 @@ $result = mysqli_query($conn,$query);
             <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
-<<<<<<< HEAD
+                    <div class="card-header">Association Statistics</div>
+                <div class="card">
                     <div class="card-header">Associations' Statistics</div>
              <div id="piechart" style="width: 1000px; height: 500px;"></div>
-             </div>
-=======
-                    <div class="card-header">Association Statistics</div>
-             <div id="piechart" style="width: 1000px; height: 500px;"></div>
                  </div>
->>>>>>> e26924e934673405c23428f47230b0587584ee76
+             </div>
             </div>
             </div>
 
