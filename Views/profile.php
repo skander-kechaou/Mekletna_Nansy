@@ -111,11 +111,11 @@ if (
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="">Menu</a></li>
-                    <li><a href="order.html">Order</a></li>
-                    <li><a href="Chef.html">Chefs</a></li>
-                    <li><a href="Donations.html">Donations</a></li>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="menu.php">Menu</a></li>
+                    <li><a href="addOrder.php">Order</a></li>
+                    <li><a href="Chef.php">Chefs</a></li>
+                    <li><a href="addDonations.php">Donations</a></li>
                 </ul>
             </nav>
             <!-- .navbar -->

@@ -57,7 +57,7 @@ if (!isset($_SESSION["login_sess"])) {
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <a
-          href="home.html"
+          href="home.php"
           class="logo d-flex align-items-center me-auto me-lg-0"
         >
           <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -66,11 +66,11 @@ if (!isset($_SESSION["login_sess"])) {
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="">Menu</a></li>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="Chef.html">Chefs</a></li>
-            <li><a href="Donations.html">Donations</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="menu.php">Menu</a></li>
+            <li><a href="addOrder.php">Order</a></li>
+            <li><a href="Chef.php">Chefs</a></li>
+            <li><a href="addDonations.php">Donations</a></li>
           </ul>
         </nav>
         <!-- .navbar -->

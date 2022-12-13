@@ -13,16 +13,17 @@ if(isset($_POST['update']))
     
     // get values form input text and number
     
-    $id_donation = $_POST['id_donation'];
-    $id_menu = $_POST['id_menu'];
-    $date = $_POST['date'];
-    $location = $_POST['location'];
-    $reason = $_POST['reason'];
-    $id_client = $_POST['id_client'];
-    
+    $id_chef = $_POST['id_chef'];
+    $Name_chef= $_POST['Name_chef'];
+    $Add_chef = $_POST['Add_chef'];
+    $mail_chef = $_POST['mail_chef'];
+    $Phone = $_POST['Phone'];
+    $Date_Birth = $_POST['Date_Birth'];
+    $cCv=$_POST['Cv'];
+    $Reg= $_POST['Reg'];
     // mysql query to Update data
     
-    $query = "UPDATE `donation` SET `id_menu`='".$id_menu."',`date`='".$date."',`location`='".$location."',`reason`='".$reason."',`id_client`='".$id_client."' WHERE `id_donation` = '".$id_donation."'";
+    $query = "UPDATE `chef` SET `id_chef`='".$id_chef."',`Name_chef`='".$Name_chef."',`Add_chef`='".$Add_chef."',`mail_chef`='".$mail_chef."',`Phone`='".$Phone. "',`Date_Birth`='".$Date_Birth. "',`Cv`='".$Cv. "', `Reg`='".$Reg. "'WHERE `id_chef` = '".$id_chef."'";
     
     
     $result = mysqli_query($connect, $query);
@@ -30,7 +31,7 @@ if(isset($_POST['update']))
    if($result)
    {
        echo 'Data Updated';
-       header('Location:listDonation.php');
+       header('Location:chef management.php');
    }else{
        echo 'Data Not Updated';
    }
@@ -162,19 +163,23 @@ if(isset($_POST['update']))
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
               <h2 class="tm-block-title">Update Donation Settings</h2>
               
-            <form action="updateDonation.php" method="post">
+            <form action="updateChef.php" method="post">
 
-                <label >Id to update</label> <input class="form-control validate" type="number" name="id_donation" required><br><br>
+                <label >Id to update</label> <input class="form-control validate" type="number" name="id_chef" required><br><br>
 
-                <label >New Menu</label><input class="form-control validate" type="number" name="id_menu" required><br><br>
+                <label >New Name</label><input class="form-control validate" type="text" name="id_name" required><br><br>
 
-                <label >New Date</label><input class="form-control validate" type="date" name="date" required><br><br>
+                <label >New Address</label><input class="form-control validate" type="text" name="Add_chef" required><br><br>
 
-                <label >New Phone</label><input class="form-control validate" type="text" name="location" required><br><br>
+                <label >New mail</label><input class="form-control validate" type="text" name="mail_chef" required><br><br>
                 
-                <label>New Reason</label><input class="form-control validate" type="text" name="reason" required><br><br>
+                <label>New Phone</label><input class="form-control validate" type="number" name="Phone" required><br><br>
 
-                <label >New President</label><input class="form-control validate" type="number" name="id_client" required><br><br>
+                <label >New Date_Birth</label><input class="form-control validate" type="date" name="Date_Birth" required><br><br>
+
+                <label >New Cv</label><input class="form-control validate" type="text" name="Cv" required><br><br>
+
+                <label >New Reg</label><input class="form-control validate" type="number" name="Reg" required><br><br>
 
                 <input class="btn btn-primary btn-block text-uppercase" type="submit" name="update" value="Update Data">
 

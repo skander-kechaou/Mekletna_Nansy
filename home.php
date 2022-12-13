@@ -9,8 +9,8 @@
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="Views/assets/img/favicon.png" rel="icon" />
+    <link href="Views/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,22 +22,22 @@
 
     <!-- Vendor CSS Files -->
     <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      href="Views/assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      href="Views/assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="Views/assets/vendor/aos/aos.css" rel="stylesheet" />
     <link
-      href="assets/vendor/glightbox/css/glightbox.min.css"
+      href="Views/assets/vendor/glightbox/css/glightbox.min.css"
       rel="stylesheet"
     />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="Views/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="Views/assets/css/main.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -45,52 +45,24 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <a
-          href="index.html"
+          href="home.php"
           class="logo d-flex align-items-center me-auto me-lg-0"
         >
           <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img src="assets/img/mekletna.png" alt="mekletna logo">
+          <img src="Views/assets/img/mekletna.png" alt="mekletna logo" width="100" height="100">
         </a>
-
+  
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#events">Donations</a></li>
-            <li><a href="#chefs">Chefs</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li class="dropdown">
-              <a href="#"
-                ><span>Drop Down</span>
-                <i class="bi bi-chevron-down dropdown-indicator"></i
-              ></a>
-              <ul>
-                <li><a href="#">Drop Down 1</a></li>
-                <li class="dropdown">
-                  <a href="#"
-                    ><span>Deep Drop Down</span>
-                    <i class="bi bi-chevron-down dropdown-indicator"></i
-                  ></a>
-                  <ul>
-                    <li><a href="#">Deep Drop Down 1</a></li>
-                    <li><a href="#">Deep Drop Down 2</a></li>
-                    <li><a href="#">Deep Drop Down 3</a></li>
-                    <li><a href="#">Deep Drop Down 4</a></li>
-                    <li><a href="#">Deep Drop Down 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Drop Down 2</a></li>
-                <li><a href="#">Drop Down 3</a></li>
-                <li><a href="#">Drop Down 4</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="Menu.php">Menu</a></li>
+            <li><a href="Order.php">Order</a></li>
+            <li><a href="Chef.php">Chefs</a></li>
+            <li><a href="Donations.php">Donations</a></li>
           </ul>
         </nav>
         <!-- .navbar -->
-
-        <a class="btn-book-a-table" href="#book-a-table">Order Food</a>
+        <a class="btn-book-a-table" href="Views/login.php">Log in/Sign in</a>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       </div>
@@ -143,13 +115,13 @@
           <div class="row gy-4">
             <div
               class="col-lg-7 position-relative about-img"
-              style="background-image: url(assets/img/about.jpg)"
+              style="background-image: url(Views/assets/img/about.jpg)"
               data-aos="fade-up"
               data-aos-delay="150"
             >
               <div class="call-us position-absolute">
                 <h4>Order Food</h4>
-                <p>+1 5589 55488 55</p>
+                <p>+216 51 653 115</p>
               </div>
             </div>
             <div
@@ -179,7 +151,7 @@
                 </ul>
 
                 <div class="position-relative mt-4">
-                  <img src="assets/img/about-2.jpg" class="img-fluid" alt="" />
+                  <img src="Views/assets/img/about-2.jpg" class="img-fluid" alt="" />
                   <a
                     href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
                     class="glightbox play-btn"
@@ -331,7 +303,7 @@
                 <i class="icon bi bi-map flex-shrink-0"></i>
                 <div>
                   <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>Mohammed V Street, Tunis, Tunis 1023</p>
                 </div>
               </div>
             </div>
@@ -342,7 +314,7 @@
                 <i class="icon bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Email Us</h3>
-                  <p>contact@example.com</p>
+                  <p>info@Mekletna.com</p>
                 </div>
               </div>
             </div>
@@ -353,7 +325,7 @@
                 <i class="icon bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
+                  <p>+216 51 653 115</p>
                 </div>
               </div>
             </div>
@@ -514,14 +486,14 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="Views/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="Views/assets/vendor/aos/aos.js"></script>
+    <script src="Views/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="Views/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="Views/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="Views/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="Views/assets/js/main.js"></script>
   </body>
 </html>

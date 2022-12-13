@@ -64,7 +64,7 @@ $result = mysqli_query($conn,"SELECT * FROM region where id_region='$id' ");
                                 <a class="dropdown-item" href="listOrder.php">orders Report</a>
                                 <a class="dropdown-item" href="addRegion.php">Region managment</a>
                                 <a class="dropdown-item" href="listBasket.php">Basket List</a>
-                                <a class="dropdown-item" href="listRegions.php">List Regions</a>
+                                <a class="dropdown-item" href="region management.php">List Regions</a>
                                 
                             </div>
                         </li>
@@ -79,7 +79,7 @@ $result = mysqli_query($conn,"SELECT * FROM region where id_region='$id' ");
                                 <a class="dropdown-item" href="listfooditem2.php">food items</a>
                                 <a class="dropdown-item" href="listmenu2.php">Menus</a>
                                 <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
-                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                               
                                 </div>
                             </a>
                         </li>

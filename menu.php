@@ -45,7 +45,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <a
-          href="home.html"
+          href="home.php"
           class="logo d-flex align-items-center me-auto me-lg-0"
         >
           <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -54,16 +54,16 @@
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="">Menu</a></li>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="Chef.html">Chefs</a></li>
-            <li><a href="Donations.html">Donations</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="menu.php">Menu</a></li>
+            <li><a href="order.php">Order</a></li>
+            <li><a href="Chef.php">Chefs</a></li>
+            <li><a href="Donations.php">Donations</a></li>
           </ul>
         </nav>
         <!-- .navbar -->
 
-        <a class="btn-book-a-table" href="login.html">Log in/Sign in</a>
+        <a class="btn-book-a-table" href="Views/login.php">Log in/Sign in</a>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       </div>
@@ -75,7 +75,7 @@
         <div class="container" data-aos="fade-up">
   
           <div class="section-header">
-            <h2>Our Menu</h2>
+            
             <p>Check Our <span>Mekletna Menu</span></p>
           </div>
   
@@ -134,7 +134,7 @@
                 </div><!-- Menu Item -->
   
                 <div class="col-lg-4 menu-item">
-                  <a href="views/assets/img/menu/coucous.jpg" class="glightbox"><img src="assets/img/menu/coucous.jpg" class="menu-img img-fluid" alt=""></a>
+                  <a href="views/assets/img/menu/coucous.jpg" class="glightbox"><img src="views/assets/img/menu/coucous.jpg" class="menu-img img-fluid" alt=""></a>
                   <h4>Cousous</h4>
                   <p class="price">
                     18.95DT

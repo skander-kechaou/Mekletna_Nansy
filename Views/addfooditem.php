@@ -106,7 +106,7 @@ if ((
                                 <a class="dropdown-item" href="listfooditem2.php">food items</a>
                                 <a class="dropdown-item" href="listmenu2.php">Menus</a>
                                 <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
-                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                               
                                 </div>
                             </a>
                         </li>

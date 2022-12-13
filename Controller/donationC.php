@@ -1,5 +1,5 @@
 <?php
-include '../config.php';
+require_once('../config.php');
 
 class donationC {
     public function listdonation() {
@@ -32,7 +32,7 @@ class donationC {
 
     public function adddonation($donation) {
         $sql = "INSERT INTO donation VALUES
-        (NULL, :idm, :d, :loc, :rea,:idc)";
+        (NULL, :idm, :d, :loc, :rea, ?)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -41,7 +41,7 @@ class donationC {
                 'd' => $donation->getdate()->format('dd/mm/yyyy'),
                 'loc' => $donation->get_location(),
                 'rea' => $donation->get_reason(),
-                'idc'=>$donation->get_id_client()
+                'idc' =>$donation->get_id_client()
             ]);
         } catch (Exception $e) {
             $e->getMessage();

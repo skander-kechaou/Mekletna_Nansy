@@ -1,7 +1,44 @@
 <?php
 
+include '../Controller/UserFct.php';
+
+include '../Model/user.php';
+
 include '../Controller/assioC.php';
+
 include '../Model/Association.php';
+
+if (!isset($_SESSION["login_sess"])) {
+    echo "unsuccessful";
+  } else {
+    echo $_SESSION["login_sess"];
+    echo "login success";
+    echo $_SESSION["id"];
+    $id=$_SESSION['id'];
+    $db = config::getConnexion();
+
+        // // Check if in the database
+        // $query = $db->prepare("SELECT idClient FROM Client where idClient =".$id);
+        // $query->execute([$id]);
+        // $row = $query->rowCount();
+    
+        
+            // existing association with id 
+    
+            $query_exist =  $db->prepare("SELECT president FROM association where president =".$id);
+            $query_exist->execute();
+            $from_reset = $query_exist->fetch();
+    
+            if(empty($from_reset))
+            {
+                // Save information needed for assoc and insert
+                $query_insert = $db->prepare("INSERT INTO association (president) VALUES (?)");
+                $query_insert->execute([$id],);
+            } 
+       
+    
+  }
+
 
 $error = "";
 
@@ -12,14 +49,12 @@ if ((
     isset($_POST["name_assio"]) &&
     isset($_POST["mail"]) &&
     isset($_POST["phone"]) &&
-    isset($_POST["president"])&&
     isset($_POST["location"])
 ) 
     && (
         !empty($_POST["name_assio"]) &&
         !empty($_POST["mail"]) &&
         !empty($_POST["phone"]) &&
-        !empty($_POST["president"]) &&
         !empty($_POST["location"])
     ) ){
         echo('name:'.$_POST['name_assio']);
@@ -28,10 +63,10 @@ if ((
             $_POST["name_assio"],
             $_POST["mail"],
             $_POST["phone"], 
-            $_POST["president"],
+            $id,
             $_POST["location"],
         );
-        $assioC->addassio($assio);
+        $assioC->addassio($assio,$id);
         header('Location:listassio.php');
 }
 
@@ -68,11 +103,6 @@ if ((
     <div class="form-control">
       <label for="name_assio">Phone Number</label>
       <input type="number" id="phone" name="phone" placeholder="12 345 678" title="Your Phone Number" />
-      <small>Error Message</small>
-    </div>
-    <div class="form-control">
-      <label for="name_assio">Client ID</label>
-      <input type="number" name="president" id="president" placeholder="Enter your ID">
       <small>Error Message</small>
     </div>
     <div class="form-control">

@@ -1,7 +1,33 @@
 <?php
+include '../Controller/UserFct.php';
+
+include '../Model/user.php';
 
 include '../Controller/donationC.php';
+
 include '../Model/Donation.php';
+if (!isset($_SESSION["login_sess"])) {
+  echo "unsuccessful";
+} else {
+  echo $_SESSION["login_sess"];
+  echo "login success";
+  echo $_SESSION["id"];
+  $id=$_SESSION['id'];
+  $db = config::getConnexion();
+
+      // // Check if in the database
+      // $query = $db->prepare("SELECT idClient FROM Client where idClient =".$id);
+      // $query->execute([$id]);
+      // $row = $query->rowCount();
+  
+      
+          // existing association with id 
+  
+         
+     
+  
+}
+
 $error = "";
 
 $Donation = null;
@@ -11,15 +37,15 @@ if ((
     isset($_POST["id_menu"]) &&
     isset($_POST["date"]) &&
     isset($_POST["location"]) &&
-    isset($_POST["reason"]) &&
-    isset($_POST["id_client"])
+    isset($_POST["reason"]) 
+    
 ) 
     && (
         !empty($_POST["id_menu"]) &&
         !empty($_POST["date"]) &&
         !empty($_POST["location"]) &&
-        !empty($_POST["reason"]) &&
-        !empty($_POST["id_client"])
+        !empty($_POST["reason"]) 
+       
     ) ){
         echo('name:'.$_POST['location']);
         $Donation = new donation(
@@ -28,9 +54,19 @@ if ((
             new DateTime($_POST["date"]),
             $_POST["location"],
             $_POST["reason"],
-            $_POST["id_client"]
+            $id,
         );
         $Donation_core->addDonation($Donation);
+        $query_exist =  $db->prepare("SELECT * FROM donation where id_client =".$id);
+        $query_exist->execute();
+        $from_reset = $query_exist->fetch();
+
+        if(empty($from_reset))
+        {
+            // Save information needed for assoc and insert
+            $query_insert = $db->prepare("INSERT INTO donation (id_client) VALUES ( ?)");
+            $query_insert->execute([$id]);
+        } 
         header('Location:listDonation.php');
      
 }
@@ -79,31 +115,31 @@ if ((
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a
-        href="home.html"
-        class="logo d-flex align-items-center me-auto me-lg-0"
-      >
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="assets/img/mekletna.png" alt="mekletna logo" width="150" height="250">
-      </a>
+      <div class="container d-flex align-items-center justify-content-between">
+        <a
+          href="home.php"
+          class="logo d-flex align-items-center me-auto me-lg-0"
+        >
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <img src="assets/img/mekletna.png" alt="mekletna logo" width="100" height="100">
+        </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="home.html">Home</a></li>
-          <li><a href="menu.html">menu</a></li>
-          <li><a href="order.html">Order</a></li>
-          <li><a href="Chef.html">Chefs</a></li>
-          <li><a href="Donations.html">Donations</a></li>
-        </ul>
-      </nav>
-      <!-- .navbar -->
-
-      <a class="btn-book-a-table" href="addassio.php">Log in/Sign in as an association</a>
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-    </div>
-  </header>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="menu.php">Menu</a></li>
+            <li><a href="addOrder.php">Order</a></li>
+            <li><a href="Chef.php">Chefs</a></li>
+            <li><a href="addDonations.php">Donations</a></li>
+          </ul>
+        </nav>
+        <!-- .navbar -->
+        <a class="btn-book-a-table" href="addassio.php">Log in/Sign in as an association</a>
+        <a class="bi-person-fill"  href="profile.php"> User Profile</a>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+    </header>
   <!-- End Header -->
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
@@ -174,10 +210,6 @@ if ((
                           <option value="Kairouan">Kairouan</option>
                           <option value="Gabès">Gabès</option>
                     </select>
-                  </div>
-                  <div class="col-lg-4 col-md-6">
-                    <input type="number" name="id_client" class="form-control" id="id_client" placeholder="Id client" min="1" required>
-                    <div class="validate"></div>
                   </div>
                 </div>
                 <div class="form-group mt-3">

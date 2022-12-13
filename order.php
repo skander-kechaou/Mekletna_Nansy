@@ -42,7 +42,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
       <a
-        href="home.html"
+        href="home.php"
         class="logo d-flex align-items-center me-auto me-lg-0"
       >
         <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -51,16 +51,16 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="home.html">Home</a></li>
-          <li><a href="">Menu</a></li>
-          <li><a href="order.html">Order</a></li>
-          <li><a href="Chef.html">Chefs</a></li>
-          <li><a href="Donations.html">Donations</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li><a href="menu.php">Menu</a></li>
+          <li><a href="order.php">Order</a></li>
+          <li><a href="Chef.php">Chefs</a></li>
+          <li><a href="Donations.php">Donations</a></li>
         </ul>
       </nav>
       <!-- .navbar -->
 
-      <a class="btn-book-a-table" href="login.html">Log in/Sign in</a>
+      <a class="btn-book-a-table" href="views/login.php">Log in/Sign in To Order</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -72,7 +72,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Order Food</h2>
+          
           <p>Order <span>Your Food</span> Through Our Website</p>
         </div>
 
@@ -83,35 +83,19 @@
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
             <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
               <div class="row gy-4">
+                
+                
+                
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="Name of Association" class="form-control" id="id_Donation" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="date" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
+               
                 <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  <input type="number" class="form-control" name="people" id="people" placeholder="Menu To Order" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
                   <div class="validate"></div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                  <div class="validate"></div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
-                <div class="validate"></div>
-              </div>
+              
               <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>

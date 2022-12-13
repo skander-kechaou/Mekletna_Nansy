@@ -90,7 +90,7 @@ $result = mysqli_query($conn,$query);
                                 <a class="dropdown-item" href="listOrder.php">orders Report</a>
                                 <a class="dropdown-item" href="addRegion.php">Region managment</a>
                                 <a class="dropdown-item" href="listBasket.php">Basket List</a>
-                                <a class="dropdown-item" href="listRegions.php">List Regions</a>
+                                <a class="dropdown-item" href="region management.php">List Regions</a>
                                 
                             </div>
                         </li>
@@ -105,7 +105,7 @@ $result = mysqli_query($conn,$query);
                                 <a class="dropdown-item" href="listfooditem2.php">food items</a>
                                 <a class="dropdown-item" href="listmenu2.php">Menus</a>
                                 <a class="dropdown-item" href="addfooditem.php">Food item managment</a>
-                                <a class="dropdown-item" href="addMenu.php">Menu managment</a>
+                               
                                 </div>
                             </a>
                         </li>
@@ -138,9 +138,15 @@ $result = mysqli_query($conn,$query);
             <div class="row mt-2">
             <div class="col-12">
                 <div class="card">
+<<<<<<< HEAD
                     <div class="card-header">Associations' Statistics</div>
              <div id="piechart" style="width: 1000px; height: 500px;"></div>
              </div>
+=======
+                    <div class="card-header">Association Statistics</div>
+             <div id="piechart" style="width: 1000px; height: 500px;"></div>
+                 </div>
+>>>>>>> e26924e934673405c23428f47230b0587584ee76
             </div>
             </div>
 
