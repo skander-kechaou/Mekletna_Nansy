@@ -43,7 +43,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <a
-          href="home.html"
+          href="home.php"
           class="logo d-flex align-items-center me-auto me-lg-0"
         >
           <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -78,7 +78,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Our Menu</h2>
+          
           <p>Check Our <span>Mekletna Menu</span></p>
         </div>
 
@@ -182,67 +182,49 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/fricasse.jpg" class="glightbox"><img src="assets/img/menu/fricasse.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Fricassee</h4>
                 <p class="price">
-                  $5.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/slata michwia.jpg" class="glightbox"><img src="assets/img/menu/slata michwia.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Slata Michwia</h4>
                 <p class="price">
-                  $14.95
+                  14.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/coucous.jpg" class="glightbox"><img src="assets/img/menu/coucous.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Est Eligendi</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Cousous</h4>
                 <p class="price">
-                  $8.95
+                  18.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/lablebi.jpg" class="glightbox"><img src="assets/img/menu/lablebi.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Lablebi</h4>
                 <p class="price">
-                  $12.95
+                  4.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/kafteji.png" class="glightbox"><img src="assets/img/menu/kafteji.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Kafteji</h4>
                 <p class="price">
-                  $12.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/tajin.jpg" class="glightbox"><img src="assets/img/menu/tajin.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Laboriosam Direva</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Tajin</h4>
                 <p class="price">
-                  $9.95
+                  9.95DT
                 </p>
               </div><!-- Menu Item -->
 
@@ -260,67 +242,49 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/fricasse.jpg" class="glightbox"><img src="assets/img/menu/fricasse.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Fricassee</h4>
                 <p class="price">
-                  $5.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/slata michwia.jpg" class="glightbox"><img src="assets/img/menu/slata michwia.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Slata Michwia</h4>
                 <p class="price">
-                  $14.95
+                  14.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/coucous.jpg" class="glightbox"><img src="assets/img/menu/coucous.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Est Eligendi</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Cousous</h4>
                 <p class="price">
-                  $8.95
+                  18.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/lablebi.jpg" class="glightbox"><img src="assets/img/menu/lablebi.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Lablebi</h4>
                 <p class="price">
-                  $12.95
+                  4.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/kafteji.png" class="glightbox"><img src="assets/img/menu/kafteji.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Kafteji</h4>
                 <p class="price">
-                  $12.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/tajin.jpg" class="glightbox"><img src="assets/img/menu/tajin.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Laboriosam Direva</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Tajin</h4>
                 <p class="price">
-                  $9.95
+                  9.95DT
                 </p>
               </div><!-- Menu Item -->
 
@@ -338,67 +302,49 @@
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/fricasse.jpg" class="glightbox"><img src="assets/img/menu/fricasse.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Fricassee</h4>
                 <p class="price">
-                  $5.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/slata michwia.jpg" class="glightbox"><img src="assets/img/menu/slata michwia.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Aut Luia</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Slata Michwia</h4>
                 <p class="price">
-                  $14.95
+                  14.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/coucous.jpg" class="glightbox"><img src="assets/img/menu/coucous.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Est Eligendi</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Cousous</h4>
                 <p class="price">
-                  $8.95
+                  18.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/lablebi.jpg" class="glightbox"><img src="assets/img/menu/lablebi.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Lablebi</h4>
                 <p class="price">
-                  $12.95
+                  4.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/kafteji.png" class="glightbox"><img src="assets/img/menu/kafteji.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Eos Luibusdam</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Kafteji</h4>
                 <p class="price">
-                  $12.95
+                  5.95DT
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/menu/tajin.jpg" class="glightbox"><img src="assets/img/menu/tajin.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Laboriosam Direva</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
+                <h4>Tajin</h4>
                 <p class="price">
-                  $9.95
+                  9.95DT
                 </p>
               </div><!-- Menu Item -->
 

@@ -90,7 +90,7 @@ if (
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
-            <a href="home.html" class="logo d-flex align-items-center me-auto me-lg-0">
+            <a href="home.php" class="logo d-flex align-items-center me-auto me-lg-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="assets/img/mekletna.png" alt="mekletna logo" width="100" height="100">
             </a>
