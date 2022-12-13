@@ -1,6 +1,5 @@
 <?php
-include '../config.php';
-
+require_once('../config.php');
 
 class AssioC {
     public function listassio() {
@@ -31,9 +30,9 @@ class AssioC {
     }
     // Show details (id) in the URL at the bottom of the page
 
-    public function addassio($assio) {
+    public function addassio($assio,$id) {
         $sql = "INSERT INTO association VALUES
-        (NULL, :na, :mla, :pha, :pr)";
+        (NULL, :na, :mla, :pha, ?)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -41,7 +40,7 @@ class AssioC {
                 'na' => $assio->getname_assio(),
                 'mla' => $assio->getmail(),
                 'pha' => $assio->getphone(),
-                'pr' => $assio->getpresident(),
+                $id 
             ]);
         } catch (Exception $e) {
             $e->getMessage();

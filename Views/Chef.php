@@ -99,26 +99,21 @@ if ((
           class="logo d-flex align-items-center me-auto me-lg-0"
         >
           <!-- Uncomment the line below if you also wish to use an image logo -->
-          <img
-            src="assets/img/mekletna.png"
-            alt="mekletna logo"
-            width="100"
-            height="100"
-          />
+          <img src="assets/img/mekletna.png" alt="mekletna logo" width="100" height="100">
         </a>
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="">Menu</a></li>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="Chef.html">Chefs</a></li>
-            <li><a href="Donations.html">Donations</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="menu.php">Menu</a></li>
+            <li><a href="addOrder.php">Order</a></li>
+            <li><a href="Chef.php">Chefs</a></li>
+            <li><a href="addDonations.php">Donations</a></li>
           </ul>
         </nav>
         <!-- .navbar -->
 
-        <a class="btn-book-a-table" href="login.html">Log in/Sign in</a>
+        <a class="bi-person-fill"  href="profile.php"> User Profile</a>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       </div>
