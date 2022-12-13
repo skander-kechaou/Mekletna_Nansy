@@ -6,14 +6,16 @@ class Assio
     private ?string $mail = null;
     private ?string $phone = null;
     private ?int $president = null;
+    private ?string $location = null;
 
-    public function __construct($ida = null, $na, $mla, $pha, $pr)
+    public function __construct($ida = null, $na, $mla, $pha, $pr,$loc)
     {
         $this->id_association = $ida;
         $this->name_assio = $na;
         $this->mail= $mla;
         $this->phone = $pha;
         $this->president = $pr;
+        $this->location = $loc;
     }
 
     /**
@@ -32,6 +34,10 @@ class Assio
         return $this->name_assio;
     }
 
+    public function getlocation()
+    {
+        return $this->location;
+    }
     /**
      * Set the value of fnameClient
      *
@@ -43,7 +49,13 @@ class Assio
 
         return $this;
     }
+    public function setlocation($location)
+    {
+        $this->location = $location;
 
+        return $this;
+    }
+   
     /**
      * Get the value of lnameClient
      */

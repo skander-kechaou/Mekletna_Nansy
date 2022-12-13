@@ -101,7 +101,7 @@ if (
                     <li><a href="menu.php">Menu</a></li>
                     <li><a href="addOrder.php">Order</a></li>
                     <li><a href="Chef.php">Chefs</a></li>
-                    <li><a href="addDonation.php">Donations</a></li>
+                    <li><a href="addDonations.php">Donations</a></li>
                 </ul>
             </nav>
             <!-- .navbar -->
@@ -164,7 +164,7 @@ foreach($listecommande as $row)
                 <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
 
                     <form action="" method="post" role="form" id="form" data-aos="fade-up" data-aos-delay="100">
-                        <div class="row gy-4">
+                    <div class="row gy-4">
                             <div class="col-lg-4 col-md-6">
                                 <input type="number" name="idMenu" id="idMenu" placeholder="menu" maxlength="20">
                                 <div class="validate"></div>
@@ -187,11 +187,7 @@ foreach($listecommande as $row)
                                 <div class="validate"></div>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-                        </div>
+                        
                         <div class="text-center"><button type="submit">Order Food</button></div>
                     </form>
                 </div><!-- End Reservation Form -->

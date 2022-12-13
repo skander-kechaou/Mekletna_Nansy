@@ -32,7 +32,7 @@ class AssioC {
 
     public function addassio($assio,$id) {
         $sql = "INSERT INTO association VALUES
-        (NULL, :na, :mla, :pha, ?)";
+        (NULL, :na, :mla, :pha,:loc, ?)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -40,6 +40,7 @@ class AssioC {
                 'na' => $assio->getname_assio(),
                 'mla' => $assio->getmail(),
                 'pha' => $assio->getphone(),
+                'loc' => $assio->getlocation(),
                 $id 
             ]);
         } catch (Exception $e) {
